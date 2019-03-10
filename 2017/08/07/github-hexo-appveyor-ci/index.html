@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="因为一些原因，不再使用coding.net，所以在github上维护博客文件和进行持续集成。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>Github+Hexo+AppVeyor个人博客搭建和持续集成 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Github+Hexo+AppVeyor个人博客搭建和持续集成</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>因为一些原因，不再使用coding.net，所以在github上维护博客文件和进行持续集成。<br><a id="more"></a></p>
+<p>我们都知道github pages提供了静态网页的自动解析，于是我们想到用github pages展示个人项目，特别是前端工程师，完全可以拿github展示个人项目设计。除此之外，我们也可以拿这个写个人博客，但是有一点，我们很难把博客写成html的静态页面吧。虽然可以强行实现，但是每添加一篇blog，就需要添加很多指向其他页面的链接，还有很多样式，光秃秃的页面总归不美。</p>
+<p>有需求就有答案，这里有一种方法是，用一种博客框架来实现将编辑好的博客文本自动生成静态页面，这样我们就只用将html文件加入repository就好。有一个基于<code>Node.js</code>的轻量级的框架<code>Hexo</code>，就可以实现把<code>markdown</code>文件生成静态页面并发布到github仓库的功能，本文的内容从这里开始。</p>
+<p>由于有不同的终端机，每次在不同平台去同步博客特别麻烦，所以想到持续集成的方式。在Github上同步管理我的blog源码，由第三方平台进行持续集成构建博客的html文件，并发布到gh-pages。搜一搜解决方案还不少，Travis，Appveyor和DaoCloud是我使用过的免费平台。这里只说Appveyor。</p>
+<p>（时隔近一年，继续编辑这篇post）<br>这里只贴出AppVeyor的官方文档和用于hexo构建的yaml脚本。</p>
+<p>文档地址：<a href="https://www.appveyor.com/docs/" target="_blank" rel="noopener">https://www.appveyor.com/docs/</a></p>
+<ol>
+<li>创建新项目，在设置中进行环境变量设定：</li>
+</ol>
+<p><img src="http://pic.yanss.top/blog_appveyor_env.png" alt></p>
+<ol start="2">
+<li><p>访问github个人设置页面，点击边栏下方的【Personal access tokens】选项卡，并点击右上方的【Generate new token】按钮。Token description任意填写，下方的选项中全选repo即可。点击下方绿色的【Generate token】按钮。此时就能得到Access Token。也可以参考<a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/" target="_blank" rel="noopener">官方文档</a></p>
+</li>
+<li><p>加密Access Token。由于这个AccessToken是可以直接操作你的仓库的，而且配置文件是公开的，所以这时就要求对AccessToken进行加密。可到<a href="https://ci.appveyor.com/tools/encrypt" target="_blank" rel="noopener">AppVeyor Token加密页面</a>进行加密。把加密后的字符串填入下一步中的配置脚本的<code>secure</code>里。</p>
+</li>
+<li><p>构建脚本：</p>
+</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">clone_depth:</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line"><span class="attr">  access_token:</span></span><br><span class="line"><span class="attr">    secure:</span> <span class="string">***********************************************</span></span><br><span class="line"></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line"><span class="attr">  - ps:</span> <span class="string">Install-Product</span> <span class="string">node</span> <span class="string">''</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">node</span> <span class="bullet">--version</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">npm</span> <span class="bullet">--version</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="bullet">-g</span></span><br><span class="line">  <span class="comment"># and other package you need</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build_script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line"></span><br><span class="line"><span class="attr">artifacts:</span></span><br><span class="line"><span class="attr">  - path:</span> <span class="string">public</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on_success:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">config</span> <span class="bullet">--global</span> <span class="string">credential.helper</span> <span class="string">store</span></span><br><span class="line"><span class="attr">  - ps:</span> <span class="string">Add-Content</span> <span class="string">"$env:USERPROFILE\.git-credentials"</span> <span class="string">"https://$($env:access_token):x-oauth-basic@github.com`n"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">config</span> <span class="bullet">--global</span> <span class="string">user.email</span> <span class="string">"%GIT_USER_EMAIL%"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">config</span> <span class="bullet">--global</span> <span class="string">user.name</span> <span class="string">"%GIT_USER_NAME%"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">clone</span> <span class="bullet">--depth</span> <span class="number">5</span> <span class="bullet">-q</span> <span class="bullet">--branch=%TARGET_BRANCH%</span> <span class="string">%STATIC_SITE_REPO%</span> <span class="string">%TEMP%\static-site</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">cd</span> <span class="string">%TEMP%\static-site</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">del</span> <span class="string">*</span> <span class="string">/f</span> <span class="string">/q</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">for</span> <span class="string">/d</span> <span class="string">%%p</span> <span class="string">IN</span> <span class="string">(*)</span> <span class="string">do</span> <span class="string">rmdir</span> <span class="string">"%%p"</span> <span class="string">/s</span> <span class="string">/q</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">SETLOCAL</span> <span class="string">EnableDelayedExpansion</span> <span class="string">&amp;</span> <span class="string">robocopy</span> <span class="string">"%APPVEYOR_BUILD_FOLDER%\public"</span> <span class="string">"%TEMP%\static-site"</span> <span class="string">/e</span> <span class="string">&amp;</span> <span class="string">IF</span> <span class="type">!ERRORLEVEL</span><span class="string">!</span> <span class="string">EQU</span> <span class="number">1</span> <span class="string">(exit</span> <span class="number">0</span><span class="string">)</span> <span class="string">ELSE</span> <span class="string">(IF</span> <span class="type">!ERRORLEVEL</span><span class="string">!</span> <span class="string">EQU</span> <span class="number">3</span> <span class="string">(exit</span> <span class="number">0</span><span class="string">)</span> <span class="string">ELSE</span> <span class="string">(exit</span> <span class="number">1</span><span class="string">))</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">add</span> <span class="bullet">-A</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">if</span> <span class="string">"%APPVEYOR_REPO_BRANCH%"</span><span class="string">=="master"</span> <span class="string">if</span> <span class="string">not</span> <span class="string">defined</span> <span class="string">APPVEYOR_PULL_REQUEST_NUMBER</span> <span class="string">(git</span> <span class="string">diff</span> <span class="bullet">--quiet</span> <span class="bullet">--exit-code</span> <span class="bullet">--cached</span> <span class="string">||</span> <span class="string">git</span> <span class="string">commit</span> <span class="bullet">-m</span> <span class="string">"Update Static Site"</span> <span class="string">&amp;&amp;</span> <span class="string">git</span> <span class="string">push</span> <span class="string">origin</span> <span class="string">%TARGET_BRANCH%</span> <span class="string">&amp;&amp;</span> <span class="string">appveyor</span> <span class="string">AddMessage</span> <span class="string">"Static Site Updated"</span><span class="string">)</span></span><br></pre></td></tr></table></figure>
+<p>好的，大致就这么些，如果还有问题，可在评论中提出。</p>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/appveyor/">#appveyor</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2017 年 08 月 07 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

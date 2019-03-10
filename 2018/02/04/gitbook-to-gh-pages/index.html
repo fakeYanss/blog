@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="GitBook的渲染真的很慢，我找到了它编译生成的html文件，并将它上传到了gh-page上。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>GitBook源文件发布到gh-pages | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>GitBook源文件发布到gh-pages</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>GitBook的渲染真的很慢，我找到了它编译生成的html文件，并将它上传到了gh-page上。<br><a id="more"></a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>这段时间在读一本英文书，读的很慢，可以说是逐词翻译了。</p>
+<p>然而读的时候总是会忘了前面的生词是什么意思，也没有纸质打印版，所以想到边读边做笔记，主要就是生词注释一下。</p>
+<p>于是想到了GitBook。</p>
+<p>首先我在GitBook上创建一本书，书名是<code>Hadoop-The Definitive Guide 4th Edition</code>。</p>
+<p>然后打开就可以直接编辑。</p>
+<p><img src="http://pic.yanss.top/hadoopbook1.png" alt="hadoopbook1"></p>
+<p>但是gitbook的编辑器很难用啊，好像原来是直接写markdown的，现在改了编辑模式？特别是插入连接的时候，没法像<code>[]()</code>这么方便啊。</p>
+<p>而且重要的是gitbook服务器加载速度不稳定，慢的时候都打不开了，所以想着直接把gitbook的Markdown文件内容编译成静态页面，发布到github仓库中，利用gh-pages直接访问，速度快多了。</p>
+<h1 id="连接github仓库"><a href="#连接github仓库" class="headerlink" title="连接github仓库"></a>连接github仓库</h1><p>现在说说怎么部署到gh-pages。</p>
+<p>首先在github创建一个仓库，<code>Hadoop-The-Definitive-Guide-4th</code>，并初始化。</p>
+<p>然后到gitbook的书籍<code>Hadoop-The Definitive Guide 4th Edition</code>的设置里找到<code>Github</code>，添加对应<code>Hadoop-The-Definitive-Guide-4th</code>仓库并同步内容</p>
+<p><img src="http://pic.yanss.top/hadoopbook2.png" alt="hadoopbook2"></p>
+<p>之后可以在github仓库中看到一些文件</p>
+<p><img src="http://pic.yanss.top/hadoopbook3.png" alt="hadoopbook3"></p>
+<p>这些都是gitbook书的markdown文件。这一步完成后，就可以在gitbook或github任意一端编译文档，提交后都会在两端生成的相应书籍。这相当于书籍在两端都有备份了。</p>
+<p>如果不用gh-pages生成页面的话，上述的操作就已经够了。</p>
+<h1 id="提交gh-pages分支"><a href="#提交gh-pages分支" class="headerlink" title="提交gh-pages分支"></a>提交gh-pages分支</h1><p>接下来介绍如何提交静态页面到gh-pages。<br><br></p>
+<p>由于要生成静态页面的文件，需要在本地安装gitbook的npm包(推荐使用cnpm安装)。<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gitbook-<span class="keyword">cli</span> -g</span><br></pre></td></tr></table></figure></p>
+<p>然后把github仓库clone到本地<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">git</span>@github.com:fakeYanss/Hadoop-The-Definitive-Guide-<span class="number">4</span>th.git</span><br></pre></td></tr></table></figure></p>
+<p>进入到<code>Hadoop-The-Definitive-Guide-4th</code>文件夹，生成静态页面文件，输出目录在<code>_book</code>中。如果目录文件<code>SUMMARY.md</code>有变化，需要先<code>gitbook init</code>。<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">gitbook build</span></span><br></pre></td></tr></table></figure></p>
+<p>然后在本地创建一个<code>gh-pages</code>分支<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="comment">--orphan gh-pages</span></span><br></pre></td></tr></table></figure></p>
+<p>然后清空一下分支下的文件（如果有的话）<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rm</span> -rf *</span><br></pre></td></tr></table></figure></p>
+<p>然后将<code>master</code>分支下的<code>_book</code>静态页面文件内容全部复制到<code>gh-pages</code>分支下<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="keyword">master</span> <span class="title">-- _book</span></span><br></pre></td></tr></table></figure></p>
+<p>将<code>_book</code>中的子文件全部移到外层，并删除<code>_book</code><br><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv _book/* ./</span><br><span class="line">rm -rf _book</span><br></pre></td></tr></table></figure></p>
+<p>这时候<code>gh-pages</code>分支下就是全部的静态页面文件了，接下来就是提交到远程<code>gh-pages</code>分支<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span><span class="bash"> .</span></span><br><span class="line">git commit -m <span class="string">'publish gh-pages'</span></span><br><span class="line">git push origin gh-pages</span><br></pre></td></tr></table></figure></p>
+<p>提交完成后到github仓库的设置中看一下，gh-pages服务是否自动开启，如果没有的话在<code>Source</code>中选择<code>gh-pages branch</code>，保存刷新，等待几分钟就好了。</p>
+<p><img src="http://pic.yanss.top/hadoopbook5.png" alt="hadoopbook5"></p>
+<p>全部操作已经完成，接下来每次在本地更新书籍内容后，先生成静态页面，然后提交master分支，再提交gh-pages分支就可以了。</p>
+<p>之后每次查看线上gitbook书籍，可以直接输入url <code>https://name.github.io/书籍仓库名</code>查看。</p>
+<hr>
+<p>最后，为了每次的提交操作不用手打一遍，我写了一个bash脚本<a href="https://github.com/fakeYanss/Hadoop-The-Definitive-Guide-4th/blob/master/publish.sh" target="_blank" rel="noopener">publish.sh</a>，<a href="http://pic.yanss.top/publish.sh" target="_blank" rel="noopener">点击下载</a>，自行更改第一行的文件夹地址即可。windows系统安装过git环境的可以直接双击运行，要查看日志的话可以在git bash中输入<code>./publish.sh</code>运行。</p>
+<p><strong>注意：使用时不能将脚本放在仓库里，不然在切换分支时会出错，</strong>最好与仓库文件夹同级。</p>
+<p><img src="http://pic.yanss.top/hadoopbook4.png" alt="hadoopbook4"></p>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+
+
+
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/gitbook/">#gitbook</a> <a href="/newblog/tags/gh-pages/">#gh-pages</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2018 年 02 月 04 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

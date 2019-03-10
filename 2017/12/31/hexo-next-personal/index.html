@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="对Hexo的Next主题配置和使用，我还是有一些心得的，无非是各种样式覆盖一下，逃：）">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>Hexo的next主题个性化配置 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Hexo的next主题个性化配置</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>对Hexo的Next主题配置和使用，我还是有一些心得的，无非是各种样式覆盖一下，逃：）<br><a id="more"></a></p>
+<h2 id="添加RSS"><a href="#添加RSS" class="headerlink" title="添加RSS"></a>添加RSS</h2><p>首先在博客根目录安装hexo插件：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="keyword">install</span> <span class="comment">--save hexo-generator-feed</span></span><br></pre></td></tr></table></figure>
+<p>npm安装失败请用cnpm</p>
+<p>然后在博客配置文件<code>_config.yml</code>中修改</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">plugins:</span> hexo-generate-feed</span><br><span class="line"><span class="symbol">feed:</span></span><br><span class="line"><span class="symbol">  type:</span> atom       <span class="meta">#feed 类型 (atom/rss2)</span></span><br><span class="line"><span class="symbol">  path:</span> atom.xml   <span class="meta">#rss 路径</span></span><br><span class="line"><span class="symbol">  limit:</span> <span class="number">0</span>        <span class="meta">#在 rss 中最多生成的文章数(0显示所有)</span></span><br></pre></td></tr></table></figure>
+<p>然后在主题配置文件<code>_config.yml</code>中修改</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">rss:</span> /atom.xml</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="修改作者头像并旋转"><a href="#修改作者头像并旋转" class="headerlink" title="修改作者头像并旋转"></a>修改作者头像并旋转</h2><p>打开<code>\themes\next\source\css\_common\components\sidebar\sidebar-author.styl</code>，在里面添加如下代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.site-author-image</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">padding</span>: $site-author-image-padding;</span><br><span class="line">  <span class="attribute">max-width</span>: $site-author-image-width;</span><br><span class="line">  <span class="attribute">height</span>: $site-author-image-height;</span><br><span class="line">  <span class="attribute">border</span>: $site-author-image-border-width solid $site-author-image-border-color;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 头像圆形 */</span></span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">80px</span>;</span><br><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">80px</span>;</span><br><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">80px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: inset <span class="number">0</span> -<span class="number">1px</span> <span class="number">0</span> <span class="number">#333</span>sf;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 设置循环动画 [animation: (play)动画名称 (2s)动画播放时长单位秒或微秒 (ase-out)动画播放的速度曲线为以低速结束 </span></span><br><span class="line"><span class="comment">    (1s)等待1秒然后开始动画 (1)动画播放次数(infinite为循环播放) ]*/</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 鼠标经过头像旋转360度 */</span></span><br><span class="line">  <span class="attribute">-webkit-transition</span>: -webkit-transform <span class="number">1.0s</span> ease-out;</span><br><span class="line">  <span class="attribute">-moz-transition</span>: -moz-transform <span class="number">1.0s</span> ease-out;</span><br><span class="line">  <span class="attribute">transition</span>: transform <span class="number">1.0s</span> ease-out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="comment">/* 鼠标经过停止头像旋转 </span></span><br><span class="line"><span class="comment">  -webkit-animation-play-state:paused;</span></span><br><span class="line"><span class="comment">  animation-play-state:paused;*/</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 鼠标经过头像旋转360度 */</span></span><br><span class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">rotateZ</span>(360deg);</span><br><span class="line">  <span class="attribute">-moz-transform</span>: <span class="built_in">rotateZ</span>(360deg);</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotateZ</span>(360deg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Z 轴旋转动画 */</span></span><br><span class="line">@-<span class="keyword">webkit</span>-<span class="keyword">keyframes</span> play &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">rotateZ</span>(0deg);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">rotateZ</span>(-360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@-<span class="keyword">moz</span>-<span class="keyword">keyframes</span> play &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="attribute">-moz-transform</span>: <span class="built_in">rotateZ</span>(0deg);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="attribute">-moz-transform</span>: <span class="built_in">rotateZ</span>(-360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">keyframes</span> play &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotateZ</span>(0deg);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotateZ</span>(-360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="添加相册"><a href="#添加相册" class="headerlink" title="添加相册"></a>添加相册</h2><p><div id="album">我的<a href="https://fakeyanss.github.io/photo/" target="_blank" rel="noopener">相册</a>。</div><br>原理很简单，就是建立一个github仓库存储用于存储图片，然后将每个图片的路径保存到一个json文件里，在hexo博客中解析这个json文件，渲染成html页面后就可以在显示图片了。当然这里肯定要有页面的样式和图片的裁剪压缩，原理简单，实际操作起来有一些坑，我并不懂css样式，还是要感谢<a href="http://litten.me/" target="_blank" rel="noopener">litten</a>提供的方法。</p>
+<h3 id="相册源"><a href="#相册源" class="headerlink" title="相册源"></a>相册源</h3><ul>
+<li>首先在github上新建一个仓库，命名<code>Blog_Album</code></li>
+<li>然后本地新建一个文件夹<code>Blog_Album</code>，进入文件夹新建两个子文件夹<code>photos</code>，<code>min_photos</code>，然后下载这两个文件<a href="https://github.com/fakeYanss/Hexo-Album/blob/master/Album-Github/ImageProcess.py" target="_blank" rel="noopener">ImageProcess.py</a>，<a href="https://github.com/fakeYanss/Hexo-Album/blob/master/Album-Github/tool.py" target="_blank" rel="noopener">tool.py</a>到<code>Blog_Album</code></li>
+</ul>
+<p>记住之后要上传的相片就放到<code>photos</code>文件夹内。</p>
+<ul>
+<li>在博客根目录运行</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> photos</span><br></pre></td></tr></table></figure>
+<ul>
+<li>回到<code>Blog_Album</code>文件夹，将tools.py`中131行</li>
+</ul>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">final_dict = &#123;<span class="string">"list"</span>: list_info&#125;</span><br><span class="line">    <span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">"D:/Blog/source/photos/data.json"</span>,<span class="string">"w"</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        json.dump(final_dict, fp)</span><br></pre></td></tr></table></figure>
+<p>将路径改为你的博客<code>photos</code>文件夹的相应位置</p>
+<ul>
+<li>添加一些图片到<code>Blog_Album</code>的<code>photos</code>文件夹中</li>
+<li>将本地<code>Blog_Album</code>与github仓库<code>Blog_Album关联</code></li>
+<li>运行<code>tool.py</code>脚本（因为脚本中有上传到github的函数，所以不用手动git push），如果不能运行请看文章下面的说明</li>
+<li>将本地<code>Blog_Album</code>上传到github仓库<code>Blog_Album</code></li>
+</ul>
+<h3 id="博客相册页"><a href="#博客相册页" class="headerlink" title="博客相册页"></a>博客相册页</h3><ul>
+<li>回到<code>yourblog\source\photos</code>目录下，将<code>index.md</code>内容修改为</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 我的相册</span><br><span class="line">date: 2017-12-29 22:32:22</span><br><span class="line">type: "photos"</span><br><span class="line">---</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./ins.css"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./photoswipe.css"</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./default-skin/default-skin.css"</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"photos-btn-wrap"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"photos-btn active"</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span>Photos<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"instagram itemscope"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://yanss.top"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">class</span>=<span class="string">"open-ins"</span>&gt;</span>图片正在加载中…<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> loadScript = <span class="function"><span class="keyword">function</span><span class="params">(path)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> $script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>].appendChild($script)</span></span><br><span class="line"><span class="actionscript">      $script.setAttribute(<span class="string">'src'</span>, path)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="actionscript">    setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">        loadScript(<span class="string">'./ins.js'</span>)</span></span><br><span class="line"><span class="undefined">    &#125;, 0)</span></span><br><span class="line"><span class="undefined">  &#125;)()</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第13行链接为自己的博客url</p>
+<ul>
+<li>然后在photos文件夹下添加这些内容</li>
+</ul>
+<p><img src="http://pic.yanss.top/TIM截图20171231214306.png" alt="TIM截图20171231214306"></p>
+<p>文件这里<a href="https://github.com/fakeYanss/Hexo-Album/tree/master/Hexo/Source/photos" target="_blank" rel="noopener">下载</a>，<code>data.json</code>是图片的数据信息，运行python脚本后会生成</p>
+<p><code>ins.js</code>中的114行的<code>render()</code>函数需要修改这两个变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> minSrc = <span class="string">'https://raw.githubusercontent.com/fakeYanss/Blog_Album/master/min_photos/'</span> + data.link[i];</span><br><span class="line"><span class="keyword">var</span> src = <span class="string">'https://raw.githubusercontent.com/fakeYanss/Blog_Album/master/photos/'</span> + data.link[i];</span><br></pre></td></tr></table></figure>
+<p>如果你的仓库名和我相同，只用把这里的<code>fakeYanss</code>改为你自己的github name即可</p>
+<ul>
+<li>在<code>yourBlog/themes/next/source/js/src</code>下加入两个js文件<a href="https://github.com/fakeYanss/Hexo-Album/blob/master/Hexo/photoswipe.min.js" target="_blank" rel="noopener">photoswipe.min.js</a> 和<a href="https://github.com/fakeYanss/Hexo-Album/blob/master/Hexo/photoswipe-ui-default.min.js" target="_blank" rel="noopener">photoswipe-ui-default.min.js</a></li>
+</ul>
+<ul>
+<li>在<code>yourBlog/themes/next/layout/_scripts/pages/post-details.swig</code>中添加</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123; url_for(theme.js) &#125;&#125;/src/photoswipe.min.js?v=&#123;&#123; theme.version &#125;&#125;"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123; url_for(theme.js) &#125;&#125;/src/photoswipe-ui-default.min.js?v=&#123;&#123; theme.version &#125;&#125;"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在<code>yourBlog/themes/next/layout/_layout.swig</code>中</li>
+</ul>
+<p><code>head</code>内插入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"&#123;&#123; url_for(theme.js) &#125;&#125;/src/photoswipe.min.js?v=&#123;&#123; theme.version &#125;&#125;"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"&#123;&#123; url_for(theme.js) &#125;&#125;/src/photoswipe-ui-default.min.js?v=&#123;&#123; theme.version &#125;&#125;"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>body</code>内插入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.type === "photos" %&#125;</span><br><span class="line"><span class="comment">&lt;!-- Root element of PhotoSwipe. Must have class pswp. --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp"</span> <span class="attr">tabindex</span>=<span class="string">"-1"</span> <span class="attr">role</span>=<span class="string">"dialog"</span> <span class="attr">aria-hidden</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__bg"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__scroll-wrap"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__container"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__item"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__item"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__item"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__ui pswp__ui--hidden"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__top-bar"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__counter"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"pswp__button pswp__button--close"</span> <span class="attr">title</span>=<span class="string">"Close (Esc)"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"pswp__button pswp__button--share"</span> <span class="attr">title</span>=<span class="string">"Share"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"pswp__button pswp__button--fs"</span> <span class="attr">title</span>=<span class="string">"Toggle fullscreen"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"pswp__button pswp__button--zoom"</span> <span class="attr">title</span>=<span class="string">"Zoom in/out"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR --&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- element will get class pswp__preloader--active when preloader is running --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__preloader"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__preloader__icn"</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__preloader__cut"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__preloader__donut"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__share-modal pswp__share-modal--hidden pswp__single-tap"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__share-tooltip"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"pswp__button pswp__button--arrow--left"</span> <span class="attr">title</span>=<span class="string">"Previous (arrow left)"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"pswp__button pswp__button--arrow--right"</span> <span class="attr">title</span>=<span class="string">"Next (arrow right)"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__caption"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pswp__caption__center"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>重新生成博客内容即可看到相册内容。</p>
+<ul>
+<li>如果py脚本不能运行，先安装python环境，再安装<code>Pillow</code>库<code>pip install Pillow</code></li>
+<li>相册图片的命名请遵循<code>yyyy-mm-dd_abc.jpg</code>格式，虽然脚本里写了其他格式的处理，但实际情况似乎只能对jpg裁剪压缩</li>
+<li>最后的不足是，相片的裁剪算法，可能会把一张图片中的人体头部裁剪掉</li>
+<li>next主题源码是不支持相册的，如果有不懂的地方，可以看看评论的相似情况，或者查一下<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">yilia</a>主题的issue，然后再来问我</li>
+</ul>
+</li>
+<li><p><strong>2018.1.20修改</strong>：由于从github仓库读取图片，在html页面中会发生ios手机竖持拍照的照片90度旋转问题（图片的EXIF的orientaion信息在裁剪压缩后发生改变），找了一些办法都没效果，所以将相片源仓库转移到七牛云，利用七牛云外链后加上<code>?imageMogr2/auto-orient</code>的方式，可以将照片正常角度显示。如果要用七牛云做图床，可以看我的<a href="https://github.com/fakeYanss/Hexo-Album" target="_blank" rel="noopener">设置</a>。</p>
+</li>
+<li><p><strong>2018.2.23修改：</strong>发现ios设备拍摄的正方形照片的压缩图上传后仍然有orientation值为6即偏转90度问题，索性修改了整个裁剪切割和生成json的脚本。在压缩同时修改偏转值，并且在生成json时获取图片尺寸，在前端显示图片原图时在<code>data-size</code>中设置json中的对应图片尺寸，这样可以不切割原图，修改后的设置方法在</p>
+<ul>
+<li><p><a href="https://github.com/fakeYanss/Blog_Album" target="_blank" rel="noopener">生成缩略图和json数据并上传七牛云</a>，</p>
+</li>
+<li><p>对于修改后的相册的<a href="https://github.com/fakeYanss/blog/blob/master/source/photos/ins.js" target="_blank" rel="noopener">ins.js</a>，需要做一些修改，以适应修改后的脚本生成的json数据，在render()方法中，注意内层<code>&lt;img&gt;</code>标签为缩略图，<code>&lt;a&gt;</code>标签为原图，在对应的属性处设为对应值。</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> minSrc = <span class="string">'http://pic.yanss.top/min_photos/'</span> + data.link[i];</span><br><span class="line"><span class="comment">//var src = 'https://raw.githubusercontent.com/fakeYanss/Blog_Album/master/photos/' + data.link[i];</span></span><br><span class="line"><span class="keyword">var</span> src = <span class="string">'http://pic.yanss.top/'</span> + data.link[i];</span><br><span class="line"><span class="keyword">var</span> type = data.type[i];</span><br><span class="line"><span class="keyword">var</span> target = src + <span class="string">'.'</span> +type;</span><br><span class="line"><span class="keyword">var</span> size = data.size[i];</span><br><span class="line">src = src + (type === <span class="string">'mp4'</span> ? <span class="string">'.jpg'</span> : <span class="string">'.'</span> + type) + <span class="string">'?imageMogr2/auto-orient'</span>;</span><br><span class="line">minSrc = minSrc + (type === <span class="string">'mp4'</span> ? <span class="string">'.jpg'</span> : <span class="string">'.'</span> + type);</span><br><span class="line">type = (type === <span class="string">'mp4'</span> ? <span class="string">'video'</span> : <span class="string">'image'</span>)</span><br><span class="line"></span><br><span class="line">liTmpl += <span class="string">'&lt;figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"&gt;\</span></span><br><span class="line"><span class="string">               &lt;a href="'</span> + src + <span class="string">'" itemprop="contentUrl" data-size="'</span> + size + <span class="string">'" data-type="'</span> + type + <span class="string">'" data-target="'</span> + target + <span class="string">'"&gt;\</span></span><br><span class="line"><span class="string">                   &lt;img class="reward-img" data-type="'</span> + type + <span class="string">'" data-src="'</span> + minSrc + <span class="string">'" src="./assets/empty.png" itemprop="thumbnail" onload="lzld(this)"&gt;\</span></span><br><span class="line"><span class="string">               &lt;/a&gt;\</span></span><br><span class="line"><span class="string">               &lt;figcaption style="display:none" itemprop="caption description"&gt;'</span> + data.text[i] + <span class="string">'&lt;/figcaption&gt;\</span></span><br><span class="line"><span class="string">           &lt;/figure&gt;'</span>;</span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://github.com/fakeYanss/Hexo-Album" target="_blank" rel="noopener">所有文件的下载</a></strong></p>
+<p>其实啊，相册源文件和博客相册只是用一个json文件关联起来了，可以在实际处理中把相册源文件和博客分离开。也就是说我hexo博客不用管你图片怎么处理的，你的图片裁不裁剪压不压缩都没关系的，存在哪里也没关系的，我只要有一个json数据，并且json数据的格式和ins.js中的处理能对应上就行。</p>
+<hr>
+<h2 id="添加Gitment评论"><a href="#添加Gitment评论" class="headerlink" title="添加Gitment评论"></a>添加Gitment评论</h2><p>原本是用的livere评论，后来总是加载速度太慢，上了梯子也一样，索性改成了<a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">Gitment</a>评论。</p>
+<p>感谢作者<a href="https://github.com/imsun" target="_blank" rel="noopener">imsun</a>，Gitment评论源自github仓库的issue，所以在将博客地址关联了某个github仓库后，在博客下评论其实就是在对应仓库的issue中评论，这创意真是太好了。</p>
+<p>我之前的next主题一直是<code>5.1.0</code>版本，本来是想在主题中添加gitment的js和css文件，结果没成功。然后在next的<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">官方文档</a>中看到已经发行到<code>5.1.4</code>了，而且已经集成了gitment评论。这下可方便，干脆直接升级了next主题，然后就改<code>config</code>文件就好啦。</p>
+<p>以前主题中配置了一些设置项，时间久了还忘了改了哪些文件！！！所以升级版本很痛苦，用的Sublime的一个插件Sublimerge，可以对比两个文件的代码差异，就是这样<br><img src="http://pic.yanss.top/hexo个性设置.png" alt="Sublimerge"><br>就像git pull操作之后改动时一样，这样子把每个有可能改过的文件都对比了一遍，然后升级到了5.1.4，发现集成了很多新功能，其他的有时间再试吧，这里就只说gitment。</p>
+<p>首先在<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">这里</a>注册一个OAuth Application，<code>Homepage URL</code>和<code>Authorization callback URL</code>填写博客首页地址，也就是站点配置文件中的<code>url</code>，其他随意填写即可。</p>
+<p>然后会得到一个<code>Client ID</code>和<code>Client Secret</code>，把这两个值填到主题配置文件的gitment对应位置<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitment:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  mint:</span> <span class="literal">true</span> <span class="comment"># gitment仓库有两个，这里填true是引用第一个，false引用第二个，具体在layout下的conment文件中可以找到</span></span><br><span class="line"><span class="attr">  count:</span> <span class="literal">true</span> <span class="comment"># 评论计数</span></span><br><span class="line"><span class="attr">  lazy:</span> <span class="literal">false</span> <span class="comment"># 如果要点击按钮再显示评论就填true</span></span><br><span class="line"><span class="attr">  cleanly:</span> <span class="literal">true</span> <span class="comment"># 隐藏底部信息</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Force language, or auto switch by theme</span></span><br><span class="line"><span class="attr">  github_user:</span> <span class="string">填github</span> <span class="string">ID</span></span><br><span class="line"><span class="attr">  github_repo:</span> <span class="string">填保存issue的仓库名，一般就用博客发布的仓库名</span></span><br><span class="line"><span class="attr">  client_id:</span> <span class="string">刚才的值</span></span><br><span class="line"><span class="attr">  client_secret:</span> <span class="string">刚才的值</span></span><br><span class="line"><span class="attr">  proxy_gateway:</span> <span class="comment"># 设置代理，不用填</span></span><br><span class="line"><span class="attr">  redirect_protocol:</span> <span class="comment"># 没搞懂，不用填</span></span><br></pre></td></tr></table></figure></p>
+<p>然后重新部署博客(本地调试是没用的，因为url不同)，再打开博客，这时候需要在每一个有评论的页面上使用自己的github长航登录并初始化一遍评论，之后就不用了。文章多的话会有点麻烦，不知道gitment作者有没有做好自动初始化？好像查到了<a href="https://draveness.me/git-comments-initialize" target="_blank" rel="noopener">这个</a>，不过我还没试过。<br>这里是成功的样子<img src="http://pic.yanss.top/gitment.png" alt="gitment"></p>
+<p>但是，这个鼠标放上有两条横线什么鬼啊！！！<img src="http://pic.yanss.top/gitment1.png" alt="gitment1"></p>
+<p>还有这里头像下面为什么有一条横线！！！！<img src="http://pic.yanss.top/gitment2.png" alt="gitment2"></p>
+<p>强迫症忍不了，查看了gitment的css定义，没发现什么问题啊，然后在浏览器中调试，发现了这个<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;  </span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#555</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#999</span>;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">  <span class="attribute">word-wrap</span>: break-word;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里的<code>border-bottom: 1px solid #999</code>就是<code>a</code>标签下有一条横线的意思，但是这个属性是主题的属性<code>main.css</code>啊，显然是不能改的，于是只有在<code>themes\next\source\css\_common\components\third-party\gitment.styl</code>下改动了，在这里可以重写前面定义的属性，我是这样改的，在最后面加上<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.gitment-comment-main</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#555</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: none;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">  <span class="attribute">word-wrap</span>: break-word;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.gitment-editor-avatar</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#555</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: none;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">  <span class="attribute">word-wrap</span>: break-word;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第一个就是修改的ID下的横线，显示为<code>none</code>就好了；第二个是修改编辑框头像下的横线，也是显示为<code>none</code>。</p>
+<p>这样，算是完成了Gitment的配置了。</p>
+<hr>
+<h2 id="设置自定义页面不显示Sidebar"><a href="#设置自定义页面不显示Sidebar" class="headerlink" title="设置自定义页面不显示Sidebar"></a>设置自定义页面不显示Sidebar</h2><p>主题配置文件中是这样的<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">toc:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  number:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  wrap:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">sidebar:</span></span><br><span class="line"><span class="attr">  position:</span> <span class="string">left</span></span><br><span class="line"><span class="attr">  display:</span> <span class="string">post</span></span><br></pre></td></tr></table></figure></p>
+<p>讲道理这样就是是没有问题的，但是我发现自定义的页面里如果写了太多的<code>#</code>或者<code>&lt;h1&gt;</code>，就会被识别为<code>post</code>类型而不是<code>page</code>，也就是博客文章，会被自动加载目录，这就很蛋疼了不是，毕竟有的页面不想要目录啊尴尬！！！</p>
+<blockquote><p>一般这种样式问题都在<code>layout</code>文件夹中找原因。</p>
+</blockquote>
+<p><s>在<code>themes\next\layout\_macro\sidebar.swig</code>，找到开头的</s><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;% macro render(is_post) %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sidebar-toggle"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sidebar-toggle-line-wrap"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"sidebar-toggle-line sidebar-toggle-line-first"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"sidebar-toggle-line sidebar-toggle-line-middle"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"sidebar-toggle-line sidebar-toggle-line-last"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><s>在下面加上</s><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> page.toc <span class="keyword">and</span> theme.toc.<span class="builtin-name">enable</span> %&#125;</span><br></pre></td></tr></table></figure></p>
+<p><s>然后在倒数第二行加上</s><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure></p>
+<p>发现这样修改有bug，重新改。在<code>themes\next\layout\_macro\sidebar.swig</code>找到这一句<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="builtin-name">set</span> display_toc = is_post <span class="keyword">and</span> theme.toc.<span class="builtin-name">enable</span> <span class="keyword">or</span> is_page <span class="keyword">and</span> theme.toc.<span class="builtin-name">enable</span> %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>改为<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="builtin-name">set</span> display_toc = is_post <span class="keyword">and</span> theme.toc.<span class="builtin-name">enable</span> <span class="keyword">or</span> is_page <span class="keyword">and</span> page.toc <span class="keyword">or</span> is_page <span class="keyword">and</span> theme.toc.<span class="builtin-name">enable</span> <span class="keyword">and</span> page.toc %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实就是多加一个判断，判断页面的开头有没有<code>toc</code>属性</p>
+<p>最后，在需要有sidebar目录的文章前加上<code>toc: true</code>即可。</p>
+<p>为了以后的方便，可以在<code>scaffolds\post.md</code>中加上<code>toc: true</code>。</p>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/hexo/">#hexo</a> <a href="/newblog/tags/next/">#next</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2017 年 12 月 31 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

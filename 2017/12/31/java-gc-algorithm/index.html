@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="最近在看《深入理解Java虚拟机》一书，其中对垃圾回收算法做了分类和讲解，这里记录一下。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>Java垃圾回收算法浅析 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Java垃圾回收算法浅析</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>最近在看《深入理解Java虚拟机》一书，其中对垃圾回收算法做了分类和讲解，这里记录一下。<br><a id="more"></a></p>
+<h1 id="GC的三种收集方法"><a href="#GC的三种收集方法" class="headerlink" title="GC的三种收集方法"></a>GC的三种收集方法</h1><h2 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h2><p>标记清除算法是最基础的收集算法，其他收集算法都是基于这种思想。</p>
+<p>标记清除算法分为“标记”和“清除”两个阶段：首先标记出需要回收的对象，标记完成之后统一清除对象。</p>
+<p><img src="http://pic.yanss.top/vern标记清除算法.jpg" alt="vern标记清除算法"></p>
+<p>主要缺点：</p>
+<ol>
+<li>效率问题，标记和清除过程效率不高 。</li>
+<li>空间问题，标记清除之后会产生大量不连续的内存碎片。</li>
+</ol>
+<h2 id="标记整理"><a href="#标记整理" class="headerlink" title="标记整理"></a>标记整理</h2><p>标记整理，主要用于回收老年代。</p>
+<p>标记操作和“标记-清除”算法一致，后续操作不只是直接清理对象，而是在清理无用对象完成后让所有存活的对象都向一端移动，并更新引用其对象的指针。</p>
+<p><img src="http://pic.yanss.top/vern标记整理算法.jpg" alt="vern标记整理算法"></p>
+<p>主要缺点：在标记-清除的基础上还需进行对象的移动，成本相对较高，好处则是不会产生内存碎片。</p>
+<h2 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h2><p>复制算法，主要用于回收新生代。</p>
+<p>它将可用内存容量划分为大小相等的两块，每次只使用其中的一块。当这一块用完之后，就将还存活的对象复制到另外一块上面，然后在把已使用过的内存空间一次理掉。这样使得每次都是对其中的一块进行内存回收，不会产生碎片等情况，只要移动堆订的指针，按顺序分配内存即可，实现简单，运行高效。</p>
+<p><img src="http://pic.yanss.top/vern复制算法.jpg" alt="vern复制算法"></p>
+<p>主要缺点：内存缩小为原来的一半。</p>
+<h1 id="分代的垃圾回收策略"><a href="#分代的垃圾回收策略" class="headerlink" title="分代的垃圾回收策略"></a>分代的垃圾回收策略</h1><p>分代的垃圾回收策略是基于这样一个事实：不同的对象的生命周期是不一样的。因此，不同生命周期的对象可以采取不同的回收算法，以便提高回收效率。</p>
+<h2 id="年轻代（Young-Generation）"><a href="#年轻代（Young-Generation）" class="headerlink" title="年轻代（Young Generation）"></a>年轻代（Young Generation）</h2><ul>
+<li>所有新生成的对象首先都是放在年轻代的。年轻代的目标就是尽可能快速的收集掉那些生命周期短的对象。</li>
+<li>新生代内存按照8:1:1的比例分为一个eden区和两个survivor(survivor0,survivor1)区。一个Eden区，两个 Survivor区(一般而言)。大部分对象在Eden区中生成。<ul>
+<li>回收时先将eden区存活对象复制到一个survivor0区，然后清空eden区；</li>
+<li>当这个survivor0区也存放满了时，则将eden区和survivor0区存活对象复制到另一个survivor1区，然后清空eden和这个survivor0区；</li>
+<li>此时survivor0区是空的，然后将survivor0区和survivor1区交换，即保持survivor1区为空。 </li>
+<li>如此往复循环。</li>
+</ul>
+</li>
+<li>当survivor1区不足以存放 eden和survivor0的存活对象时，就将存活对象直接存放到老年代。若是老年代也满了就会触发一次Full GC，也就是新生代、老年代都进行回收</li>
+<li>新生代发生的GC也叫做Minor GC，MinorGC发生频率比较高(不一定等Eden区满了才触发)</li>
+</ul>
+<h2 id="年老代（Old-Generation）"><a href="#年老代（Old-Generation）" class="headerlink" title="年老代（Old Generation）"></a>年老代（Old Generation）</h2><ul>
+<li>在年轻代中经历了N次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象。</li>
+<li>内存比新生代也大很多(大概比例是1:2)，当老年代内存满时触发Major GC即Full GC，Full GC发生频率比较低，老年代对象存活时间比较长，存活率标记高。</li>
+</ul>
+<h2 id="持久代（Permanent-Generation）"><a href="#持久代（Permanent-Generation）" class="headerlink" title="持久代（Permanent Generation）"></a>持久代（Permanent Generation）</h2><p>用于存放静态文件，如Java类、方法等。持久代对垃圾回收没有显著影响，但是有些应用可能动态生成或者调用一些class，例如Hibernate 等，在这种时候需要设置一个比较大的持久代空间来存放这些运行过程中新增的类。</p>
+<blockquote>
+<p>Oracle JDK8的HotSpot VM去掉“持久代”，以“元数据区”（Metaspace）替代之。</p>
+</blockquote>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/gc/">#gc</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2017 年 12 月 31 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

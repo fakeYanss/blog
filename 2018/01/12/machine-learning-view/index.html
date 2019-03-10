@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>初识机器学习 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>初识机器学习</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="http://pic.yanss.top/ml1.jpg"><br><a id="more"></a></p>
+<h2 id="Machine-learning"><a href="#Machine-learning" class="headerlink" title="Machine learning"></a>Machine learning</h2><p><strong>Machine learning definition:</strong></p>
+<ul>
+<li><p>Arthur Samuel (1959) . 在没有明确设置的前提下，使机器具有学习能力的研究领域。</p>
+</li>
+<li><p>Tom Mitchell (1998) . 一个适当的学习问题定义如下：计算机程序从经验E中学习，解决某一任务T，进行某一性能度量P，通过P测试在T上的表现因经验E而提高。</p>
+<p>对于跳棋游戏（Samuel设计的一个小游戏，通过数万次跳棋对战学习，获得比Samuel的跳棋水平还高的能力），经验E就是程序与自己下几万次跳棋，任务T就是玩跳棋，性能度量P就是与新对手玩跳棋时赢的概率。</p>
+</li>
+</ul>
+<p><strong>Machine learning algorithms:</strong></p>
+<p>目前学习算法主要的两类是监督学习(supervised learning)和无监督学习(unsupervised learning)。</p>
+<p>简单来说，监督学习就是我们教计算机做某件事情；在无监督学习中，我们让计算机自己学习。</p>
+<p><strong>Others:</strong></p>
+<p>强化学习(Reinforcement learning), 推荐系统(recommender systems)</p>
+<h2 id="Supervised-Learning"><a href="#Supervised-Learning" class="headerlink" title="Supervised Learning"></a>Supervised Learning</h2><p><strong>监督学习</strong>：我们给算法一个数据集，其中包含了正确答案，算法的目的就是给出更多的正确答案。</p>
+<p><strong>回归(Regression)</strong>：预测连续的数值输出。</p>
+<p><strong>分类(Classification)</strong>：预测一个离散值输出。</p>
+<p>示例：房子的价格与房子面积的关系(回归问题)；肿瘤是恶性或良性与肿瘤大小，患者年龄，肿瘤块厚度等的关系(分类问题)。</p>
+<p><br></p>
+<p>下面一个问题。problem1将要卖的货物数量看成一个连续的值，属于回归问题；problem2输出的值可能为0或1，分别表示两种不同的结果，属于分类问题。</p>
+<p><img src="http://pic.yanss.top/ML1.PNG" alt="ML1"></p>
+<h2 id="Unsupervised-Learning"><a href="#Unsupervised-Learning" class="headerlink" title="Unsupervised Learning"></a>Unsupervised Learning</h2><p><strong>无监督学习</strong>：对于数据集中的每一个样本，都具有相同标签或都没有标签，我们不知道要拿数据做什么，也不知道每个数据点究竟是什么，只能在数据集种找到某种结构(簇)，它们具有类似的性质。<strong>聚类(clustering)</strong>是无监督学习的一种 。</p>
+<p><strong>Cocktail party problem 鸡尾酒会问题</strong></p>
+<p>编程环境Octave或Matlab</p>
+<p>解决代码$$[W,s,v]=svd((repmat(sum(x.^*x,1),size(x,1),1).^*x)^*x’)$$</p>
+<p>\(svd\)是奇异值分解的缩写，在Octave中作为一个内置函数。</p>
+<p><br></p>
+<p>下面一个问题，哪些选项要使用无监督学习算法？</p>
+<p><img src="http://pic.yanss.top/ML2.PNG" alt="ML2"></p>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/supervised-learning/">#supervised learning</a> <a href="/newblog/tags/unsupervised-learning/">#unsupervised learning</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2018 年 01 月 12 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

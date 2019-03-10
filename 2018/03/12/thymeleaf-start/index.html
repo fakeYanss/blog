@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Thymeleaf是一款用于渲染XML/XHTML/HTML5内容的Java模板引擎库，可以通过HTML的标签属性渲染标签内容。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>Thymeleaf的简单使用 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Thymeleaf的简单使用</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><a href="http://www.thymeleaf.org/" target="_blank" rel="noopener">Thymeleaf</a>是一款用于渲染XML/XHTML/HTML5内容的Java模板引擎库，可以通过HTML的标签属性渲染标签内容。<br><a id="more"></a></p>
+<p>举个例子，<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;home.welcome&#125;"</span>&gt;</span>Welcome to our grocery store!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的<code>th:text</code>的内容就是需要后台渲染的，假如没有后台渲染，html会将无法识别的部分直接过滤掉，那么输出就是<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> &gt;</span>Welcome to our grocery store!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>假如后台传过来的<code>home.welcome</code>的值是<code>Welcome, Yanss!</code>，那么输出就是<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> &gt;</span>Welcome, Yanss!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这就是Thymeleaf的用法和作用了，其他的地方也差不多。</p>
+<p>记录几个常用的语法。</p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;http://www.thymeleaf.org&#125;"</span>&gt;</span>Thymeleaf<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果需要传参<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;http://www.thymeleaf.org(id=$&#123;id&#125;)&#125;"</span>&gt;</span>Thymeleaf<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;http://www.thymeleaf.org(id=$&#123;id&#125;,name=$&#123;name&#125;)&#125;"</span>&gt;</span>Thymeleaf<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"'Welcome to our application, ' + $&#123;user.name&#125; + '!'"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="条件选择式"><a href="#条件选择式" class="headerlink" title="条件选择式"></a>条件选择式</h2><p>类似于java的三元表达式<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"true?'真':'假'"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="循环loop"><a href="#循环loop" class="headerlink" title="循环loop"></a>循环loop</h2><ul>
+<li><p>创建表格</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>NAME<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>PRICE<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>IN STOCK<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">th:each</span>=<span class="string">"prod : $&#123;prods&#125;"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;prod.name&#125;"</span>&gt;</span>Onions<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;prod.price&#125;"</span>&gt;</span>2.41<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;prod.inStock&#125;? #&#123;true&#125; : #&#123;false&#125;"</span>&gt;</span>yes<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建下拉框</p>
+<ul>
+<li><p>在项目启动访问index页面的时候，把要需要的列表集合存到session作用域</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"index"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(HttpSession session)</span></span>&#123;</span><br><span class="line">    List&lt;Classes&gt; list = userService.findAllClasses();</span><br><span class="line">    session.setAttribute(<span class="string">"list"</span>,list);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>前台取值</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"className"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>请选择班级<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">th:each</span>=<span class="string">"list:$&#123;session.list&#125;"</span> <span class="attr">th:value</span>=<span class="string">"$$&#123;list.cid&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;list.cname&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>遍历Map和List</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table"</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">th:each</span>=<span class="string">"entry : $&#123;map&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;entry.key&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">th:each</span>=<span class="string">"entry : $&#123;map&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;entry.value&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">tbody</span> &gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:each</span>=<span class="string">"ele : $&#123;list&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;ele&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>遍历List<map></map></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">th:each</span>=<span class="string">"lm : $&#123;listmap&#125;"</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:each</span>=<span class="string">"entry : $&#123;lm&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;entry.key&#125;"</span> &gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:each</span>=<span class="string">"entry : $&#123;lm&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;entry.value&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="if-unless-switch-case"><a href="#if-unless-switch-case" class="headerlink" title="if/unless, switch/case"></a>if/unless, switch/case</h2><p>下面<code>&lt;a&gt;</code>标签只有在<code>th:if</code>中条件成立时才显示，<code>th:unless</code>只有不成立时才显示<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/login&#125;"</span> <span class="attr">th:if</span>=<span class="string">$&#123;session.user</span> != <span class="string">null&#125;</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>switch/case也很好理解，默认属性default可以用*表示<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:switch</span>=<span class="string">"$&#123;user.role&#125;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">th:case</span>=<span class="string">"'admin'"</span>&gt;</span>User is an administrator<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">th:case</span>=<span class="string">"#&#123;roles.manager&#125;"</span>&gt;</span>User is a manager<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">th:case</span>=<span class="string">"*"</span>&gt;</span>User is some other thing<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h2><p>举个例子, 当我想在一个两层的标签中同时渲染外层和内层的属性, 可能会出现下面这种错误.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;Hello.world&#125;"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:if</span>=<span class="string">"$&#123;user == 'yanss'&#125;"</span>&gt;</span>yanss<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这种写法等同于<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;Hello.world&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>因为外层的th:text会将内层的覆盖掉, 如果要同时渲染, 可以使用inline属性, 也可以将内外层隔离开.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:inline</span>=<span class="string">"text"</span>&gt;</span>[[$&#123;Hello.world&#125;]]<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:if</span>=<span class="string">"$&#123;user == 'yanss'&#125;"</span>&gt;</span>yanss<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- or --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;Hello.world&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:if</span>=<span class="string">"$&#123;user == 'yanss'&#125;"</span>&gt;</span>yanss<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/thymeleaf/">#thymeleaf</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2018 年 03 月 12 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

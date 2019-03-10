@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Mac OS上非root用户是不允许启动小于1024的端口，所以在mac上使用IDE开发，比如在Eclipse或者Intellij中，启动服务用80端口，会报错Permission Denied。可以通过修改Tomcat的用户为root来解决，但是更简单的是设置一个端口监听转发，将其他端口比如808">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>MacOS tomcat启动80端口 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>MacOS tomcat启动80端口</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>Mac OS上非root用户是不允许启动小于1024的端口，所以在mac上使用IDE开发，比如在Eclipse或者Intellij中，启动服务用80端口，会报错Permission Denied。可以通过修改Tomcat的用户为root来解决，但是更简单的是设置一个端口监听转发，将其他端口比如8080转发到80，这样在浏览器中输入地址就不用写端口号了。</p>
+<p>命令：</p>
+<ol>
+<li><code>sudo vim /etc/pf.conf</code></li>
+<li>在<code>rdr-anchor &quot;com.apple/*&quot;</code>这一行后面添加<code>rdr on lo0 inet proto tcp from any to 127.0.0.1 port 80 -&gt; 127.0.0.1 port 8080</code>，保存退出</li>
+<li><code>sudo pfctl -f /etc/pf.conf</code></li>
+<li><code>sudo pfctl -e</code></li>
+</ol>
+<p>这样就完成了，如果想关闭转发，输入<code>sudo pfctl -d</code>。</p>
+<p>重启后转发需要重新开启生效，即输入3，4命令</p>
+<p>如果要重启后自动生效，首先关闭系统完整性保护机制，需重启到安全模式在终端中执行下述命令关闭文件系统保护<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">csrutil <span class="builtin-name">enable</span> --without fs</span><br></pre></td></tr></table></figure></p>
+<p>然后<code>sudo vim /System/Library/LaunchDaemons/com.apple.pfctl.plist</code>, 添加一行 <code>&lt;string&gt;-e&lt;/string&gt;</code><br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;string&gt;</span>pfctl<span class="params">&lt;/string&gt;</span></span><br><span class="line"><span class="params">&lt;string&gt;</span>-e<span class="params">&lt;/string&gt;</span></span><br><span class="line"><span class="params">&lt;string&gt;</span>-f<span class="params">&lt;/string&gt;</span></span><br><span class="line"><span class="params">&lt;string&gt;</span><span class="meta-keyword">/etc/</span>pf.conf<span class="params">&lt;/string&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>保存退出。</p>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/mac/">#mac</a> <a href="/newblog/tags/tomcat/">#tomcat</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2018 年 07 月 18 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

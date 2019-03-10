@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="在coding.net上答应了好几个评论的朋友要写一篇教程，不多说，我们直接进入主题。
+我搭建博客用的是hexo框架，因为这个框架比较简单轻便，而且依赖于node.js管理包文件，我以前用过也用过一些npm的内容，所以选了这个。这里提一句，基于coding或者github搭建的博客都是静态页面，轻量">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>Coding+Hexo搭建个人博客 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Coding+Hexo搭建个人博客</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>在coding.net上答应了好几个评论的朋友要写一篇教程，不多说，我们直接进入主题。</p>
+<p>我搭建博客用的是hexo框架，因为这个框架比较简单轻便，而且依赖于node.js管理包文件，我以前用过也用过一些npm的内容，所以选了这个。这里提一句，基于coding或者github搭建的博客都是静态页面，轻量简洁，相对的功能上不如Wordpress那样强大，但是我们也可以用第三方插件实现文章统计，网站计数，博客评论等功能，看自己喜好加吧。</p>
+<p>好了，现在我们开始操作。</p>
+<h2 id="step-1-安装环境"><a href="#step-1-安装环境" class="headerlink" title="step 1 安装环境"></a>step 1 安装环境</h2><p>环境有三，node git hexo，hexo最后装。</p>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p>直接去下官网最新版本，安装步骤就不停next就好，不放心的话搜一下百度知道，有几个步骤需要斟酌，不过影响不大。链接在这里<a href="https://git-scm.com/" target="_blank" rel="noopener">git官网</a>。</p>
+<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>也是官网最新版本，<a href="http://nodejs.cn/" target="_blank" rel="noopener">node.js中文官网</a>现在好像是8.x了，这个就一直next安装，装好后在桌面打开cmd，</p>
+<p>npm是node.js集成的包管理工具，现在是直接随node装好了。</p>
+<p>查看版本号，成功显示就能用了，如果显示不是可用的命令就需要手动添加node环境变量，这个也简单，百度知道全有。</p>
+<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><p>在桌面右键，<code>git bash</code>，然后输入<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g cnpm --registry=https:<span class="regexp">//</span>registry.<span class="built_in">npm</span>.taobao.org</span><br></pre></td></tr></table></figure></p>
+<p>这里用<code>cnpm</code>是因为<code>npm</code>连接不太稳定，我用<code>npm</code>也是装了两次<code>hexo</code>才成功。而<code>cnpm</code>是淘宝团队提供的一个<code>npm</code>镜像库，国内访问非常快，以后的<code>npm</code>命令就在前面加一个<code>c</code>，使用方法完全相同。然后</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install hexo-<span class="keyword">cli</span> -g</span><br></pre></td></tr></table></figure>
+<p>在某个盘下新建一个文件夹，取名随意，我是<code>blog</code>。</p>
+<p>然后在这个文件夹下右键，<code>git bash</code>，然后</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo init</span></span><br></pre></td></tr></table></figure>
+<p>即在此初始化hexo源文件，需要这个<code>blog</code>文件夹初始为空。然后</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+<p>这一步是安装通用的npm包文件，如果有特定的npm包需要额外添加。我们除了通用包，还要一个hexo部署博客的包文件，</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<p>现在需要的基础包就安装好了。</p>
+<h2 id="step-2-测试本地发布"><a href="#step-2-测试本地发布" class="headerlink" title="step 2 测试本地发布"></a>step 2 测试本地发布</h2><p>现在新建一个博客，在<code>blog</code>文件夹下右键，<code>git bash</code>，然后输入</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> test</span><br></pre></td></tr></table></figure>
+<p>这一步是在生成一篇空博客marksown文档，存在<code>blog\source\_post</code>路径下，可以用编辑器打开它，我用的是sublime，装了markdown editing和markdown preview插件，或者其他md编辑器都行，在test.md中随便写点什么，然后保存。接下来<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo g</span></span><br></pre></td></tr></table></figure></p>
+<p>这一步是hexo的核心，把md文件转为静态页面，并添加主题样式和必要的链接，生成的文件在public下。然后</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo s</span></span><br></pre></td></tr></table></figure>
+<p>这样，就是在本地预览博客，在浏览器地址栏中输入</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span><span class="comment">//localhost:4000</span></span><br></pre></td></tr></table></figure>
+<p>就可以看到结果了。<br>现在只能自己浏览，想要让其他人也能看到，就需要部署到服务器上。租服务器不仅要花费，还要自己搭建web环境，太麻烦了，而且不适合学生党和技术不够的同学们，万幸github和coding都提供了静态页面解析的功能，所以我们把<code>public</code>文件夹下的内容<code>push</code>到一个git远程仓库就可以了。现在我们需要开始发布到coding的步骤。</p>
+<h2 id="step-3-本地博客部署到coding"><a href="#step-3-本地博客部署到coding" class="headerlink" title="step 3 本地博客部署到coding"></a>step 3 本地博客部署到coding</h2><p>首先，去官网登陆你的coding账号，没有就注册一个，然后完善个人信息，升级到银牌会员（才能绑定个人域名）。然后新建一个repository，项目名称就填你的用户名，选择私有，然后创建项目。<br><img src="http://pic.yanss.top/Coding+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/TIM%E6%88%AA%E5%9B%BE20170807124643.png" alt="img"></p>
+<p>现在有了远程仓库，就要把本地仓库和远程仓库关联起来，首先在<code>blog</code>目录下<code>git bash</code>，然后输入<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>-l</span><br></pre></td></tr></table></figure></p>
+<p>查看你的git配置信息，像我的是这样<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>-l</span><br><span class="line">core.<span class="attribute">symlinks</span>=<span class="literal">false</span></span><br><span class="line">core.<span class="attribute">autocrlf</span>=<span class="literal">true</span></span><br><span class="line">core.<span class="attribute">fscache</span>=<span class="literal">true</span></span><br><span class="line">color.<span class="attribute">diff</span>=auto</span><br><span class="line">color.<span class="attribute">status</span>=auto</span><br><span class="line">color.<span class="attribute">branch</span>=auto</span><br><span class="line">color.<span class="attribute">interactive</span>=<span class="literal">true</span></span><br><span class="line">help.<span class="attribute">format</span>=html</span><br><span class="line">rebase.<span class="attribute">autosquash</span>=<span class="literal">true</span></span><br><span class="line">http.<span class="attribute">sslcainfo</span>=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt</span><br><span class="line">diff.astextplain.<span class="attribute">textconv</span>=astextplain</span><br><span class="line">filter.lfs.<span class="attribute">clean</span>=git-lfs clean -- %f</span><br><span class="line">filter.lfs.<span class="attribute">smudge</span>=git-lfs smudge -- %f</span><br><span class="line">filter.lfs.<span class="attribute">required</span>=<span class="literal">true</span></span><br><span class="line">filter.lfs.<span class="attribute">process</span>=git-lfs filter-process</span><br><span class="line">credential.<span class="attribute">helper</span>=manager</span><br><span class="line">user.<span class="attribute">name</span>=xxx</span><br><span class="line">user.<span class="attribute">email</span>=xxx@xxx.com</span><br><span class="line">core.<span class="attribute">repositoryformatversion</span>=0</span><br><span class="line">core.<span class="attribute">filemode</span>=<span class="literal">false</span></span><br><span class="line">core.<span class="attribute">bare</span>=<span class="literal">false</span></span><br><span class="line">core.<span class="attribute">logallrefupdates</span>=<span class="literal">true</span></span><br><span class="line">core.<span class="attribute">symlinks</span>=<span class="literal">false</span></span><br><span class="line">core.<span class="attribute">ignorecase</span>=<span class="literal">true</span></span><br><span class="line">gui.<span class="attribute">wmstate</span>=normal</span><br><span class="line">gui.<span class="attribute">geometry</span>=841x483+343+178 189 218</span><br></pre></td></tr></table></figure></p>
+<p>这里你只用关注的是这两行<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user.name</span>=xxx</span><br><span class="line"><span class="attr">user.email</span>=xxx@xxx.com</span><br></pre></td></tr></table></figure></p>
+<p>如果你没有这两行，那么你需要添加配置：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global user.email <span class="string">"your email"</span></span><br></pre></td></tr></table></figure></p>
+<p>和<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global user.name <span class="string">"your name"</span></span><br></pre></td></tr></table></figure></p>
+<p>将双引号中内容替换为你自己的coding用户名和邮箱，可以在coding个人设置中查看自己的用户名和邮箱。</p>
+<p>然后我们给本地添加一个<code>SSH key</code>，这样的话每次部署就不用输密码。在git bash中输入<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -<span class="selector-tag">b</span> <span class="number">4096</span> -C <span class="string">"your email"</span></span><br></pre></td></tr></table></figure></p>
+<p>成功会出现以下代码：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Creates a new ssh key, using the provided email as a label</span></span><br><span class="line"><span class="comment"># Generating public/private rsa key pair.</span></span><br><span class="line">Enter <span class="built_in">file</span> <span class="keyword">in</span> which <span class="built_in">to</span> save <span class="keyword">the</span> key (/Users/you/.ssh/id_rsa): [Press enter] <span class="comment"> // 推荐使用默认地址,如果使用非默认地址可能需要配置 .ssh/config</span></span><br></pre></td></tr></table></figure></p>
+<p>然后一直回车，回车，回车，然后在 Coding.net 添加公钥<br>本地打开 id_rsa.pub 文件（一般在c盘用户文件夹下，进入你的用户文件夹，有一个<code>.ssh</code>文件，打开其中的<code>id_rsa.pub</code> ），复制其中全部内容，添加到Coding账户“SSH 公钥”页面 中，公钥名称可以随意起名字。<br>完成后点击“添加”，然后输入密码或动态码即可添加完成。<br><img src="http://pic.yanss.top/Coding+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/TIM%E6%88%AA%E5%9B%BE20170807132102.png" alt="img"><br>这里要注意是账户的SSH公匙，而不是项目中的设置的部署公匙，切记。</p>
+<p>现在验证一下是否添加SSH公匙成功，在git bash中输入<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-T</span> <span class="selector-tag">git</span>@<span class="keyword">git</span>.<span class="keyword">coding</span>.<span class="keyword">net</span></span><br></pre></td></tr></table></figure></p>
+<p>如果成功，会出现以下代码</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Are you sure you want <span class="keyword">to</span> <span class="keyword">continue</span> connecting (<span class="literal">yes</span>/<span class="literal">no</span>)? <span class="literal">yes</span> </span><br><span class="line">Warning: Permanently added ‘git.coding.net,<span class="number">61.146</span>.<span class="number">73.68</span>’ (RSA) <span class="keyword">to</span> the list <span class="keyword">of</span> kn own hosts.</span><br><span class="line">Enter passphrase <span class="keyword">for</span> key ‘<span class="regexp">/c/Users/xxx/</span>.ssh/id_rsa’: Coding.net Tips : [ Hello xxx! You have connected <span class="keyword">to</span> Coding.net <span class="keyword">by</span> SSH successfully! ]</span><br></pre></td></tr></table></figure>
+<p>现在就已经添加好了公匙，我们离博客部署到coding只差一步。</p>
+<h2 id="step-4-部署博客到coding"><a href="#step-4-部署博客到coding" class="headerlink" title="step 4 部署博客到coding"></a>step 4 部署博客到coding</h2><p>首先打开<code>blog</code>文件夹下的<code>_config.yml</code>文件，这是我的配置，你需要修改的地方我都加了注释，别的不要动，还有就是要注意这里yml文件是用的yaml脚本语言，对语法要求很严格，每个<code>:</code>后面要加上空格，没空格会编译出错。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo Configuration</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Yanss's</span> <span class="string">Blog</span> <span class="comment">#改为你自己的网站名</span></span><br><span class="line"><span class="attr">subtitle:</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Winner</span> <span class="string">Winner,</span> <span class="string">Chicken</span> <span class="string">Dinner</span> <span class="comment">#改为你自己的描述语句，随便写</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">Yanss</span> <span class="comment">#改成你自己的名字</span></span><br><span class="line"><span class="attr">language:</span> </span><br><span class="line"><span class="attr">timezone:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="attr">https://yanss.top</span> <span class="comment">#url改成"xxx.coding.me"，xxx是你的仓库名，也是你的用户名</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Directory</span></span><br><span class="line"><span class="attr">source_dir:</span> <span class="string">source</span></span><br><span class="line"><span class="attr">public_dir:</span> <span class="string">public</span></span><br><span class="line"><span class="attr">tag_dir:</span> <span class="string">tags</span></span><br><span class="line"><span class="attr">archive_dir:</span> <span class="string">archives</span></span><br><span class="line"><span class="attr">category_dir:</span> <span class="string">categories</span></span><br><span class="line"><span class="attr">code_dir:</span> <span class="string">downloads/code</span></span><br><span class="line"><span class="attr">i18n_dir:</span> <span class="string">:lang</span></span><br><span class="line"><span class="attr">skip_render:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Writing</span></span><br><span class="line"><span class="attr">new_post_name:</span> <span class="string">:title.md</span> <span class="comment"># File name of new posts</span></span><br><span class="line"><span class="attr">default_layout:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">titlecase:</span> <span class="literal">false</span> <span class="comment"># Transform title into titlecase</span></span><br><span class="line"><span class="attr">external_link:</span> <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></span><br><span class="line"><span class="attr">filename_case:</span> <span class="number">0</span></span><br><span class="line"><span class="attr">render_drafts:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">relative_link:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">future:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">highlight:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  line_number:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  auto_detect:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  tab_replace:</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># Category &amp; Tag</span></span><br><span class="line"><span class="attr">default_category:</span> <span class="string">uncategorized</span></span><br><span class="line"><span class="attr">category_map:</span></span><br><span class="line"><span class="attr">tag_map:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Date / Time format</span></span><br><span class="line"><span class="comment">## Hexo uses Moment.js to parse and display date</span></span><br><span class="line"><span class="comment">## You can customize the date format as defined in</span></span><br><span class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></span><br><span class="line"><span class="attr">date_format:</span> <span class="string">YYYY-MM-DD</span></span><br><span class="line"><span class="attr">time_format:</span> <span class="attr">HH:mm:ss</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Pagination</span></span><br><span class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></span><br><span class="line"><span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">pagination_dir:</span> <span class="string">page</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span> <span class="comment">#这里是主题名，你的先不要变，后面换主题再改</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">git@github.com:yanss/yanss.github.io.git</span> <span class="comment">#repo这里写你的仓库地址，下面告诉怎么找</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span> <span class="comment">#就一个分支就不用改，默认master</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这个feed是添加RSS订阅用的，这里你没有暂时不用写</span></span><br><span class="line"><span class="attr">feed:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">atom</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">atom.xml</span></span><br><span class="line"><span class="attr">  limit:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">  hub:</span></span><br><span class="line"><span class="attr">  content:</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">#这个search是站内搜索的，也是没有就不用写</span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">search.xml</span></span><br><span class="line"><span class="attr">  field:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">  format:</span> <span class="string">html</span></span><br><span class="line"><span class="attr">  limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+<p>打开coding网站上你刚才创建的仓库，点击代码，左下角选择<code>SSH方式访问仓库</code>，复制那个链接，把它填到你的<code>_config.yml</code>的<code>repo</code>那里。</p>
+<p><img src="http://pic.yanss.top/Coding+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/TIM%E6%88%AA%E5%9B%BE20170807130858.png" alt="img"></p>
+<p>现在我们就可以开始部署博客了，记得部署之前最好清理一遍<code>public</code>文件夹,也就是这样</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br><span class="line"><span class="attribute">hexo g</span></span><br><span class="line"><span class="attribute">hexo d</span></span><br></pre></td></tr></table></figure>
+<p>或者你也可以直接</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo d -g</span></span><br></pre></td></tr></table></figure>
+<p>coding+hexo的博客部署操作就是这些了，有问题可以下方留言评论，或者很急的话发邮件提醒我也可以，邮箱在<code>about me</code>里。</p>
+<p>另外还有</p>
+<ul>
+<li><a href="http://yanss.top/Coding+DaoCloud%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/" target="_blank" rel="noopener">《Coding+DaoCloud持续集成》</a></li>
+</ul>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/Coding/">#Coding</a> <a href="/newblog/tags/Hexo/">#Hexo</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2017 年 08 月 07 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

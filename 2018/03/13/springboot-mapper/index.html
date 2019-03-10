@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="本文讲述Spring Boot如何通过mybatis-spring-boot-starter集成Mybatis，并且在Mapper中如何映射Model属性和表的字段。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>springboot的Mapper与数据库表字段映射 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>springboot的Mapper与数据库表字段映射</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>本文讲述Spring Boot如何通过mybatis-spring-boot-starter集成Mybatis，并且在Mapper中如何映射Model属性和表的字段。<br><a id="more"></a></p>
+<p>下面给出一个简单的示例。</p>
+<h2 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h2><p>首先要引入mybatis的依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="table-user"><a href="#table-user" class="headerlink" title="table_user"></a>table_user</h2><p>数据库建表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="string">`tb_user`</span>(</span><br><span class="line">    <span class="string">`id`</span> <span class="built_in">INT</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    <span class="string">`name`</span> <span class="built_in">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    <span class="string">`created_by`</span> <span class="built_in">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> ( <span class="string">`id`</span> )</span><br><span class="line">)<span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure></p>
+<h2 id="User"><a href="#User" class="headerlink" title="User"></a>User</h2><p>实体类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String createdBy;</span><br><span class="line">    <span class="comment">//省略了setters &amp; getters</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="UserMapper"><a href="#UserMapper" class="headerlink" title="UserMapper"></a>UserMapper</h2><p>Mapper接口中可以通过注解的形式直接写sql，比将sql分离到xml中的方式更方便<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"select * from tb_user where id = #&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function">User <span class="title">selectById</span><span class="params">(@Param(<span class="string">"id"</span>)</span> <span class="keyword">int</span> id)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"select * from tb_user"</span>)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">selectAll</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Insert</span>(<span class="string">"insert into tb_user(id, name, created_by) values(#&#123;id&#125;, #&#123;name&#125;, #&#123;createdBy&#125;)"</span>)</span><br><span class="line">    <span class="meta">@Results</span>(id = <span class="string">"user"</span>, </span><br><span class="line">             value = &#123;</span><br><span class="line">                        <span class="meta">@Result</span>(column = <span class="string">"id"</span>,property = <span class="string">"id"</span>),</span><br><span class="line">                        <span class="meta">@Result</span>(column = <span class="string">"name"</span>,property = <span class="string">"name"</span>),</span><br><span class="line">                        <span class="meta">@Result</span>(column = <span class="string">"created_by"</span>,property = <span class="string">"createdBy"</span>)</span><br><span class="line">             &#125;</span><br><span class="line">    )</span><br><span class="line">    <span class="comment">//@Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Update</span>(<span class="string">"update tb_user set id = #&#123;id&#125;, name = #&#123;name&#125;, created_by = #&#123;createdBy&#125;"</span>)</span><br><span class="line">    <span class="meta">@ResultMap</span>(value = <span class="string">"user"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Delete</span>(<span class="string">"delete from tb_user where id = #&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">deleteById</span><span class="params">(@Param(<span class="string">"id"</span>)</span> <span class="keyword">int</span> id)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>@Select, @Insert, @Update, @Delete显然就是sql语句的注解了.</li>
+<li>@Param是根据别名取参数的.</li>
+<li>@Results和@Result配合使用, 就可以将实体类属性和表字段进行一一映射.<ul>
+<li>@Results的参数id表示这个映射的别名, 可以配合@ResultMap使用.</li>
+<li>@Result的参数column表示表字段名, property表示实体属性名.</li>
+</ul>
+</li>
+<li>@Options可以在插入时返回主键值, 在这里没什么用. 一般用于在主键id自增的情况下, 插入操作不定义id, 可以在插入数据库表后返回该条插入信息的主键id.</li>
+</ul>
+<h2 id="UserService"><a href="#UserService" class="headerlink" title="UserService"></a>UserService</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScriptService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">selectById</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        User user = userMapper.selectById(id);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">selectAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;User&gt; list = userMapper.selectAll();</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">insertUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        userMapper.insertUser(user);</span><br><span class="line">        retyrn user.getId();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">updateUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id = user.getId();</span><br><span class="line">        user check = userMapper.selectById(id);</span><br><span class="line">        <span class="keyword">if</span> (check == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        userMapper.updateUser(user);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deleteById</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        user check = userMapper.selectById(id);</span><br><span class="line">        <span class="keyword">if</span> (check == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        userMapper.deleteById(id);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="UserController"><a href="#UserController" class="headerlink" title="UserController"></a>UserController</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/selectById/&#123;id&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">selectById</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">int</span> id) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span>  userService.selectById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/selectAll"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">selectAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span>  userService.selectAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/insertUser"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">insertUser</span><span class="params">(@RequestBody User user)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userService.insertUser(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/updateUser"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">updateUser</span><span class="params">(@RequestBody User user)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userService.updateUser(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/deleteById/&#123;id&#125;"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deleteById</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">int</span> id) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userService.deleteById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/springboot/">#springboot</a> <a href="/newblog/tags/ResultMap/">#ResultMap</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2018 年 03 月 13 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

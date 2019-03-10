@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>Mac上非常方便的一些工具和命令 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Mac上非常方便的一些工具和命令</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="http://pic.yanss.top/2019/20190224235353.png" alt><br><a id="more"></a></p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>以下工具皆开源免费，盗版勿求。</p>
+<h3 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>bin<span class="regexp">/ruby -e "$(curl -fsSL https:/</span><span class="regexp">/raw.githubusercontent.com/</span>Homebrew<span class="regexp">/install/m</span>aster<span class="regexp">/install)"</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用Homebrew升级git版本"><a href="#使用Homebrew升级git版本" class="headerlink" title="使用Homebrew升级git版本"></a>使用Homebrew升级git版本</h3><p>Mac系统虽然预装git，但一般是较老的版本，如果希望更新到新的版本，最方便的是用Homebrew更新。</p>
+<p>安装git：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>git</span><br></pre></td></tr></table></figure></p>
+<p>替换系统预装git：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span>link git</span><br></pre></td></tr></table></figure></p>
+<p>以后更新git：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew<span class="built_in"> upgrade </span>git</span><br></pre></td></tr></table></figure></p>
+<h3 id="窗口管理应用"><a href="#窗口管理应用" class="headerlink" title="窗口管理应用"></a>窗口管理应用</h3><p><a href="https://github.com/eczarny/spectacle" target="_blank" rel="noopener">Spectacle</a>，免费开源，关联的快捷键太多，可以取消一些窗口操作的keymap。<br>抛去价格不谈，Spectacle&gt;Moom，而slate太麻烦。</p>
+<h3 id="Shadowsocks科学上网"><a href="#Shadowsocks科学上网" class="headerlink" title="Shadowsocks科学上网"></a>Shadowsocks科学上网</h3><p>服务端<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="keyword">no</span>-check-certificate http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/teddysun/shadowsocks_install/master/shadowsocks.<span class="keyword">sh</span></span><br><span class="line">chmod +<span class="keyword">x</span> shadowsocks.<span class="keyword">sh</span></span><br><span class="line">./shadowsocks.<span class="keyword">sh</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> | tee shadowsocks.<span class="built_in">log</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/shadowsocks/shadowsocks-windows" target="_blank" rel="noopener">Windows</a><br><a href="https://github.com/shadowsocks/ShadowsocksX-NG" target="_blank" rel="noopener">Mac</a><br><a href="https://github.com/shadowsocks/shadowsocks-android" target="_blank" rel="noopener">Android</a></p>
+<h3 id="图床上传工具"><a href="#图床上传工具" class="headerlink" title="图床上传工具"></a>图床上传工具</h3><p><a href="https://github.com/Molunerfinn/PicGo" target="_blank" rel="noopener">Picgo</a><br><a href="https://github.com/willnewii/qiniuClient" target="_blank" rel="noopener">云存储管理客户端</a></p>
+<h3 id="菜单栏Menubar隐藏部分图标"><a href="#菜单栏Menubar隐藏部分图标" class="headerlink" title="菜单栏Menubar隐藏部分图标"></a>菜单栏Menubar隐藏部分图标</h3><p><a href="https://github.com/DozerMapper/dozer" target="_blank" rel="noopener">Dozer</a></p>
+<h3 id="轻量日历工具"><a href="#轻量日历工具" class="headerlink" title="轻量日历工具"></a>轻量日历工具</h3><p><a href="https://github.com/sfsam/Itsycal" target="_blank" rel="noopener">Istycal</a></p>
+<h3 id="剪贴板工具"><a href="#剪贴板工具" class="headerlink" title="剪贴板工具"></a>剪贴板工具</h3><p><a href="https://github.com/Clipy/Clipy" target="_blank" rel="noopener">Clipy</a></p>
+<h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><h3 id="调整Dock栏的隐藏速度"><a href="#调整Dock栏的隐藏速度" class="headerlink" title="调整Dock栏的隐藏速度"></a>调整Dock栏的隐藏速度</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dock autohide-delay -int 0 <span class="comment">#时间设为最短</span></span><br><span class="line">defaults write com.apple.dock autohide-delay -int 0.5 <span class="comment">#时间设为 0.5s</span></span><br><span class="line">killall dock</span><br></pre></td></tr></table></figure>
+<h3 id="安全与隐私，打开允许“任何来源”"><a href="#安全与隐私，打开允许“任何来源”" class="headerlink" title="安全与隐私，打开允许“任何来源”"></a>安全与隐私，打开允许“任何来源”</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sudo spctl <span class="comment">--master-disable</span></span><br></pre></td></tr></table></figure>
+<h3 id="设置Launchpad的列数和行数"><a href="#设置Launchpad的列数和行数" class="headerlink" title="设置Launchpad的列数和行数"></a>设置Launchpad的列数和行数</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">defaults write com<span class="selector-class">.apple</span><span class="selector-class">.dock</span> springboard-<span class="attribute">columns</span> -int 列数</span><br><span class="line">defaults write com<span class="selector-class">.apple</span><span class="selector-class">.dock</span> springboard-rows -int 行数</span><br><span class="line">defaults write com<span class="selector-class">.apple</span><span class="selector-class">.dock</span> ResetLaunchPad -bool TRUE</span><br><span class="line">killall Dock</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/mac/">#mac</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2019 年 02 月 25 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

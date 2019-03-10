@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="centos搭建Jupyter Notebook, 添加多语言支持(R,Ruby,Octave,JS,Java,C++).">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>centos搭建Jupyter-Notebook | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/newblog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/newblog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>centos搭建Jupyter-Notebook</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="http://pic.yanss.top/centos-jn-overview.png" alt><br>centos搭建Jupyter Notebook, 添加多语言支持(R,Ruby,Octave,JS,Java,C++).<br><a id="more"></a></p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>主要熟悉常用命令，<br><code>wget [url]</code>下载，</p>
+<p><code>tar -xvf</code>解压<code>.tar.gz</code>，</p>
+<p>使用yum包管理工具<code>yum search xx</code>搜索, <code>yum install xx</code>下载。</p>
+<p><code>whereis</code>，<code>which</code>查找文件， <code>find [path] -name xxx</code>查找指定目录下的文件</p>
+<p><code>ps -ef | grep jupyter</code> 查看jupyter运行的pid</p>
+<h1 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h1><ol>
+<li><p>下载Anaconda最新版本，省事。在官网找到下载链接，python3.6版本，然后</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<p> 然后运行脚本</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-3-5.2.0-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<p> 中间需要确定时确定即可，等待安装完成，会自动写入环境变量。</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br><span class="line">jupyter --version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后按照官网步骤，设置config</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br><span class="line"><span class="comment"># 会生成config文件为 .jupyter/jupyter_notebook_config.py</span></span><br></pre></td></tr></table></figure>
+<p> 设置密码</p>
+ <figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> notebook.auth <span class="keyword">import</span> passwd</span><br><span class="line">passwd()</span><br><span class="line"><span class="comment"># 会生成类似 sha1:xxxxxxxxxxxxxxxxxxx， 需要记一下</span></span><br></pre></td></tr></table></figure>
+<p> 然后编辑 config文件</p>
+ <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vim</span> .jupyter/jupyter_notebook_config.<span class="keyword">py</span></span><br></pre></td></tr></table></figure>
+<p> 修改这些行，去掉注释，填相应值。其他选项也可以自己设置</p>
+ <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c<span class="selector-class">.NotebookApp</span><span class="selector-class">.password</span> = <span class="string">'sha1:xxxxxxxxxxxxxxxxxxx'</span></span><br><span class="line">c<span class="selector-class">.NotebookApp</span><span class="selector-class">.ip</span> = <span class="string">'*'</span></span><br><span class="line">c<span class="selector-class">.NotebookApp</span><span class="selector-class">.open_browser</span> = False</span><br><span class="line">c<span class="selector-class">.NotebookApp</span><span class="selector-class">.port</span> = <span class="number">8888</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开放和重启防火墙<br> centos7：</p>
+ <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --zone=public --add-port=8888/tcp --permanent <span class="comment"># 永久开放8888端口</span></span></span><br><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --reload <span class="comment"># 重启firewall</span></span></span><br><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --list-ports <span class="comment"># 查看开放端口</span></span></span><br></pre></td></tr></table></figure>
+<p> centos6：</p>
+ <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/sbin/iptables -I INPUT -p tcp --dport 8888 -j ACCEPT # 开放8888端口</span><br><span class="line">/etc/rc.d/init.d/iptables save # 保存</span><br><span class="line">service iptables status # 查看防火墙状态</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动server，<code>jupyter notebook</code>。如果需要后台启动，运行<br><code>nohup jupyter notebook &gt; jupyter.log 2&gt;&amp;1 &amp;</code></p>
+</li>
+</ol>
+<h1 id="安装其他kernel"><a href="#安装其他kernel" class="headerlink" title="安装其他kernel"></a>安装其他kernel</h1><p>主要根据 [Jupyter kernels wiki](<a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels）" target="_blank" rel="noopener">https://github.com/jupyter/jupyter/wiki/Jupyter-kernels）</a></p>
+<h2 id="py2-7"><a href="#py2-7" class="headerlink" title="py2.7"></a>py2.7</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="keyword">create</span> -n ipykernel_py2 python=<span class="number">2</span> ipykernel</span><br><span class="line"><span class="keyword">source</span> <span class="keyword">activate</span> ipykernel_py2</span><br><span class="line">python -m ipykernel <span class="keyword">install</span> <span class="comment">--user</span></span><br></pre></td></tr></table></figure>
+<h2 id="ruby"><a href="#ruby" class="headerlink" title="ruby"></a>ruby</h2><p><a href="https://github.com/SciRuby/iruby" target="_blank" rel="noopener">iruby</a>, ruby需要版本大于2.1</p>
+<ol>
+<li><p>准备工作，安装环境。<br>yum 下载的可能不是最新的ruby，所以用</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -<span class="keyword">y</span> git-core <span class="keyword">ruby</span>-devel <span class="keyword">ruby</span> zlib zlib-devel gcc-<span class="keyword">c</span>++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel <span class="keyword">make</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ruby kernel需要ZeroMQ</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum <span class="keyword">install</span> zeromq-devel zeromq czmq</span><br><span class="line">gem <span class="keyword">install</span> cztop rbczmq ffi_rzmq</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装iruby kernel</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="keyword">install</span> cztop iruby</span><br><span class="line">iruby <span class="keyword">register</span> <span class="comment">--force</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><p>按照<a href="https://irkernel.github.io/" target="_blank" rel="noopener">irkernel</a>的安装步骤，<br>或者直接<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="keyword">install</span> -c r r-essentials</span><br></pre></td></tr></table></figure></p>
+<h2 id="octave"><a href="#octave" class="headerlink" title="octave"></a>octave</h2><p>pip</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> octave_kernel</span><br></pre></td></tr></table></figure>
+<p>或者conda</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda<span class="built_in"> config </span>--<span class="builtin-name">add</span> channels conda-forge</span><br><span class="line">conda install octave_kernel</span><br></pre></td></tr></table></figure>
+<h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><p>首先安装nodejs和npm，然后</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> -g ijavascript</span><br><span class="line">ijsinstall</span><br></pre></td></tr></table></figure>
+<h2 id="java"><a href="#java" class="headerlink" title="java"></a>java</h2><p><a href="https://github.com/SpencerPark/IJava" target="_blank" rel="noopener">IJava</a> ,需要安装java 9或10，设置好环境变量，</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=<span class="regexp">/usr/java</span><span class="regexp">/jdk-10.0.1/</span></span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/<span class="class"><span class="keyword">lib</span>/<span class="title">dt</span>.<span class="title">jar</span>:$<span class="title">JAVA_HOME</span>/<span class="title">lib</span>/<span class="title">tools</span>.<span class="title">jar</span></span></span><br><span class="line">export PATH=$JAVA_HOME/<span class="symbol">bin:</span>$PATH</span><br></pre></td></tr></table></figure>
+<p>然后</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="string">//github.com/SpencerPark/IJava.git</span> <span class="params">--depth</span> 1</span><br><span class="line"><span class="keyword">cd</span> IJava/</span><br><span class="line">chmod u+x gradlew</span><br><span class="line"><span class="string">./gradlew</span> installKernel</span><br></pre></td></tr></table></figure>
+<h2 id="c"><a href="#c" class="headerlink" title="c++"></a>c++</h2><p><a href="https://github.com/QuantStack/xeus-cling" target="_blank" rel="noopener">xues-cling</a></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="keyword">create</span> -n cling</span><br><span class="line"><span class="keyword">source</span> <span class="keyword">activate</span> cling</span><br><span class="line">conda <span class="keyword">install</span> xeus-cling notebook -c QuantStack -c conda-forge</span><br></pre></td></tr></table></figure>
+<p>有个问题是需要切换到cling环境启动jupyter才会有c++的kernel，找了一下cling 的kernel文件</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find</span> anaconda3<span class="regexp">/envs/</span>cling -name kernels</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">anaconda3/envs/cling/<span class="class"><span class="keyword">lib</span>/<span class="title">python3</span>.6/<span class="title">site</span>-<span class="title">packages</span>/<span class="title">notebook</span>/<span class="title">services</span>/<span class="title">kernels</span></span></span><br><span class="line">anaconda3/envs/cling/<span class="class"><span class="keyword">lib</span>/<span class="title">python3</span>.6/<span class="title">site</span>-<span class="title">packages</span>/<span class="title">notebook</span>/<span class="title">static</span>/<span class="title">services</span>/<span class="title">kernels</span></span></span><br><span class="line">anaconda3/envs/cling/share/jupyter/kernels</span><br></pre></td></tr></table></figure>
+<p>进入到<code>/share/jupyter/kernels</code>，发现了</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd anaconda3<span class="meta-keyword">/envs/</span>cling<span class="meta-keyword">/share/</span>jupyter/kernels</span><br><span class="line">ll</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">total 16</span><br><span class="line">drwxr-xr-x<span class="number"> 2 </span>root root<span class="number"> 4096 </span>Jul <span class="number"> 5 </span>14:48 python3</span><br><span class="line">drwxr-xr-x<span class="number"> 2 </span>root root<span class="number"> 4096 </span>Jul <span class="number"> 5 </span>14:48 xeus-cling-cpp11</span><br><span class="line">drwxr-xr-x<span class="number"> 2 </span>root root<span class="number"> 4096 </span>Jul <span class="number"> 5 </span>14:48 xeus-cling-cpp14</span><br><span class="line">drwxr-xr-x<span class="number"> 2 </span>root root<span class="number"> 4096 </span>Jul <span class="number"> 5 </span>14:48 xeus-cling-cpp17</span><br></pre></td></tr></table></figure>
+<p>现在，看一下jupyter kernel的文件目录在哪</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter kernelspec <span class="built_in">list</span></span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Available <span class="string">kernels:</span></span><br><span class="line">  java                <span class="regexp">/root/</span>.ipython<span class="regexp">/kernels/</span>java</span><br><span class="line">  ruby                <span class="regexp">/root/</span>.ipython<span class="regexp">/kernels/</span>ruby</span><br><span class="line">  ir                  <span class="regexp">/root/</span>.local<span class="regexp">/share/</span>jupyter<span class="regexp">/kernels/</span>ir</span><br><span class="line">  javascript          <span class="regexp">/root/</span>.local<span class="regexp">/share/</span>jupyter<span class="regexp">/kernels/</span>javascript</span><br><span class="line">  python2             <span class="regexp">/root/</span>.local<span class="regexp">/share/</span>jupyter<span class="regexp">/kernels/</span>python2</span><br><span class="line">  python3             <span class="regexp">/root/</span>.local<span class="regexp">/share/</span>jupyter<span class="regexp">/kernels/</span>python3</span><br><span class="line">  octave              <span class="regexp">/root/</span>anaconda3<span class="regexp">/share/</span>jupyter<span class="regexp">/kernels/</span>octave</span><br><span class="line">  bash                <span class="regexp">/usr/</span>local<span class="regexp">/share/</span>jupyter<span class="regexp">/kernels/</span>bash</span><br></pre></td></tr></table></figure>
+<p>确定是<code>.ipython/kernels/</code>的这一个。</p>
+<p>将<code>xeus-cling-cpp11  xeus-cling-cpp14  xeus-cling-cpp17</code>这三个文件夹复制到<code>.ipython/kernels/</code>下</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cp</span> xeus-cling-cpp11 .ipython/kernels/</span><br><span class="line"><span class="keyword">cp</span> xeus-cling-cpp14 .ipython/kernels/</span><br><span class="line"><span class="keyword">cp</span> xeus-cling-cpp17 .ipython/kernels/</span><br></pre></td></tr></table></figure>
+<p>完成。</p>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/newblog/tags/jupyter/">#jupyter</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2018 年 07 月 06 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>
