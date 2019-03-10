@@ -89,7 +89,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
 <p>现在需要的基础包就安装好了。</p>
 <h2 id="step-2-测试本地发布"><a href="#step-2-测试本地发布" class="headerlink" title="step 2 测试本地发布"></a>step 2 测试本地发布</h2><p>现在新建一个博客，在<code>blog</code>文件夹下右键，<code>git bash</code>，然后输入</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> test</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 <p>这一步是在生成一篇空博客marksown文档，存在<code>blog\source\_post</code>路径下，可以用编辑器打开它，我用的是sublime，装了markdown editing和markdown preview插件，或者其他md编辑器都行，在test.md中随便写点什么，然后保存。接下来<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo g</span></span><br></pre></td></tr></table></figure></p>
 <p>这一步是hexo的核心，把md文件转为静态页面，并添加主题样式和必要的链接，生成的文件在public下。然后</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo s</span></span><br></pre></td></tr></table></figure>

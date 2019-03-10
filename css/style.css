@@ -740,6 +740,17 @@ pre .clojure .title {
 pre .deletion {
   color: #dc322f;
 }
+@media (min-width: 1200px) {
+  .col-lg-offset-2 {
+    margin-left: 5%;
+  }
+  .col-lg-8 {
+    width: 90%;
+  }
+}
+.post-preview > a > .post-title {
+  font-size: 1.2em;
+}
 code {
   color: #c7254e;
   background: #f9f2f4;

@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://foreti.me/newblog/2018/07/06/centos-jupyter-notebook/</loc>
+    
+    <lastmod>2019-03-10T15:12:32.746Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://foreti.me/newblog/2018/03/13/springboot-mapper/</loc>
+    
+    <lastmod>2019-03-10T15:11:58.619Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://foreti.me/newblog/2018/04/04/java-concurrent-join/</loc>
+    
+    <lastmod>2019-03-10T15:11:19.847Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://foreti.me/newblog/2017/08/07/github-hexo-appveyor-ci/</loc>
+    
+    <lastmod>2019-03-10T15:04:37.107Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://foreti.me/newblog/2017/12/31/hexo-next-personal/</loc>
     
     <lastmod>2019-03-10T12:11:22.558Z</lastmod>
@@ -12,13 +40,6 @@
     <loc>https://foreti.me/newblog/2017/09/13/css-slideshow/</loc>
     
     <lastmod>2019-03-10T12:07:54.448Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://foreti.me/newblog/2017/08/07/github-hexo-appveyor-ci/</loc>
-    
-    <lastmod>2019-03-10T11:44:31.790Z</lastmod>
     
   </url>
   
@@ -44,13 +65,6 @@
   </url>
   
   <url>
-    <loc>https://foreti.me/newblog/2018/07/06/centos-jupyter-notebook/</loc>
-    
-    <lastmod>2019-03-10T11:13:38.914Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://foreti.me/newblog/2018/02/04/gitbook-to-gh-pages/</loc>
     
     <lastmod>2019-03-10T11:12:53.127Z</lastmod>
@@ -68,13 +82,6 @@
     <loc>https://foreti.me/newblog/2018/01/27/java-print-array/</loc>
     
     <lastmod>2019-03-10T11:09:49.228Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://foreti.me/newblog/2018/04/04/java-concurrent-join/</loc>
-    
-    <lastmod>2019-03-10T11:05:19.745Z</lastmod>
     
   </url>
   
@@ -110,13 +117,6 @@
     <loc>https://foreti.me/newblog/2018/10/30/thoughtworks-exam/</loc>
     
     <lastmod>2019-03-10T11:00:14.903Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://foreti.me/newblog/2018/03/13/springboot-mapper/</loc>
-    
-    <lastmod>2019-03-10T11:00:04.055Z</lastmod>
     
   </url>
   
