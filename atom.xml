@@ -3,11 +3,11 @@
   <title>Yet Another Possibility</title>
   <icon>https://www.gravatar.com/avatar/02af3036e86cee458f48e977dc781ee4</icon>
   <subtitle>有约如铁</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="/newblog/atom.xml" rel="self"/>
   
-  <link href="https://foreti.me/"/>
+  <link href="https://foreti.me/newblog/"/>
   <updated>2019-03-09T18:27:59.783Z</updated>
-  <id>https://foreti.me/</id>
+  <id>https://foreti.me/newblog/</id>
   
   <author>
     <name>fakeyanss</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>2018</title>
-    <link href="https://foreti.me/2018/12/30/2018/"/>
-    <id>https://foreti.me/2018/12/30/2018/</id>
+    <link href="https://foreti.me/newblog/2018/12/30/2018/"/>
+    <id>https://foreti.me/newblog/2018/12/30/2018/</id>
     <published>2018-12-29T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.783Z</updated>
     
@@ -31,15 +31,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>2017</title>
-    <link href="https://foreti.me/2017/12/02/everything-will-be-ok/"/>
-    <id>https://foreti.me/2017/12/02/everything-will-be-ok/</id>
+    <link href="https://foreti.me/newblog/2017/12/02/everything-will-be-ok/"/>
+    <id>https://foreti.me/newblog/2017/12/02/everything-will-be-ok/</id>
     <published>2017-12-01T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.785Z</updated>
     
@@ -51,15 +51,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>22 岁</title>
-    <link href="https://foreti.me/2016/11/20/22-years-old/"/>
-    <id>https://foreti.me/2016/11/20/22-years-old/</id>
+    <link href="https://foreti.me/newblog/2016/11/20/22-years-old/"/>
+    <id>https://foreti.me/newblog/2016/11/20/22-years-old/</id>
     <published>2016-11-19T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.783Z</updated>
     
@@ -72,15 +72,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>你想要重来吗</title>
-    <link href="https://foreti.me/2016/07/24/never-go-back/"/>
-    <id>https://foreti.me/2016/07/24/never-go-back/</id>
+    <link href="https://foreti.me/newblog/2016/07/24/never-go-back/"/>
+    <id>https://foreti.me/newblog/2016/07/24/never-go-back/</id>
     <published>2016-07-23T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.785Z</updated>
     
@@ -94,15 +94,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>清醒思考</title>
-    <link href="https://foreti.me/2016/06/25/reflections/"/>
-    <id>https://foreti.me/2016/06/25/reflections/</id>
+    <link href="https://foreti.me/newblog/2016/06/25/reflections/"/>
+    <id>https://foreti.me/newblog/2016/06/25/reflections/</id>
     <published>2016-06-24T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.786Z</updated>
     
@@ -114,15 +114,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>断，舍，离</title>
-    <link href="https://foreti.me/2016/04/14/be-foolish/"/>
-    <id>https://foreti.me/2016/04/14/be-foolish/</id>
+    <link href="https://foreti.me/newblog/2016/04/14/be-foolish/"/>
+    <id>https://foreti.me/newblog/2016/04/14/be-foolish/</id>
     <published>2016-04-13T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.784Z</updated>
     
@@ -134,15 +134,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>一年的四分之一</title>
-    <link href="https://foreti.me/2016/03/28/one-quarter-of-2016/"/>
-    <id>https://foreti.me/2016/03/28/one-quarter-of-2016/</id>
+    <link href="https://foreti.me/newblog/2016/03/28/one-quarter-of-2016/"/>
+    <id>https://foreti.me/newblog/2016/03/28/one-quarter-of-2016/</id>
     <published>2016-03-27T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.786Z</updated>
     
@@ -154,15 +154,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>嘿，你叫什么名字</title>
-    <link href="https://foreti.me/2016/01/03/whats-your-name/"/>
-    <id>https://foreti.me/2016/01/03/whats-your-name/</id>
+    <link href="https://foreti.me/newblog/2016/01/03/whats-your-name/"/>
+    <id>https://foreti.me/newblog/2016/01/03/whats-your-name/</id>
     <published>2016-01-02T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.787Z</updated>
     
@@ -175,15 +175,15 @@
     
     </summary>
     
-      <category term="嘿，我想要你的歌单" scheme="https://foreti.me/categories/%E5%98%BF%EF%BC%8C%E6%88%91%E6%83%B3%E8%A6%81%E4%BD%A0%E7%9A%84%E6%AD%8C%E5%8D%95/"/>
+      <category term="嘿，我想要你的歌单" scheme="https://foreti.me/newblog/categories/%E5%98%BF%EF%BC%8C%E6%88%91%E6%83%B3%E8%A6%81%E4%BD%A0%E7%9A%84%E6%AD%8C%E5%8D%95/"/>
     
     
   </entry>
   
   <entry>
     <title>人老就会有一眼万年的错觉吧</title>
-    <link href="https://foreti.me/2015/12/28/the-journey-of-2015/"/>
-    <id>https://foreti.me/2015/12/28/the-journey-of-2015/</id>
+    <link href="https://foreti.me/newblog/2015/12/28/the-journey-of-2015/"/>
+    <id>https://foreti.me/newblog/2015/12/28/the-journey-of-2015/</id>
     <published>2015-12-27T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.786Z</updated>
     
@@ -195,15 +195,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>十一月末胖成了🐷</title>
-    <link href="https://foreti.me/2015/11/28/too-fat-to-slim/"/>
-    <id>https://foreti.me/2015/11/28/too-fat-to-slim/</id>
+    <link href="https://foreti.me/newblog/2015/11/28/too-fat-to-slim/"/>
+    <id>https://foreti.me/newblog/2015/11/28/too-fat-to-slim/</id>
     <published>2015-11-27T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.787Z</updated>
     
@@ -215,15 +215,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>杭州 · 雨</title>
-    <link href="https://foreti.me/2015/11/07/english-rain/"/>
-    <id>https://foreti.me/2015/11/07/english-rain/</id>
+    <link href="https://foreti.me/newblog/2015/11/07/english-rain/"/>
+    <id>https://foreti.me/newblog/2015/11/07/english-rain/</id>
     <published>2015-11-06T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.784Z</updated>
     
@@ -238,15 +238,15 @@
     
     </summary>
     
-      <category term="嘿，我想要你的歌单" scheme="https://foreti.me/categories/%E5%98%BF%EF%BC%8C%E6%88%91%E6%83%B3%E8%A6%81%E4%BD%A0%E7%9A%84%E6%AD%8C%E5%8D%95/"/>
+      <category term="嘿，我想要你的歌单" scheme="https://foreti.me/newblog/categories/%E5%98%BF%EF%BC%8C%E6%88%91%E6%83%B3%E8%A6%81%E4%BD%A0%E7%9A%84%E6%AD%8C%E5%8D%95/"/>
     
     
   </entry>
   
   <entry>
     <title>按了快进的生活</title>
-    <link href="https://foreti.me/2015/10/31/lets-start-from-Hangzhou/"/>
-    <id>https://foreti.me/2015/10/31/lets-start-from-Hangzhou/</id>
+    <link href="https://foreti.me/newblog/2015/10/31/lets-start-from-Hangzhou/"/>
+    <id>https://foreti.me/newblog/2015/10/31/lets-start-from-Hangzhou/</id>
     <published>2015-10-30T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.785Z</updated>
     
@@ -258,15 +258,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>饿了么？饿了三个月！</title>
-    <link href="https://foreti.me/2015/10/15/eleme-internship-memoirs/"/>
-    <id>https://foreti.me/2015/10/15/eleme-internship-memoirs/</id>
+    <link href="https://foreti.me/newblog/2015/10/15/eleme-internship-memoirs/"/>
+    <id>https://foreti.me/newblog/2015/10/15/eleme-internship-memoirs/</id>
     <published>2015-10-14T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.784Z</updated>
     
@@ -278,15 +278,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>去常州找老友呀</title>
-    <link href="https://foreti.me/2015/10/07/with-old-friends-in-changzhou/"/>
-    <id>https://foreti.me/2015/10/07/with-old-friends-in-changzhou/</id>
+    <link href="https://foreti.me/newblog/2015/10/07/with-old-friends-in-changzhou/"/>
+    <id>https://foreti.me/newblog/2015/10/07/with-old-friends-in-changzhou/</id>
     <published>2015-10-06T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.787Z</updated>
     
@@ -299,15 +299,15 @@
     
     </summary>
     
-      <category term="喂，要去哪" scheme="https://foreti.me/categories/%E5%96%82%EF%BC%8C%E8%A6%81%E5%8E%BB%E5%93%AA/"/>
+      <category term="喂，要去哪" scheme="https://foreti.me/newblog/categories/%E5%96%82%EF%BC%8C%E8%A6%81%E5%8E%BB%E5%93%AA/"/>
     
     
   </entry>
   
   <entry>
     <title>哈喽，魔都</title>
-    <link href="https://foreti.me/2015/10/06/amazing-shanghai/"/>
-    <id>https://foreti.me/2015/10/06/amazing-shanghai/</id>
+    <link href="https://foreti.me/newblog/2015/10/06/amazing-shanghai/"/>
+    <id>https://foreti.me/newblog/2015/10/06/amazing-shanghai/</id>
     <published>2015-10-05T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.783Z</updated>
     
@@ -320,15 +320,15 @@
     
     </summary>
     
-      <category term="喂，要去哪" scheme="https://foreti.me/categories/%E5%96%82%EF%BC%8C%E8%A6%81%E5%8E%BB%E5%93%AA/"/>
+      <category term="喂，要去哪" scheme="https://foreti.me/newblog/categories/%E5%96%82%EF%BC%8C%E8%A6%81%E5%8E%BB%E5%93%AA/"/>
     
     
   </entry>
   
   <entry>
     <title>我  大概  就是那只  狐狸</title>
-    <link href="https://foreti.me/2015/10/04/just-like-the-fox/"/>
-    <id>https://foreti.me/2015/10/04/just-like-the-fox/</id>
+    <link href="https://foreti.me/newblog/2015/10/04/just-like-the-fox/"/>
+    <id>https://foreti.me/newblog/2015/10/04/just-like-the-fox/</id>
     <published>2015-10-03T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.785Z</updated>
     
@@ -342,15 +342,15 @@
     
     </summary>
     
-      <category term="嘿，我想要你的歌单" scheme="https://foreti.me/categories/%E5%98%BF%EF%BC%8C%E6%88%91%E6%83%B3%E8%A6%81%E4%BD%A0%E7%9A%84%E6%AD%8C%E5%8D%95/"/>
+      <category term="嘿，我想要你的歌单" scheme="https://foreti.me/newblog/categories/%E5%98%BF%EF%BC%8C%E6%88%91%E6%83%B3%E8%A6%81%E4%BD%A0%E7%9A%84%E6%AD%8C%E5%8D%95/"/>
     
     
   </entry>
   
   <entry>
     <title>回家这件小事</title>
-    <link href="https://foreti.me/2015/10/03/to-home/"/>
-    <id>https://foreti.me/2015/10/03/to-home/</id>
+    <link href="https://foreti.me/newblog/2015/10/03/to-home/"/>
+    <id>https://foreti.me/newblog/2015/10/03/to-home/</id>
     <published>2015-10-02T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.786Z</updated>
     
@@ -363,15 +363,15 @@
     
     </summary>
     
-      <category term="啊，記錄碎片" scheme="https://foreti.me/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
+      <category term="啊，記錄碎片" scheme="https://foreti.me/newblog/categories/%E5%95%8A%EF%BC%8C%E8%A8%98%E9%8C%84%E7%A2%8E%E7%89%87/"/>
     
     
   </entry>
   
   <entry>
     <title>一切会安好</title>
-    <link href="https://foreti.me/2015/10/01/it-is-well-with-my-soul/"/>
-    <id>https://foreti.me/2015/10/01/it-is-well-with-my-soul/</id>
+    <link href="https://foreti.me/newblog/2015/10/01/it-is-well-with-my-soul/"/>
+    <id>https://foreti.me/newblog/2015/10/01/it-is-well-with-my-soul/</id>
     <published>2015-09-30T16:00:00.000Z</published>
     <updated>2019-03-09T18:27:59.785Z</updated>
     
@@ -384,7 +384,7 @@
     
     </summary>
     
-      <category term="嘿，我想要你的歌单" scheme="https://foreti.me/categories/%E5%98%BF%EF%BC%8C%E6%88%91%E6%83%B3%E8%A6%81%E4%BD%A0%E7%9A%84%E6%AD%8C%E5%8D%95/"/>
+      <category term="嘿，我想要你的歌单" scheme="https://foreti.me/newblog/categories/%E5%98%BF%EF%BC%8C%E6%88%91%E6%83%B3%E8%A6%81%E4%BD%A0%E7%9A%84%E6%AD%8C%E5%8D%95/"/>
     
     
   </entry>
