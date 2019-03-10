@@ -9,6 +9,20 @@
 .post-preview > a > .post-title {
   font-size: 1.2em;
 }
+@media only screen and (min-width: 768px) {
+  .intro-header .post-heading h1 {
+    text-align: center;
+  }
+}
+article .container .row img {
+  position: relative;
+  left: 10%;
+  margin: 30px auto;
+  max-width: 80% !important;
+  height: auto;
+  display: inline-block;
+  box-shadow: 0 0 0 5px #fff, 0 0 15px 0 #000;
+}
 code {
   color: #c7254e;
   background: #f9f2f4;

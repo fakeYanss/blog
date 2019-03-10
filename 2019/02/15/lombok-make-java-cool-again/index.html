@@ -9,7 +9,7 @@
 
     <!--Description-->
     
-        <meta name="description" content>
+        <meta name="description" content="这是一篇关于Spring开发插件Lombok的译文。">
     
 
     <!--Author-->
@@ -25,7 +25,7 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/newblog/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Custom Fonts -->
     <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@
     <!-- Content -->
     <section class="article-container">
 <!-- Back fragment -->
-<a class="nav-back" href="/newblog/">
+<a class="nav-back" href="/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
@@ -68,14 +68,15 @@
         <div class="row">
             <!-- Post Main Content -->
             <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p><img src="http://pic.yanss.top/2019/20190202144529.png" alt><br><a id="more"></a></p>
+                <p>这是一篇关于Spring开发插件Lombok的译文。<a id="more"></a></p>
+<p><img src="http://pic.yanss.top/2019/20190202144529.png" alt></p>
 <p><a href="https://bytes.grubhub.com/lombok-makes-java-cool-again-171102bdcc52" target="_blank" rel="noopener">原文</a></p>
 <p>在Grauhub，我们在大多数后端编程中都是用Java。Java是一门经过20多年实战考验的语言，已经证明了它的速度和可靠性。虽然我们已经使用Java很多年了，最近，它开始展现了它的老旧的特性。</p>
 <p>尽管Java是最受欢迎的JVM语言之一，但它不是唯一的。在过去几年里，它面临着一些挑战者，比如Scala，Clojure和Kotlin，它们提供了新的功能和高效的语言特性。简而言之，它们让你用更少的代码做更多的事。<br>是的·<br>JVM生态系统中的这一创新令人兴奋。更多的竞争意味着Java被迫改变以保持竞争力。从Java 8（Valhalla，Local-Variable Type Inference，Loom）以来，新的六个月发布计划和几个JEP（JDK 增强提议）证明了Java在未来几年将继续保持竞争力。</p>
 <p>但是，Java语言的大小和规模意味着开发进度比我们想要的要慢，更不用说Java不惜一切代价保持向后兼容性的强烈意愿。通过任何软件工程工作，功能都需要优先考虑，因此如果完全使用Java的话，我们想要的功能可能需要很长时间。与此同时，现在Grubhub利用Lombok项目获得简化和改进的Java。Lombok是一个编译器插件，它为Java添加了新的“关键字”，并将注释转换为Java代码，减少了繁杂的工程工作，并提供了一些额外的功能。</p>
 <h4 id="设置Lombok"><a href="#设置Lombok" class="headerlink" title="设置Lombok"></a>设置Lombok</h4><p>Grubhub一直在寻求改进我们的软件生命周期，但每个新工具和流程都需要在采用之前考虑成本。幸运的是，添加Lombok就像在gradle文件中添加几行一样简单。</p>
 <p>Lombok是一个编译器插件，因为它在编译器处理它们之前将源代码中的注释转换为Java语句–在运行时不需要提供lombok依赖项，因此添加Lombok不会增加构建工件的大小。因此，您需要下载Lombok并将其添加到您的构建工具中。要<a href="https://projectlombok.org/setup/gradle" target="_blank" rel="noopener">使用Gradle设置Lombok</a>（它也适用于<a href="https://projectlombok.org/setup/maven" target="_blank" rel="noopener">Maven</a>），请将此块添加到build.gradle文件中：</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">plugins </span>&#123;</span><br><span class="line">    id <span class="variable">&amp;apos</span>;io.franzbecker.gradle-lombok<span class="variable">&amp;apos</span>; version <span class="variable">&amp;apos</span>;<span class="number">1.14</span><span class="variable">&amp;apos</span>;</span><br><span class="line">    id <span class="variable">&amp;apos</span>;java<span class="variable">&amp;apos</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class">repositories </span>&#123;</span><br><span class="line">    jcenter() <span class="comment">// or Maven central, required for Lombok dependency</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class">lombok </span>&#123;</span><br><span class="line">    version = <span class="variable">&amp;apos</span>;<span class="number">1.18</span><span class="number">.4</span><span class="variable">&amp;apos</span>;</span><br><span class="line">    sha256 = <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id &amp;apos;io.franzbecker.gradle-lombok&amp;apos; version &amp;apos;1.14&amp;apos;</span><br><span class="line">    id &amp;apos;java&amp;apos;</span><br><span class="line">&#125;</span><br><span class="line">repositories &#123;</span><br><span class="line">    jcenter() // or Maven central, required for Lombok dependency</span><br><span class="line">&#125;</span><br><span class="line">lombok &#123;</span><br><span class="line">    version = &amp;apos;1.18.4&amp;apos;</span><br><span class="line">    sha256 = &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由于Lombok是一个编译器插件，我们为它编写的源代码实际上并不是有效的Java。因此，您还需要为正在使用的IDE安装插件。幸运的是，Lombok支持所有主要的Java IDE。没有插件，IDE不知道如何解析代码。IDE集成是无缝的。诸如“show usages”和“go to implementation”等功能继续按预期工作，带您进入相关字段/类。</p>
 <h4 id="Lombok使用"><a href="#Lombok使用" class="headerlink" title="Lombok使用"></a>Lombok使用</h4><p>了解Lombok的最佳方式是看它的使用方法。让我们深入研究一些如何将Lombok应用于Java应用程序的常见方面的示例。</p>
 <h5 id="为POJO增添趣味"><a href="#为POJO增添趣味" class="headerlink" title="为POJO增添趣味"></a>为POJO增添趣味</h5><p>我们使用普通的旧Java对象（POJO）将数据与处理分开，使我们的代码更易于阅读并简化网络有效负载。一个简单的POJO有一些私有字段和相应的getter和setter。它们只在写了很多样板代码之后可以完成了工作。</p>
@@ -132,7 +133,7 @@
                         
                             
 
-<a href="/newblog/tags/Java/">#Java</a> <a href="/newblog/tags/Lombok/">#Lombok</a>
+<a href="/tags/Java/">#Java</a> <a href="/tags/Lombok/">#Lombok</a>
 
 
                         

@@ -25,7 +25,7 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/newblog/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Custom Fonts -->
     <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@
     <!-- Content -->
     <section class="article-container">
 <!-- Back fragment -->
-<a class="nav-back" href="/newblog/">
+<a class="nav-back" href="/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
@@ -85,7 +85,7 @@
 <p><code>.loop-image</code> 是图片内容，如果需要显示其他内容，可以自定义</p>
 <h2 id="css实现静态效果"><a href="#css实现静态效果" class="headerlink" title="css实现静态效果"></a>css实现静态效果</h2><p>轮播图内每一页内容的宽高应该相同，且等于主容器.loop-wrap宽高</p>
 <p><code>.loop-images-container</code>的宽高必然有一个大于外部主容器，<code>overflow</code>属性应该设置为<code>hidden</code>。那为什么不设置为<code>auto</code>呢？我不告诉你，你可以自己试试看<br>(这里原因是auto属性会在内容超出时自动加载出容器的下拉条)<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.loop-wrap</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">100px</span> auto;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.loop-images-container</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>; <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">500%</span>; <span class="comment">/* 横向排列 5张图片 宽度应为主容器5倍 */</span></span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.loop-image</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="css实现轮播效果"><a href="#css实现轮播效果" class="headerlink" title="css实现轮播效果"></a>css实现轮播效果</h2><p>轮播效果说到底就是一个动画效果，而通过css3的新属性 <code>animation</code> 我们就可以自定义一个动画来达到轮播图效果。下面先来了解一下 <code>animation</code> 这个属性<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">animation: <span class="built_in">name</span> duration timing-function <span class="built_in">delay</span> iteration-<span class="built_in">count</span> direction</span><br><span class="line"></span><br><span class="line"><span class="built_in">name</span>: 动画名</span><br><span class="line">duration： 动画持续时间 设置为<span class="number">0</span>则不执行</span><br><span class="line">timing-function：动画速度曲线</span><br><span class="line"><span class="built_in">delay</span>：动画延迟开始时间 设置为<span class="number">0</span>则不延迟</span><br><span class="line">iteration-<span class="built_in">count</span>：动画循环次数 设置为infinite则无限次循环</span><br><span class="line">direction：是否应该轮流反向播放动画 normal 否 alternate 是</span><br><span class="line">*/</span><br></pre></td></tr></table></figure></p>
+<h2 id="css实现轮播效果"><a href="#css实现轮播效果" class="headerlink" title="css实现轮播效果"></a>css实现轮播效果</h2><p>轮播效果说到底就是一个动画效果，而通过css3的新属性 <code>animation</code> 我们就可以自定义一个动画来达到轮播图效果。下面先来了解一下 <code>animation</code> 这个属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">animation: name duration timing-function delay iteration-count direction</span><br><span class="line"></span><br><span class="line">name: 动画名</span><br><span class="line">duration： 动画持续时间 设置为0则不执行</span><br><span class="line">timing-function：动画速度曲线</span><br><span class="line">delay：动画延迟开始时间 设置为0则不延迟</span><br><span class="line">iteration-count：动画循环次数 设置为infinite则无限次循环</span><br><span class="line">direction：是否应该轮流反向播放动画 normal 否 alternate 是</span><br><span class="line">*/</span><br></pre></td></tr></table></figure></p>
 <p><code>animation</code> 的 <code>name</code> 值是动画名，动画名可以通过 <code>@keyframes</code> 创建自定义动画规则</p>
 <h2 id="分析动画"><a href="#分析动画" class="headerlink" title="分析动画"></a>分析动画</h2><p>要实现轮播，本质上是使内部承载内容的子容器 <code>.loop-images-container</code> 进行位移，从而使不同位置的内容一次展示在用户眼前</p>
 <p>共有五张图片需要展示，如果轮播总耗时10s，那么每张图片应该有2s的时间(20%)，而每张图片耗时的构成是切换耗时+展示耗时，如果切换耗时500ms(5%)，展示耗时就应该是1500ms(15%)</p>
@@ -104,7 +104,7 @@
                         
                             
 
-<a href="/newblog/tags/css3/">#css3</a> <a href="/newblog/tags/animation/">#animation</a>
+<a href="/tags/css3/">#css3</a> <a href="/tags/animation/">#animation</a>
 
 
                         

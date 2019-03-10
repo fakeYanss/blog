@@ -9,9 +9,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="分布式锁的实现方式有很多种，可以依赖数据库、Redis、ZooKeeper等实现，当然不同的方式各有其优缺点。本文仅探讨基于ZooKeeper实现分布式锁的方法。
-
-此部分分布式锁介绍摘自https://blog.didiyun.com/index.php/2018/11/20/zookeeper/">
+        <meta name="description" content="分布式锁的实现方式有很多种，可以依赖数据库、Redis、ZooKeeper等实现，当然不同的方式各有其优缺点。本文仅探讨基于ZooKeeper实现分布式锁的方法。">
     
 
     <!--Author-->
@@ -27,7 +25,7 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/newblog/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Custom Fonts -->
     <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -47,7 +45,7 @@
     <!-- Content -->
     <section class="article-container">
 <!-- Back fragment -->
-<a class="nav-back" href="/newblog/">
+<a class="nav-back" href="/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
@@ -70,7 +68,7 @@
         <div class="row">
             <!-- Post Main Content -->
             <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>分布式锁的实现方式有很多种，可以依赖数据库、Redis、ZooKeeper等实现，当然不同的方式各有其优缺点。本文仅探讨基于ZooKeeper实现分布式锁的方法。</p>
+                <p>分布式锁的实现方式有很多种，可以依赖数据库、Redis、ZooKeeper等实现，当然不同的方式各有其优缺点。本文仅探讨基于ZooKeeper实现分布式锁的方法。<a id="more"></a></p>
 <blockquote>
 <p>此部分分布式锁介绍摘自<a href="https://blog.didiyun.com/index.php/2018/11/20/zookeeper/" target="_blank" rel="noopener">https://blog.didiyun.com/index.php/2018/11/20/zookeeper/</a></p>
 <h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><p>在单进程应用内，我们经常使用锁来保障多个线程并发访问同一资源的互斥性。在多进程、分布式场景下，如果多个系统或者单个系统的多个节点并发访问同一资源，为了保障对资源读写的互斥性，就需要用到分布式锁。</p>
@@ -105,8 +103,8 @@
 </ul>
 </blockquote>
 <h2 id="安装ZooKeeper环境"><a href="#安装ZooKeeper环境" class="headerlink" title="安装ZooKeeper环境"></a>安装ZooKeeper环境</h2><p>首先在本地安装ZooKeeper环境</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>zookeeper</span><br></pre></td></tr></table></figure>
-<p>安装完成后，启动服务，默认配置文件不用修改，即/usr/local/etc/zookeeper/zoo.cfg<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zkServer  -h</span><br><span class="line">zkServer  <span class="keyword">start</span></span><br><span class="line">zkServer  <span class="keyword">status</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zookeeper</span><br></pre></td></tr></table></figure>
+<p>安装完成后，启动服务，默认配置文件不用修改，即/usr/local/etc/zookeeper/zoo.cfg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zkServer  -h</span><br><span class="line">zkServer  start</span><br><span class="line">zkServer  status</span><br></pre></td></tr></table></figure></p>
 <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><h3 id="maven导入curator"><a href="#maven导入curator" class="headerlink" title="maven导入curator"></a>maven导入curator</h3><p>curator是比ZooKeeper的源生API更好用的包，使用的人也较多。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-framework<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="ZKLock-java"><a href="#ZKLock-java" class="headerlink" title="ZKLock.java"></a>ZKLock.java</h3><p>ZKLock.java我自己对curator的接口的封装，将基本的方法封装便于调用</p>
@@ -119,10 +117,10 @@
 <li><p>设置每个线程获取锁的等待时间为无限长（或者较长的时间比如60s），在<code>ZKLock.java</code>的第58行可修改时间，将</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i++ &gt; <span class="number">5</span>) &#123;</span><br><span class="line">true<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注释掉，每个线程取得锁权限后处理逻辑时间为2s，运行<code>TestZKLockWithMultiThread.java</code>，控制台输出（已删去ZooKeeper的输出日志）</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">0 </span>[Thread-<span class="number">0</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread0]获取到任务锁,并开始执行任务</span><br><span class="line"><span class="symbol">2011 </span>[Thread-<span class="number">0</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread0]已完成任务</span><br><span class="line"><span class="symbol">3018 </span>[Thread-<span class="number">1</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread1]获取到任务锁,并开始执行任务</span><br><span class="line"><span class="symbol">5022 </span>[Thread-<span class="number">1</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread1]已完成任务</span><br><span class="line"><span class="symbol">5027 </span>[Thread-<span class="number">4</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread4]获取到任务锁,并开始执行任务</span><br><span class="line"><span class="symbol">7030 </span>[Thread-<span class="number">4</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread4]已完成任务</span><br><span class="line"><span class="symbol">7035 </span>[Thread-<span class="number">2</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread2]获取到任务锁,并开始执行任务</span><br><span class="line"><span class="symbol">9036 </span>[Thread-<span class="number">2</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread2]已完成任务</span><br><span class="line"><span class="symbol">9041 </span>[Thread-<span class="number">3</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread3]获取到任务锁,并开始执行任务</span><br><span class="line"><span class="symbol">11048 </span>[Thread-<span class="number">3</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread3]已完成任务</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0 [Thread-0] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread0]获取到任务锁,并开始执行任务</span><br><span class="line">2011 [Thread-0] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread0]已完成任务</span><br><span class="line">3018 [Thread-1] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread1]获取到任务锁,并开始执行任务</span><br><span class="line">5022 [Thread-1] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread1]已完成任务</span><br><span class="line">5027 [Thread-4] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread4]获取到任务锁,并开始执行任务</span><br><span class="line">7030 [Thread-4] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread4]已完成任务</span><br><span class="line">7035 [Thread-2] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread2]获取到任务锁,并开始执行任务</span><br><span class="line">9036 [Thread-2] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread2]已完成任务</span><br><span class="line">9041 [Thread-3] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread3]获取到任务锁,并开始执行任务</span><br><span class="line">11048 [Thread-3] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread3]已完成任务</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>设置每个线程获取锁的时间为5s，将第一步中注释掉的代码还原，同时将<code>TestZKLockThread.java</code>中32行的<code>zkLock.releaseLock();</code>注释掉，即获取锁完成任务后不再释放锁，控制台输出如下：</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">0 </span>[Thread-<span class="number">4</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread4]获取到任务锁,并开始执行任务</span><br><span class="line"><span class="symbol">2002 </span>[Thread-<span class="number">4</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread4]已完成任务</span><br><span class="line"><span class="symbol">6024 </span>[Thread-<span class="number">2</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread2]没有获取到任务锁,放弃执行任务</span><br><span class="line"><span class="symbol">6024 </span>[Thread-<span class="number">3</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread3]没有获取到任务锁,放弃执行任务</span><br><span class="line"><span class="symbol">6024 </span>[Thread-<span class="number">0</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread0]没有获取到任务锁,放弃执行任务</span><br><span class="line"><span class="symbol">6024 </span>[Thread-<span class="number">1</span>] INFO <span class="keyword">com</span>.yanss.zk.TestZKLockThread  - 线程:[Thread1]没有获取到任务锁,放弃执行任务</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0 [Thread-4] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread4]获取到任务锁,并开始执行任务</span><br><span class="line">2002 [Thread-4] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread4]已完成任务</span><br><span class="line">6024 [Thread-2] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread2]没有获取到任务锁,放弃执行任务</span><br><span class="line">6024 [Thread-3] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread3]没有获取到任务锁,放弃执行任务</span><br><span class="line">6024 [Thread-0] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread0]没有获取到任务锁,放弃执行任务</span><br><span class="line">6024 [Thread-1] INFO com.yanss.zk.TestZKLockThread  - 线程:[Thread1]没有获取到任务锁,放弃执行任务</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>通过这两个测试用例，可以发现我在我的Mac上安装的ZooKeeper服务启动后，通过用本地5个线程进行获取锁和释放锁的操作，在ZooKeeper服务的调度下，可以达到预期的分布式锁的效果。更详细的服务性能不好测试，留待未来实际应用中再记录。</p>
@@ -137,7 +135,7 @@
                         
                             
 
-<a href="/newblog/tags/ZooKeeper/">#ZooKeeper</a> <a href="/newblog/tags/分布式锁/">#分布式锁</a>
+<a href="/tags/ZooKeeper/">#ZooKeeper</a> <a href="/tags/分布式锁/">#分布式锁</a>
 
 
                         

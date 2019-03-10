@@ -9,7 +9,7 @@
 
     <!--Description-->
     
-        <meta name="description" content>
+        <meta name="description" content="安装ubuntu双系统过程">
     
 
     <!--Author-->
@@ -25,7 +25,7 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/newblog/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Custom Fonts -->
     <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@
     <!-- Content -->
     <section class="article-container">
 <!-- Back fragment -->
-<a class="nav-back" href="/newblog/">
+<a class="nav-back" href="/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
@@ -68,16 +68,17 @@
         <div class="row">
             <!-- Post Main Content -->
             <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p><img src="http://pic.yanss.top/2019/20190310185435.png" alt><br><a id="more"></a></p>
+                <p>安装ubuntu双系统过程<a id="more"></a></p>
+<p><img src="http://pic.yanss.top/2019/20190310185435.png" alt></p>
 <ul>
-<li><a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows#0" target="_blank" rel="noopener">Ubantu系统安装教程</a></li>
-<li><a href="https://www.ubuntu.com/download/desktop" target="_blank" rel="noopener">Ubantu Desktop最新版本下载</a>，制作U盘启动盘推荐使用<a href="https://rufus.akeo.ie/" target="_blank" rel="noopener">Rufus</a>工具</li>
-<li>Ubantu系统分区方案<ul>
-<li>在windows系统上把原硬盘压缩出50G的free空间，在Ubantu安装时分出2G作为swap分区</li>
+<li><a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows#0" target="_blank" rel="noopener">ubuntu系统安装教程</a></li>
+<li><a href="https://www.ubuntu.com/download/desktop" target="_blank" rel="noopener">ubuntu Desktop最新版本下载</a>，制作U盘启动盘推荐使用<a href="https://rufus.akeo.ie/" target="_blank" rel="noopener">Rufus</a>工具</li>
+<li>ubuntu系统分区方案<ul>
+<li>在windows系统上把原硬盘压缩出50G的free空间，在ubuntu安装时分出2G作为swap分区</li>
 <li>剩下的格式化为ext4格式，挂载位置为<code>/</code></li>
 <li><del>由于现在PC内存都较大了，所以不必创建swap交换分区</del></li>
 <li>设置<code>安装启动引导器的设备</code><ul>
-<li>我的电脑有两块ssd，一块小的全部作为C盘，装的win10系统和开机启动软件；一块大的作为D盘，安装常用软件和存放一些资料。我把ubantu安装在了D盘上的一个50G分区，这样就要把ubantu的引导器放在D盘，也就是<code>sdb</code> （sda对应第一块硬盘，sdb对应第二块硬盘），这样的话电脑开机时会自动进入win10，如果我按F11才会进入grub选择ubantu系统，这样正好符合我的需求。</li>
+<li>我的电脑有两块ssd，一块小的全部作为C盘，装的win10系统和开机启动软件；一块大的作为D盘，安装常用软件和存放一些资料。我把ubuntu安装在了D盘上的一个50G分区，这样就要把ubuntu的引导器放在D盘，也就是<code>sdb</code> （sda对应第一块硬盘，sdb对应第二块硬盘），这样的话电脑开机时会自动进入win10，如果我按F11才会进入grub选择ubuntu系统，这样正好符合我的需求。</li>
 <li>如果把引导器安装在C盘，每次开机都会手动选择系统。</li>
 </ul>
 </li>
@@ -95,7 +96,7 @@
                         
                             
 
-<a href="/newblog/tags/ubuntu/">#ubuntu</a>
+<a href="/tags/ubuntu/">#ubuntu</a>
 
 
                         

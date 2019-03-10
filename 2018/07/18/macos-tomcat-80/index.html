@@ -9,7 +9,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="Mac OS上非root用户是不允许启动小于1024的端口，所以在mac上使用IDE开发，比如在Eclipse或者Intellij中，启动服务用80端口，会报错Permission Denied。可以通过修改Tomcat的用户为root来解决，但是更简单的是设置一个端口监听转发，将其他端口比如808">
+        <meta name="description" content="Mac OS上非root用户是不允许启动小于1024的端口，所以在mac上使用IDE开发，比如在Eclipse或者Intellij中，启动服务用80端口，会报错Permission Denied。">
     
 
     <!--Author-->
@@ -25,7 +25,7 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/newblog/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Custom Fonts -->
     <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@
     <!-- Content -->
     <section class="article-container">
 <!-- Back fragment -->
-<a class="nav-back" href="/newblog/">
+<a class="nav-back" href="/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
@@ -68,7 +68,7 @@
         <div class="row">
             <!-- Post Main Content -->
             <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>Mac OS上非root用户是不允许启动小于1024的端口，所以在mac上使用IDE开发，比如在Eclipse或者Intellij中，启动服务用80端口，会报错Permission Denied。可以通过修改Tomcat的用户为root来解决，但是更简单的是设置一个端口监听转发，将其他端口比如8080转发到80，这样在浏览器中输入地址就不用写端口号了。</p>
+                <p>Mac OS上非root用户是不允许启动小于1024的端口，所以在mac上使用IDE开发，比如在Eclipse或者Intellij中，启动服务用80端口，会报错Permission Denied。<br><a id="more"></a><br>可以通过修改Tomcat的用户为root来解决，但是更简单的是设置一个端口监听转发，将其他端口比如8080转发到80，这样在浏览器中输入地址就不用写端口号了。</p>
 <p>命令：</p>
 <ol>
 <li><code>sudo vim /etc/pf.conf</code></li>
@@ -78,8 +78,8 @@
 </ol>
 <p>这样就完成了，如果想关闭转发，输入<code>sudo pfctl -d</code>。</p>
 <p>重启后转发需要重新开启生效，即输入3，4命令</p>
-<p>如果要重启后自动生效，首先关闭系统完整性保护机制，需重启到安全模式在终端中执行下述命令关闭文件系统保护<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">csrutil <span class="builtin-name">enable</span> --without fs</span><br></pre></td></tr></table></figure></p>
-<p>然后<code>sudo vim /System/Library/LaunchDaemons/com.apple.pfctl.plist</code>, 添加一行 <code>&lt;string&gt;-e&lt;/string&gt;</code><br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;string&gt;</span>pfctl<span class="params">&lt;/string&gt;</span></span><br><span class="line"><span class="params">&lt;string&gt;</span>-e<span class="params">&lt;/string&gt;</span></span><br><span class="line"><span class="params">&lt;string&gt;</span>-f<span class="params">&lt;/string&gt;</span></span><br><span class="line"><span class="params">&lt;string&gt;</span><span class="meta-keyword">/etc/</span>pf.conf<span class="params">&lt;/string&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如果要重启后自动生效，首先关闭系统完整性保护机制，需重启到安全模式在终端中执行下述命令关闭文件系统保护<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">csrutil enable --without fs</span><br></pre></td></tr></table></figure></p>
+<p>然后<code>sudo vim /System/Library/LaunchDaemons/com.apple.pfctl.plist</code>, 添加一行 <code>&lt;string&gt;-e&lt;/string&gt;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;string&gt;pfctl&lt;/string&gt;</span><br><span class="line">&lt;string&gt;-e&lt;/string&gt;</span><br><span class="line">&lt;string&gt;-f&lt;/string&gt;</span><br><span class="line">&lt;string&gt;/etc/pf.conf&lt;/string&gt;</span><br></pre></td></tr></table></figure></p>
 <p>保存退出。</p>
 <p><br></p>
 <p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
@@ -92,7 +92,7 @@
                         
                             
 
-<a href="/newblog/tags/mac/">#mac</a> <a href="/newblog/tags/tomcat/">#tomcat</a>
+<a href="/tags/mac/">#mac</a> <a href="/tags/tomcat/">#tomcat</a>
 
 
                         

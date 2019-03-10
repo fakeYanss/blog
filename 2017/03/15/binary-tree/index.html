@@ -25,7 +25,7 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/newblog/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Custom Fonts -->
     <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@
     <!-- Content -->
     <section class="article-container">
 <!-- Back fragment -->
-<a class="nav-back" href="/newblog/">
+<a class="nav-back" href="/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
@@ -143,7 +143,7 @@
 <h3 id="AVL树的删除方法"><a href="#AVL树的删除方法" class="headerlink" title="AVL树的删除方法"></a>AVL树的删除方法</h3><blockquote>
 <p>和AVL树的插入一样，只用在前文的删除方法最后加上一行调用平衡的方法即可。</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">AvlNode</span>&lt;<span class="type">AnyType</span>&gt; remove(<span class="type">AnyType</span> x, <span class="type">AvlNode</span>&lt;<span class="type">AnyType</span>&gt; t)</span><br><span class="line">&#123;</span><br><span class="line">true<span class="keyword">if</span>(t == null)</span><br><span class="line">truetrue<span class="keyword">return</span> t;<span class="comment">//Item not found; do nothing</span></span><br><span class="line"></span><br><span class="line">trueint compareResult = x.compareTo(t.element);</span><br><span class="line"></span><br><span class="line">true<span class="keyword">if</span>(compareResult &lt; <span class="number">0</span>)</span><br><span class="line">truetruet.<span class="keyword">left</span> = remove(x, t.<span class="keyword">left</span>);</span><br><span class="line">true<span class="keyword">else</span> <span class="keyword">if</span>(compareResult &gt; <span class="number">0</span>)</span><br><span class="line">truetruet.<span class="keyword">right</span> = remove(x, t.<span class="keyword">right</span>);</span><br><span class="line">true<span class="keyword">else</span> <span class="keyword">if</span>(t.<span class="keyword">left</span> != null &amp;&amp; t.<span class="keyword">right</span> != null)<span class="comment">//Node that has two children</span></span><br><span class="line">true&#123;</span><br><span class="line">truetruet.element = findMin(t.<span class="keyword">right</span>).element;<span class="comment">//Find the minimum item of right subtree</span></span><br><span class="line">truetruet.<span class="keyword">right</span> = remove(t.element, t.<span class="keyword">right</span>);<span class="comment">//Remove the node of minimum item recursively			</span></span><br><span class="line">true&#125;</span><br><span class="line">true<span class="keyword">else</span></span><br><span class="line">truetruet = (t.<span class="keyword">left</span> != null) ? t.<span class="keyword">left</span> : t.<span class="keyword">right</span>;<span class="comment">//Node that has one children; parent of the node roots subtree of the node</span></span><br><span class="line">true<span class="keyword">return</span> balance(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">private AvlNode&lt;AnyType&gt; remove(AnyType x, AvlNode&lt;AnyType&gt; t)</span><br><span class="line">&#123;</span><br><span class="line">trueif(t == null)</span><br><span class="line">truetruereturn t;//Item not found; do nothing</span><br><span class="line"></span><br><span class="line">trueint compareResult = x.compareTo(t.element);</span><br><span class="line"></span><br><span class="line">trueif(compareResult &lt; 0)</span><br><span class="line">truetruet.left = remove(x, t.left);</span><br><span class="line">trueelse if(compareResult &gt; 0)</span><br><span class="line">truetruet.right = remove(x, t.right);</span><br><span class="line">trueelse if(t.left != null &amp;&amp; t.right != null)//Node that has two children</span><br><span class="line">true&#123;</span><br><span class="line">truetruet.element = findMin(t.right).element;//Find the minimum item of right subtree</span><br><span class="line">truetruet.right = remove(t.element, t.right);//Remove the node of minimum item recursively			</span><br><span class="line">true&#125;</span><br><span class="line">trueelse</span><br><span class="line">truetruet = (t.left != null) ? t.left : t.right;//Node that has one children; parent of the node roots subtree of the node</span><br><span class="line">truereturn balance(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
  
@@ -155,7 +155,7 @@
                         
                             
 
-<a href="/newblog/tags/binary-tree/">#binary tree</a>
+<a href="/tags/binary-tree/">#binary tree</a>
 
 
                         
