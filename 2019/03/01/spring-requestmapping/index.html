@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="201902W9 Review, 一篇关于Spring RequestMapping的译文">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>Spring @RequestMapping详解 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Spring @RequestMapping详解</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>201902W9 Review, 一篇关于Spring RequestMapping的译文<br><a id="more"></a></p>
+<h1 id="Spring-RequestMapping"><a href="#Spring-RequestMapping" class="headerlink" title="Spring RequestMapping"></a>Spring RequestMapping</h1><p><a href="https://www.baeldung.com/spring-requestmapping" target="_blank" rel="noopener">原文</a><br>by <a href="https://www.baeldung.com/author/eugen/" target="_blank" rel="noopener">Eugen Paraschiv</a></p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>在这篇文章中，我们将关注于这个Spring MVC中常用的注释 - @RequestMapping。</p>
+<p>简单地说，这个注释用于将网络请求映射到Spring Controller的方法。</p>
+<h2 id="2-RequestMapping基础"><a href="#2-RequestMapping基础" class="headerlink" title="2. @RequestMapping基础"></a>2. @RequestMapping基础</h2><p>让我们从一个简单的例子开始 - 按照一些基本的标准将一个HTTP请求映射到一个方法。</p>
+<h3 id="2-1-RequestMapping-按路径"><a href="#2-1-RequestMapping-按路径" class="headerlink" title="2.1. @RequestMapping - 按路径"></a>2.1. @RequestMapping - 按路径</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/ex/foos"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getFoosBySimplePath</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Get some Foos"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要使用简单的<em>curl</em>命令测试此映射，请运行：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i http://localhost:8080/spring-rest/ex/foos</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-2-RequestMapping-HTTP方法"><a href="#2-2-RequestMapping-HTTP方法" class="headerlink" title="2.2. @RequestMapping - HTTP方法"></a>2.2. @RequestMapping - HTTP方法</h3><p>HTTP方法参数没有默认值 - 因此，如果我们不指定值，它将映射到任何HTTP请求。</p>
+<p>这是一个简单的示例，类似于前一个示例 - 但这次映射到一个HTTP POST请求：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/ex/foos"</span>, method = POST)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">postFoos</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Post some Foos"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>要通过<em>curl</em>命令测试POST ：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X POST http://localhost:8080/spring-rest/ex/foos</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-RequestMapping-和-HTTP-Headers"><a href="#3-RequestMapping-和-HTTP-Headers" class="headerlink" title="3. RequestMapping 和 HTTP Headers"></a>3. RequestMapping 和 HTTP Headers</h2><h3 id="3-1-带有-headers-Attribute-的-RequestMapping"><a href="#3-1-带有-headers-Attribute-的-RequestMapping" class="headerlink" title="3.1. 带有 headers Attribute 的 @RequestMapping"></a>3.1. 带有 headers Attribute 的 @RequestMapping</h3><p>给请求指定一个header，可以进一步限制映射范围。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/ex/foos"</span>, headers = <span class="string">"key=val"</span>, method = GET)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getFoosWithHeader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Get some Foos with Header"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>为了测试运行，我们将使用<em>curl</em>的header参数<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -H <span class="string">"key:val"</span> http://localhost:8080/spring-rest/ex/foos</span><br></pre></td></tr></table></figure></p>
+<p>更进一步，通过 <em>@RequestMapping</em>的 <em>header</em>属性实现多个header<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(</span><br><span class="line">  value = <span class="string">"/ex/foos"</span>, </span><br><span class="line">  headers = &#123; <span class="string">"key1=val1"</span>, <span class="string">"key2=val2"</span> &#125;, method = GET)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getFoosWithHeaders</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Get some Foos with Header"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以通过命令测试这个方法<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -H <span class="string">"key1:val1"</span> -H <span class="string">"key2:val2"</span> http://localhost:8080/spring-rest/ex/foos</span><br></pre></td></tr></table></figure></p>
+<p>注意，对于<em>curl</em>语法，用冒号分离header的键和值，与HTTP中的规范相同，而在Spring中是用等号。</p>
+<h3 id="3-2-RequestMapping-消费和生产"><a href="#3-2-RequestMapping-消费和生产" class="headerlink" title="3.2. @RequestMapping 消费和生产"></a>3.2. @RequestMapping 消费和生产</h3><p>映射<strong>由Controller产生的媒体类型</strong>的方法特别值得注意 - 我们可以通过上面介绍的 <em>@RequestMapping</em> 的headers属性，基于<em>Accept</em> header映射请求。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(</span><br><span class="line">  value = <span class="string">"/ex/foos"</span>, </span><br><span class="line">  method = GET, </span><br><span class="line">  headers = <span class="string">"Accept=application/json"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getFoosAsJsonFromBrowser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Get some Foos with Header Old"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>匹配这种定义<em>Accept</em> header的方法是灵活的 - 是用包含而不是等于，所以一个下面这样的请求也能正确地匹配。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">"Accept:application/json,text/html"</span> http://localhost:8080/spring-rest/ex/foos</span><br></pre></td></tr></table></figure></p>
+<p>从Spring 3.1开始， <strong><em>@RequestMapping</em>注释具有produces和consumes属性</strong>，特别是为了这种：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(</span><br><span class="line">  value = <span class="string">"/ex/foos"</span>, </span><br><span class="line">  method = RequestMethod.GET, </span><br><span class="line">  produces = <span class="string">"application/json"</span></span><br><span class="line">)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getFoosAsJsonFromREST</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Get some Foos with Header New"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此外，带有<em>headers</em>属性的旧类型的映射将自动转换成Spring 3.1开始的新<em>produces</em>机制，所以结果是相同的。</p>
+<p>同样的方式，通过<em>curl</em>进行consume：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">"Accept:application/json"</span> http://localhost:8080/spring-rest/ex/foos</span><br></pre></td></tr></table></figure></p>
+<p>另外，<em>produces</em>也支持多值：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(</span><br><span class="line">  value = <span class="string">"/ex/foos"</span>, </span><br><span class="line">  method = GET,</span><br><span class="line">  produces = &#123; <span class="string">"application/json"</span>, <span class="string">"application/xml"</span> &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>记住这些 - 指定<em>accept</em> header的旧的方法和新的方法 - 基本上是相同的映射，所以Spring不允许它们一起使用 - 一起用将会导致：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.lang.IllegalStateException: Ambiguous mapping found. </span><br><span class="line">Cannot map <span class="string">'fooController'</span> bean method </span><br><span class="line">java.lang.String </span><br><span class="line">org.baeldung.spring.web.controller</span><br><span class="line">  .FooController.getFoosAsJsonFromREST()</span><br><span class="line">to </span><br><span class="line">&#123; [/ex/foos],</span><br><span class="line">  methods=[GET],params=[],headers=[],</span><br><span class="line">  consumes=[],produces=[application/json],custom=[]</span><br><span class="line">&#125;: </span><br><span class="line">There is already <span class="string">'fooController'</span> bean method</span><br><span class="line">java.lang.String </span><br><span class="line">org.baeldung.spring.web.controller</span><br><span class="line">  .FooController.getFoosAsJsonFromBrowser() </span><br><span class="line">mapped.</span><br></pre></td></tr></table></figure></p>
+<p>关于新的<em>produces</em>和<em>consumes</em>机制的最后一点 - 与其他注释表现不同的是 - 当指定类型级别时，方法级别的注释不会补充而会覆盖类型级别的信息。</p>
+<p>这句没理解，原文</p>
+<blockquote>
+<p>when specified at the type level, <strong>the method level annotations do not complement but override</strong> the type level information.</p>
+</blockquote>
+<p>当然，如果你想深入了解用Spring构建REST API - 请看<a href="https://www.baeldung.com/rest-with-spring-course?utm_source=blog&amp;utm_medium=web&amp;utm_content=art1&amp;utm_campaign=rws" target="_blank" rel="noopener">the new REST with Spring course</a>。</p>
+<h2 id="4-RequestMapping使用路径变量"><a href="#4-RequestMapping使用路径变量" class="headerlink" title="4. RequestMapping使用路径变量"></a>4. RequestMapping使用路径变量</h2><p>一个简单的单路径变量例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/ex/foos/&#123;id&#125;"</span>, method = GET)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getFoosBySimplePathWithPathVariable</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  @PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">long</span> id) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Get a specific Foo with id="</span> + id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以用curl测试：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:8080/spring-rest/ex/foos/1</span><br></pre></td></tr></table></figure></p>
+<p>如果方法的参数名和路径名相同，可以只用<code>@PathVariable</code>而不附加值：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/tags/ARTS/">#ARTS</a> <a href="/tags/Spring/">#Spring</a> <a href="/tags/RequestMapping/">#RequestMapping</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2019 年 03 月 01 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
+	console.log('特别鸣谢zchen9同学的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>
