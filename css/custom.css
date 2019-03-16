@@ -16,14 +16,14 @@
 }
 @media (max-width: 750px) {
   .post-title {
-    display: block;
-    width: 100%;
+    display: block !important;
+    width: 100% !important;
   }
   .post-preview a p {
-    display: block;
-    margin-left: 0px;
-    padding-left: 0px;
-    width: 100%;
+    display: block !important;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    width: 100% !important;
   }
 }
 article .container .row img {
