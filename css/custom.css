@@ -19,7 +19,19 @@
     display: block !important;
     width: 100% !important;
   }
+  .post-preview p {
+    display: block !important;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    width: 100% !important;
+  }
   .post-preview a p {
+    display: block !important;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    width: 100% !important;
+  }
+  .post-preview a p a {
     display: block !important;
     margin-left: 0px !important;
     padding-left: 0px !important;
