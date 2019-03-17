@@ -740,6 +740,9 @@ pre .clojure .title {
 pre .deletion {
   color: #dc322f;
 }
+.post-preview > a > .post-title {
+  font-size: 1.2em;
+}
 @media (min-width: 1200px) {
   .col-lg-offset-2 {
     margin-left: 5%;
@@ -747,9 +750,6 @@ pre .deletion {
   .col-lg-8 {
     width: 90%;
   }
-}
-.post-preview > a > .post-title {
-  font-size: 1.2em;
 }
 @media only screen and (min-width: 768px) {
   .intro-header .post-heading h1 {
@@ -793,6 +793,7 @@ code {
   color: #c7254e;
   background: #f9f2f4;
   border: 1px solid #d6d6d6;
+  word-break: break-all;
 }
 .posts-expand .post-body img {
   margin: 0 auto;
