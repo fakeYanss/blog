@@ -3,8 +3,9 @@
   var cacheVersion = "-180503";
   var staticCacheName = "asset" + cacheVersion;
   var maxEntries = 100;
-  self.importScripts("/asset/sw-toolbox.js");
-  // self.importScripts("https://cdn.jsdelivr.net/npm/sw-toolbox@3.6.0/sw-toolbox.js");
+  // self.importScripts("sw-toolbox.js");
+  self.importScripts("https://cdn.jsdelivr.net/npm/sw-toolbox@3.6.0/sw-toolbox.js");
+
   self.toolbox.options.debug = false;
   self.toolbox.options.networkTimeoutSeconds = 1;
 
@@ -14,5 +15,5 @@
       name: staticCacheName,
       maxEntries: maxEntries
     }
-  })
+  });
 })();

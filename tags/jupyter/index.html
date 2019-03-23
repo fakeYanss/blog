@@ -98,10 +98,10 @@
   );
 </script>
 
-<script type="module">
+<script text="module">
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
-      .register("/asset/sw.js")
+      .register("/sw.js")
       .then(function() {
         console.log("A new service worker is being installed.");
       })
