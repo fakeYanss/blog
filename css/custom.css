@@ -40,9 +40,9 @@
 }
 article .container .row img {
   position: relative;
-  left: 10%;
+  left: 5%;
   margin: 30px auto;
-  max-width: 80% !important;
+  max-width: 90% !important;
   height: auto;
   display: inline-block;
   box-shadow: 0 0 0 5px #fff, 0 0 15px 0 #000;
@@ -52,9 +52,6 @@ code {
   background: #f9f2f4;
   border: 1px solid #d6d6d6;
   word-break: break-all;
-}
-.posts-expand .post-body img {
-  margin: 0 auto;
 }
 a#download {
   display: inline-block;
