@@ -173,8 +173,25 @@
 <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-	console.log('© zchen9 🙋 2015-' + (new Date()).getFullYear());
-	console.log('特别鸣谢zchen9同学的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+  console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
+  console.log(
+    "特别鸣谢zchen9同学的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9"
+  );
+</script>
+
+<script type="text/javascript">
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/serviceworker.js")
+      .then(function() {
+        console.log("A new service worker is being installed.");
+      })
+      .catch(function(error) {
+        console.log("Service worker registration failed:", error);
+      });
+  } else {
+    console.log("Service workers are not supported.");
+  }
 </script>
 
     <!-- Google Analytics -->
