@@ -1,6 +1,14 @@
 .post-preview > a > .post-title {
   font-size: 1.2em;
 }
+th {
+  text-align: center;
+}
+td,
+th {
+  border: 1px solid #dfe2e5;
+  padding: 6px 13px;
+}
 @media (min-width: 1200px) {
   .col-lg-offset-2 {
     margin-left: 5%;
