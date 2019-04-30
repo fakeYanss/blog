@@ -752,6 +752,18 @@ td {
   border: 1px solid #dfe2e5;
   padding: 6px 13px;
 }
+.gutter {
+  padding: 0;
+  padding-right: 15px;
+  border: none;
+  border-right: 1px solid #ddd;
+}
+.code {
+  padding: 0;
+  padding-left: 15px;
+  border: none;
+  border-left: 1px solid #fff;
+}
 @media (min-width: 1200px) {
   .col-lg-offset-2 {
     margin-left: 5%;
