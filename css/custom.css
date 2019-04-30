@@ -6,9 +6,9 @@ th {
   border: 1px solid #dfe2e5;
   padding: 6px 13px;
 }
-td {
-  border: 1px solid #dfe2e5;
-  padding: 6px 13px;
+td :not(.gutter .code) {
+  border: 1px solid #dfe2e5 !important;
+  padding: 6px 13px !important;
 }
 @media (min-width: 1200px) {
   .col-lg-offset-2 {
