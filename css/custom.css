@@ -3,9 +3,10 @@
 }
 th {
   text-align: center;
+  border: 1px solid #dfe2e5;
+  padding: 6px 13px;
 }
-td,
-th :not(.gutter .code) {
+td :not(.gutter .code) {
   border: 1px solid #dfe2e5;
   padding: 6px 13px;
 }
