@@ -747,7 +747,7 @@ th {
   text-align: center;
 }
 td,
-th {
+th :not(.gutter .code) {
   border: 1px solid #dfe2e5;
   padding: 6px 13px;
 }
