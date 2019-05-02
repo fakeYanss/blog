@@ -69,7 +69,9 @@
             <!-- Post Main Content -->
             <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <p>201902W11 Review, Git的一些常用且很有用的命令<br><a id="more"></a></p>
+<hr>
 <p>原文链接：<a href="https://towardsdatascience.com/10-git-commands-you-should-know-df54bea1595c" target="_blank" rel="noopener">10 Git Commands You Should Know</a></p>
+<p>by Jeff Hale</p>
 <p>在这篇文章，我们将讨论你作为一名开发者、数据科学家或者产品经理应该知道的各种 Git 命令。我们将关注用 Git 进行审查、移除和整理。我们还提供方法去设置 Git 编辑器配置来避免 Vim 和使用 Bash 别名节省时间。</p>
 <p>如果你对基础的 git 命令不熟悉，先读一下我的<a href="https://towardsdatascience.com/learn-enough-git-to-be-useful-281561eef959" target="_blank" rel="noopener">前一篇文章</a>，关于 Git 工作流。</p>
 <p>这里有 10 个要知道的命令和一些公共的标志。每个命令都链接到相关的 Atlassian Bitbucket 指导。</p>
@@ -84,7 +86,81 @@
 <p>使用 Git 审查事情并不是非常让人困惑。相反的，Git 提供了太多的移除和撤回提交以及文件改动操作。</p>
 <h2 id="撤回"><a href="#撤回" class="headerlink" title="撤回"></a>撤回</h2><p><code>git reset</code>，<code>git checkout</code> 和 <code>git revert</code> 被用于撤回变化对仓库的影响。这些命令可能回难以保持直线。</p>
 <p><code>git reset</code> 和 <code>git checkout</code> 可以被用于提交和单独的文件。<code>git revert</code> 只被用在提交级别。</p>
-<p>[to be continue]</p>
+<p>如果你正在处理你没有合并到远程多人工作里的本地提交，你可以使用任何这些命令。</p>
+<p>如果你在多人工作里需要消除一个远程分支的提交，<code>git revert</code> 是你的工具。</p>
+<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190501155041.png" alt="undo"></p>
+<p>每个这些命令都可以加上不同的参数。这里是通用的用法：</p>
+<ul>
+<li><a href="https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting" target="_blank" rel="noopener"><code>git reset --hard HEAD</code></a> —— 丢弃已暂存和为暂存的改变，恢复到最近的一次提交。</li>
+</ul>
+<p>特别指定一个不同的提交代替 <code>HEAD</code> 可以丢弃改变直到该条提交。<code>--hard</code> 特指已暂存和未暂存的改变都被撤除。</p>
+<p>确认你没有从远程分支删除一个你的合作者依赖的提交。</p>
+<ul>
+<li><a href="https://www.atlassian.com/git/tutorials/undoing-changes" target="_blank" rel="noopener"><code>git checkout my_commit</code></a> —— 从 <em>my_commit</em> 后删除为暂存的改变。</li>
+</ul>
+<p><code>HEAD</code> 通常用在 <code>my_commit</code> 来撤销改变，将你本地的工作目录恢复到最近的依次提交状态。</p>
+<p><code>checkout</code> 被最多的用于仅在本地的撤销。它不会从远程分支弄混你的合作者依赖的提交历史！</p>
+<p>如果你使用 <code>checkout</code> 时用一个分支代替提交，<code>HEAD</code> 被切换到指定分支，工作目录也被相应更新。这是是 <code>checkout</code> 更公共的用法。</p>
+<ul>
+<li><a href="https://www.atlassian.com/git/tutorials/undoing-changes/git-revert" target="_blank" rel="noopener"><code>git revert my_commit</code></a> —— 撤销 <em>my_commit</em> 里的改变的影响。<code>revert</code> 撤销改变时，会生成一个新的提交。</li>
+</ul>
+<p><code>revert</code> 对多人合作项目是安全的，因为它不会重写其他用户的分支可能依赖的提交历史。</p>
+<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190501161219.png" alt></p>
+<div style="text-align: center;">revert is safe</div>
+
+<p>有时你只想删除你本地目录未被追踪的文件。比如，可能你运行了一些代码去创建大量不同类型的文件，这些文件你并不想加到你的仓库。Oops. 😏 你可以快速地清除它们。</p>
+<ul>
+<li><a href="https://www.atlassian.com/git/tutorials/undoing-changes/git-clean" target="_blank" rel="noopener"><code>git clean -n</code></a> —— 删除本地目录未追踪的文件。</li>
+</ul>
+<p><code>-n</code> 标志 “is for a dry run where nothing is deleted.” ?</p>
+<p>使用 <code>-f</code> 标志去强制移除文件。</p>
+<p>使用 <code>-d</code> 标志去移除未追踪的目录。</p>
+<p>默认的 <em>.gitignore</em> 指定的未追踪文件不会被删除，但是这个行为可以被更改。</p>
+<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190501162527.png" alt></p>
+<p>现在你了解了 Git 里的撤销事情的工具，让我们看下保持事情有序的两个命令。</p>
+<h2 id="整理"><a href="#整理" class="headerlink" title="整理"></a>整理</h2><ul>
+<li><a href="https://www.atlassian.com/git/tutorials/rewriting-history#git-commit--amend" target="_blank" rel="noopener"><code>git commit --amend</code></a> —— 添加暂存的改变到最近的一条提交里。</li>
+</ul>
+<p>如果没有被暂存的，这个命令就只允许你编辑最近的提交信息。只在这个提交没被整合进远程主分支的时候使用这个命令！</p>
+<ul>
+<li><a href="https://www.atlassian.com/git/tutorials/syncing/git-push" target="_blank" rel="noopener">git push my_remote –tags</a> —— 发送所有的本地标签到远程仓库。有利于版本变化。</li>
+</ul>
+<p>如果你在使用 Python 并在你创建的包里生成改变，<a href="https://pypi.org/project/bump2version/" target="_blank" rel="noopener">bump2version</a> 会自动地为你创建标签。一旦你推送了你的标签，你就可以在发布中使用它们。<a href="https://towardsdatascience.com/build-your-first-open-source-python-project-53471c9942a7?source=friends_link&amp;sk=576540dbd90cf2ee72a3a0e0bfa72ffb" target="_blank" rel="noopener">这是我的指导</a> ，帮你生成你的第一个 OSS Python 包。关注 <a href="https://medium.com/@jeffhale" target="_blank" rel="noopener">我</a> 来确认你没有遗失发版部分！</p>
+<h2 id="求助，我陷在-Vim-里出不来了！"><a href="#求助，我陷在-Vim-里出不来了！" class="headerlink" title="求助，我陷在 Vim 里出不来了！"></a>求助，我陷在 Vim 里出不来了！</h2><p>使用 Git，你可能偶尔发现自己被丢进了一个 Vim 编辑器里。比如，你试图提交，但没写提交消息 —— Vim 将会自动打开。如果你不知道 Vim，一种糟糕的东西（大误） —— 看看 <a href="https://stackoverflow.com/a/11828573/4590385" target="_blank" rel="noopener">这个 4000+ 赞同的 Stack Overflow 回答</a>，了解怎样退出它。</p>
+<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190501164225.png" alt></p>
+<div style="text-align: center;">Freedom!</div>
+
+<p>这里是保存文件退出 Vim 的 4 步计划：</p>
+<ol>
+<li>按 <code>i</code> 进入输入模式。</li>
+<li>在第一行输入你的提交信息。</li>
+<li>按退出键 —— <code>Esc</code>。</li>
+<li>输入 <code>:x</code>。不要忘了冒号。</li>
+</ol>
+<p>欢呼，你自由了！ 😄</p>
+<h2 id="改变默认编辑器"><a href="#改变默认编辑器" class="headerlink" title="改变默认编辑器"></a>改变默认编辑器</h2><p>为了完全避免 Vim，你可以在 Git 里改变你的默认编辑器。（这一段我不翻译，Vim 天下第一）</p>
+<h2 id="创建-Git-命令的快捷方式"><a href="#创建-Git-命令的快捷方式" class="headerlink" title="创建 Git 命令的快捷方式"></a>创建 Git 命令的快捷方式</h2><p><img src="https://cdn-images-1.medium.com/max/1600/1*iyvZMHER_5neLUhZaXSCdw.jpeg" alt></p>
+<p>通过添加下面的别名到你的 <em>.bash_profile</em> 来添加 Git 命令的快捷方式。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> gs=<span class="string">'git status '</span></span><br><span class="line"><span class="built_in">alias</span> ga=<span class="string">'git add '</span></span><br><span class="line"><span class="built_in">alias</span> gaa=<span class="string">'git add -A '</span></span><br><span class="line"><span class="built_in">alias</span> gb=<span class="string">'git branch '</span></span><br><span class="line"><span class="built_in">alias</span> gc=<span class="string">'git commit '</span></span><br><span class="line"><span class="built_in">alias</span> gcm=<span class="string">'git commit -m '</span></span><br><span class="line"><span class="built_in">alias</span> go=<span class="string">'git checkout '</span></span><br></pre></td></tr></table></figure>
+<p>你可以调整这些，为你喜欢的 Git 命令添加快捷方式。</p>
+<p>如果你没有一个 <em>.bash_profile</em>，你可以在 macOS 上创建一个：</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>然后打开它：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p><a href="https://stackoverflow.com/a/30462883/4590385" target="_blank" rel="noopener">在这</a>查看更多有关 <em>.bash_profile</em> 的信息。</p>
+<p>现在当你在终端输入 <code>gs</code> ，就等同于输入 <code>git status</code>。注意你可以在你的快捷方式后输入其他的参数。</p>
+<p>你也可以生成 Git 别名，但是那需要你在你的快捷命令前输入 <code>git</code>。谁需要哪些额外的一下呢？（我，bash_profile的别名太多容易混淆，另外附赠一条更好地查看git log的别名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias glg=&apos;git log --graph --pretty=format:&quot;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&quot; --abbrev-commit --date=relative&apos;</span><br></pre></td></tr></table></figure></p>
+<p>）</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>在这篇文章里你可以看到一些关键的 Git 命令，以及配置环境节省时间。现在理由了 Git 和 Github 的基础了。准备好开始下一步了吗？</p>
+<ul>
+<li>Check out <a href="https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud" target="_blank" rel="noopener">this Bitbucket Git tutorial</a> to go deeper.</li>
+<li>Explore this <a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">interactive guide</a> to Git branching. Branching can be confusing, so it’s definitely worth a look. 🔎</li>
+<li>Go play, learn, and explain the differences to someone else.</li>
+</ul>
+<p>我希望你发现这个对 Git 和 Github 的介绍是有用的。如果你是的，请在你喜欢的社交媒体频道上分享它，这样其他人也能看见。</p>
+<p>我写关于如何有效和便捷地使用 Python、Docker 和 其他的编程和数据科学工具。如果你有兴趣，在<a href="https://medium.com/@jeffhale" target="_blank" rel="noopener">这里</a>关注我了解更多。</p>
+<p>去使用 Git 吧！</p>
+<p><img src="https://cdn-images-1.medium.com/max/2400/1*jEf16zycWCHBGCn56W-VPA.jpeg" alt></p>
 <p><br></p>
 <p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
  
