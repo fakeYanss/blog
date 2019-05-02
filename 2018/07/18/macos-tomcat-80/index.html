@@ -68,7 +68,9 @@
         <div class="row">
             <!-- Post Main Content -->
             <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>Mac OS上非root用户是不允许启动小于1024的端口，所以在mac上使用IDE开发，比如在Eclipse或者Intellij中，启动服务用80端口，会报错Permission Denied。<br><a id="more"></a><br>可以通过修改Tomcat的用户为root来解决，但是更简单的是设置一个端口监听转发，将其他端口比如8080转发到80，这样在浏览器中输入地址就不用写端口号了。</p>
+                <p>Mac OS上非root用户是不允许启动小于1024的端口，所以在mac上使用IDE开发，比如在Eclipse或者Intellij中，启动服务用80端口，会报错Permission Denied。<br><a id="more"></a></p>
+<hr>
+<p>可以通过修改Tomcat的用户为root来解决，但是更简单的是设置一个端口监听转发，将其他端口比如8080转发到80，这样在浏览器中输入地址就不用写端口号了。</p>
 <p>命令：</p>
 <ol>
 <li><code>sudo vim /etc/pf.conf</code></li>

@@ -68,7 +68,8 @@
         <div class="row">
             <!-- Post Main Content -->
             <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>如何在多终端发布coding博客，比如部署好的hexo+coding博客，我换了电脑，有方便的方法可以继续发博客吗？答案是有。<a id="more"></a></p>
+                <p>如何在多终端发布coding博客，比如部署好的hexo+coding博客，我换了电脑，有方便的方法可以继续发博客吗？答案是有。<br><a id="more"></a></p>
+<hr>
 <p>在上一篇博客中，按照步骤做完，就可以在本机发布博客到coding了，但这样我们只能用这一台电脑发博客，并且最大的问题是备份问题，如果这台电脑挂了，或者是误删文件，就很可能丢失了blog源文件。如果没有备份，就要gg了。</p>
 <p>想要备份源文件，同时在多终端发布博客，最好的实现方式是找一个持续集成工具，在<code>coding</code>的帮助文档里有一些介绍，我试过一些，最后选择<code>DaoCloud</code>来集成coding仓库，原因还是免费。</p>
 <p>这里的原理是，在coding的blog仓库中建立两个分支，分别是master和coding-pages。master分支存放blog源文件，即本地的hexo文件内容；<code>coding-pages</code>分支存放博客的全部静态页面，也就是<code>blog\public</code>文件夹中的内容。</p>
