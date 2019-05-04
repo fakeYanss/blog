@@ -3,7 +3,7 @@
 
 <!-- Head tag -->
 <head><meta name="generator" content="Hexo 3.8.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -37,12 +37,12 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <![endif]-->
 </head>
 
 <body>
 
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Content -->
+    <!-- Content -->
     <section class="article-container">
 <!-- Back fragment -->
 <a class="nav-back" href="/">
@@ -96,8 +96,8 @@
 <p><strong>Cocktail party problem 鸡尾酒会问题</strong></p>
 <p>编程环境Octave或Matlab</p>
 <p>解决代码</p>
-<span>$[W,s,v]=svd((repmat(sum(x.^\*x,1),size(x,1),1).^\*x)^\*x&apos;)$</span><!-- Has MathJax -->
-<p><span>$svd$</span><!-- Has MathJax --> 是奇异值分解的缩写，在Octave中作为一个内置函数。</p>
+<p>$$[W,s,v]=svd((repmat(sum(x.^*x,1),size(x,1),1).^*x)^*x’)$$</p>
+<p>$svd$ 是奇异值分解的缩写，在Octave中作为一个内置函数。</p>
 <p><br></p>
 <p>下面一个问题，哪些选项要使用无监督学习算法？</p>
 <p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190429231037.png" alt="ML2"></p>
@@ -186,24 +186,7 @@
         ga('create', 'UA-112380656-1', 'auto');
         ga('send', 'pageview');
 
-    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    </script>
 
 
 </body>
