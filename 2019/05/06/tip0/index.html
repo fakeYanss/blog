@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="201904W19 Tip">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>倾斜人生 - 0 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>倾斜人生 - 0</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>201904W19 Tip<br><a id="more"></a></p>
+<hr>
+<p>在 ARTS 系列中，除了 Algorithm外，Tip 似乎也不大好作为博客的形式来展现。但是 Leetcode 题解还能发到 Github repo 中作为记录，Tip 该怎么办？<br>于是想把所有的 Tip 作为一个系列发出，名 「倾斜人生」，取自 “tip” 的「倾斜」之意。</p>
+<h2 id="Linux-文件内容查询统计"><a href="#Linux-文件内容查询统计" class="headerlink" title="Linux 文件内容查询统计"></a>Linux 文件内容查询统计</h2><p>最近遇到的一个事儿，需要在一堆日志文件中统计出包含指定字符串的行内容。首先日志文件是按天存储的，每天的日志文件会按 50MB 大小进行分割，这样分下来，一天的日志文件有 2000 至 3000 个，总共 100+GB。</p>
+<p>debug 级别的日志存放路径在 <code>/home/user/project/log/debug/</code> 下，我们先进入这个路径下：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/user/project/<span class="built_in">log</span>/debug/peoject-name.debug.log-2019-05-05</span><br></pre></td></tr></table></figure></p>
+<p>下面是 2000+ 个日志文件，查看一下 <code>ls</code> ：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2019-05-05.1000.debug.log  2019-05-05.2000.debug.log  2019-05-05.3000.debug.log   2019-05-05.9.debug.log</span><br><span class="line">2019-05-05.1001.debug.log  2019-05-05.2001.debug.log  2019-05-05.3001.debug.log</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<p>需要找到这一天的日志里，关于 <code>[Storage]usage</code> 相关的内容，于是在当前目录输入：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -name <span class="string">'*.log'</span> | xargs grep <span class="string">'\[Storage\]usage'</span></span><br></pre></td></tr></table></figure></p>
+<p>由于文件太多，等了一会才有了输出，确认可以查到相关信息，于是将输出信息存到文件里，担心输出的文件太大，将查询命令分批执行：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/user/project/tmp</span><br><span class="line">find -name <span class="string">'2019-05-05.1*'</span> | xargs grep <span class="string">'\[Storage\]usage'</span> &gt; /home/user/project/tmp/res-1.log</span><br><span class="line">find -name <span class="string">'2019-05-05.2*'</span> | xargs grep <span class="string">'\[Storage\]usage'</span> &gt; /home/user/project/tmp/res-2.log</span><br><span class="line">find -name <span class="string">'2019-05-05.3*'</span> | xargs grep <span class="string">'\[Storage\]usage'</span> &gt; /home/user/project/tmp/res-3.log</span><br></pre></td></tr></table></figure></p>
+<p>等待时间较长，最后查看生成的文件，<code>ll /home/user/project/tmp</code>：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-rw-rw-r-- 1 user user 20944335 May  5 14:08 res-1.log</span><br><span class="line">-rw-rw-r-- 1 user work 54233966 May  5 13:25 res-2.log</span><br><span class="line">-rw-rw-r-- 1 user user 70104519 May  5 13:36 res-3.log</span><br></pre></td></tr></table></figure></p>
+<p>提取出需要的日志后，可以再按内容进行下一步的操作，比如统计或排错等。</p>
+<h2 id="Mockito-使用"><a href="#Mockito-使用" class="headerlink" title="Mockito 使用"></a>Mockito 使用</h2><p><a href="https://segmentfault.com/a/1190000006746409" target="_blank" rel="noopener">Mockito</a>。</p>
+<p>Mockito 多在 Java 项目单测中使用，可以说 Junit + Mockito 是单元测试的利器。Mockito 可以方便的 mock 对象，避免外部依赖对单测的影响。</p>
+<h2 id="私人网盘-FileBrowser"><a href="#私人网盘-FileBrowser" class="headerlink" title="私人网盘 - FileBrowser"></a>私人网盘 - FileBrowser</h2><p><a href="https://github.com/filebrowser/filebrowser" target="_blank" rel="noopener">FileBrowser</a></p>
+<p>利用 FileBrowser 可以在服务器上搭建私人网盘，提供了基础的文件服务，以及用户权限管理。开发者提供了自动搭建脚本，搭建的流程十分快捷。</p>
+<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/filebrowser-case.gif" alt></p>
+<h2 id="MySQL技巧"><a href="#MySQL技巧" class="headerlink" title="MySQL技巧"></a>MySQL技巧</h2><p>查询指定数据库每个表的行数。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  table_name,</span><br><span class="line">  table_rows</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  INFORMATION_SCHEMA.TABLES</span><br><span class="line"><span class="keyword">WHERE</span> TABLE_SCHEMA = <span class="string">'database_name'</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="两个网页头部背景图"><a href="#两个网页头部背景图" class="headerlink" title="两个网页头部背景图"></a>两个网页头部背景图</h2><p>OverWatch 的 Mercy 和 D.va，都是我喜欢的角色，可以作为网站的头部背景使用。<br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/headback.jpg" alt><br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/headback2.jpg" alt></p>
+<p><br></p>
+<p id="div-border-top-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/tags/tip/">#tip</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2019 年 05 月 06 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+  console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
+  console.log(
+    "特别鸣谢zchen9同学的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9"
+  );
+</script>
+
+<script text="module">
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then(function() {
+        // console.log("A new service worker is being installed.");
+      })
+      .catch(function(error) {
+        console.log("Service worker registration failed:", error);
+      });
+  } else {
+    console.log("Service workers are not supported.");
+  }
+</script>
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>
