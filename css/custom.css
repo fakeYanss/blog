@@ -28,7 +28,7 @@ td {
   border-left: 1px solid #fff;
 }
 figure.highlight {
-  padding: 7px 15px 15px 15px;
+  padding: 7px 15px;
 }
 @media (min-width: 1200px) {
   .col-lg-offset-2 {
