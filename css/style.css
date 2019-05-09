@@ -764,6 +764,9 @@ td {
   border: none;
   border-left: 1px solid #fff;
 }
+figure.highlight {
+  padding: 7px 15px 15px 15px;
+}
 @media (min-width: 1200px) {
   .col-lg-offset-2 {
     margin-left: 5%;
@@ -1028,7 +1031,7 @@ kbd {
   display: inline-block;
   margin: 0 0.1em;
   padding: 0.1em 0.6em;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 11px;
   line-height: 1.4;
   color: #242729;
