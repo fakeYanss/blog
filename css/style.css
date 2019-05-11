@@ -740,15 +740,6 @@ pre .clojure .title {
 pre .deletion {
   color: #dc322f;
 }
-html,
-body {
-  height: 100%;
-  overflow: auto;
-  margin: 0;
-}
-.post-preview > a > .post-title {
-  font-size: 1.2em;
-}
 th {
   text-align: center;
   border: 1px solid #dfe2e5;
@@ -770,15 +761,15 @@ td {
   border: none;
   border-left: 1px solid #fff;
 }
-figure.highlight {
-  padding: 7px 15px;
+.post-preview > a > .post-title {
+  font-size: 1.5em;
 }
-@media (min-width: 1200px) {
+@media (min-width: 1600px) {
   .col-lg-offset-2 {
-    margin-left: 5%;
+    margin-left: 10%;
   }
   .col-lg-8 {
-    width: 90%;
+    width: 80%;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -786,29 +777,28 @@ figure.highlight {
     text-align: center;
   }
 }
-@media (max-width: 750px) {
-  .post-title {
-    display: block !important;
-    width: 100% !important;
-  }
-  .post-preview p {
-    display: block !important;
-    margin-left: 0px !important;
-    padding-left: 0px !important;
-    width: 100% !important;
-  }
-  .post-preview a p {
-    display: block !important;
-    margin-left: 0px !important;
-    padding-left: 0px !important;
-    width: 100% !important;
-  }
-  .post-preview a p a {
-    display: block !important;
-    margin-left: 0px !important;
-    padding-left: 0px !important;
-    width: 100% !important;
-  }
+.post-title {
+  display: block !important;
+  width: 100% !important;
+}
+.post-preview p {
+  display: block !important;
+  padding-top: 80px;
+  margin-left: 0px !important;
+  padding-left: 0px !important;
+  width: 100% !important;
+}
+.post-preview a p {
+  display: block !important;
+  margin-left: 0px !important;
+  padding-left: 0px !important;
+  width: 100% !important;
+}
+.post-preview a p a {
+  display: block !important;
+  margin-left: 0px !important;
+  padding-left: 0px !important;
+  width: 100% !important;
 }
 article .container .row img {
   position: relative;
