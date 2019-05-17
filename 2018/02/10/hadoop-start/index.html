@@ -265,7 +265,7 @@
             return {
               title: $("title", this).text(),
               content: $("content", this).text(),
-              url: $("url", this).text()
+              url: $("id", this).text()
             };
           })
           .get();
@@ -321,18 +321,19 @@
                 "</a>";
               var content = data.content.trim().replace(/<[^>]+>/g, "");
               if (first_occur >= 0) {
-                // cut out 40 characters
-                var start = first_occur - 20;
-                var end = first_occur + 80;
+                // cut out 30 characters
+                var start = first_occur - 15;
+                var end = first_occur + 15;
                 if (start < 0) {
                   start = 0;
                 }
                 if (start == 0) {
-                  end = 100;
+                  end = 30;
                 }
                 if (end > content.length) {
                   end = content.length;
                 }
+
                 var match_content = content.substr(start, end);
                 // highlight all keywords
                 keywords.forEach(function(keyword) {
@@ -367,8 +368,9 @@
   console.log(
     "特别鸣谢zchen9同学的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9"
   );
-  var path = "/" + "search.xml";
-  searchFunc(path, "local-search-input", "local-search-result");
+
+  // use atom.xml to search blog
+  searchFunc("/atom.xml", "local-search-input", "local-search-result");
   $("#searchModalCenter").on("shown.bs.modal", function(e) {
     setTimeout(function() { $("#local-search-input").focus(); }, 1);
   });
