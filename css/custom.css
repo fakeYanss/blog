@@ -3,6 +3,28 @@
  * @author fakeyanss
  * @homepage https://foreti.me
  */
+a.nav-search {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  color: white-faded;
+  z-index: 99;
+}
+a.nav-search:hover,
+a.nav-search:focus {
+  color: #f00;
+}
+.search-keyword {
+  color: #f00;
+  font-size: 12px;
+}
+.search-result {
+  overflow: hidden;
+  font-size: 12px;
+}
+a.nav-back {
+  position: fixed;
+}
 th {
   text-align: center;
   border: 1px solid #dfe2e5;
