@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="BitBar 使我工作更快乐！">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>TODO with Mac Menubar | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back fragment -->
+<a class="nav-back" href="/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>TODO with Mac Menubar</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>BitBar 使我工作更快乐！<br><a id="more"></a></p>
+<hr>
+<p>最近觉得每天的计划总是完不成，明明也不多，但是很容易被其他事情干扰。我一直不喜欢用日程表来排每天的事情，但我很喜欢给自己制定一个 TODO 列表，这个列表包含了短期内要做的事情，但不限于某一天或者某一个小时，不至于太细致，让自己经常不能按时完成，获得过多的挫败感。</p>
+<p>我希望的展现形式是在电脑桌面上时刻可以看到的，这样的话，就不能用各种流行的 GTD 工具。像 OmniFocus、Microsoft To-Do等，都需要先打开再确认的过程。</p>
+<p>像桌面便签也不太好，因为平时是打开了不同的应用铺满了桌面。</p>
+<p>于是想到了菜单栏上可以做点事情。</p>
+<p>找了一圈，Mac平台上的 TODO in menubar 的应用还不少，最合心意的是 <a href="https://www.mactodo.app/?ref=producthunt" target="_blank" rel="noopener">TODO Menubar</a>。<br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190517153927.png" alt><br>但是它收费…</p>
+<p>还有一个<a href="https://itunes.apple.com/us/app/doo-get-things-done/id1066322956?mt=8" target="_blank" rel="noopener">Doo</a>，也收费，而且太花哨了，好看但不直观。<br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190517160402.png" alt></p>
+<p>在 Github 上也搜到了一个<a href="https://github.com/Praseetha-KR/postit-todo" target="_blank" rel="noopener">postit-todo</a>，不错但是用起来太卡，而且关闭后重新打开加载数据很慢。<br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190517160158.png" alt></p>
+<p>最后，在 AppSo 的一篇推 TODO Menubar 的文章评论里看到了 <a href="https://getbitbar.com/" target="_blank" rel="noopener">BitBar</a>。</p>
+<p>BitBar 是一个可以编写脚本，将你能想到的任何信息，放到 menubar 里显示。</p>
+<p>我下载 BitBar，并且在它的插件市场里找了一个 TODO 的<a href="https://raw.githubusercontent.com/matryer/bitbar-plugins/master/Tools/todolist.2m.sh" target="_blank" rel="noopener">脚本</a>。这个脚本实现的是在 Mac 的原生 Reminder 应用里指定一个提醒列表，将这个列表里的提醒事项放到菜单栏显示，并且只显示第一个，在菜单栏点击这个提醒事项，可以将它再 Reminder 里标记为完成。</p>
+<p>我觉得这个脚本基本实现了我想要的，但是偶尔事情太多，不想只看第一个事项，也不行点一下就标记完成，所以改了下脚本内容。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$1</span>"</span> = <span class="string">"open"</span> ]; <span class="keyword">then</span></span><br><span class="line">	osascript -e 	<span class="string">'tell application "Reminders" to activate'</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">reminder=$(osascript -e <span class="string">'tell application "Reminders"</span></span><br><span class="line"><span class="string">	set activeReminders to (reminders of list "任务" whose completed is true)</span></span><br><span class="line"><span class="string">	set numOfActiveReminders to (count of activeReminders)</span></span><br><span class="line"><span class="string">	set allReminders to (reminders of list "任务")</span></span><br><span class="line"><span class="string">	set numOfAllReminders to (count of allReminders)</span></span><br><span class="line"><span class="string">	set result to ((numOfActiveReminders as string) &amp; "/" &amp; numOfAllReminders as string)</span></span><br><span class="line"><span class="string">	return result</span></span><br><span class="line"><span class="string">end tell'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># check icon</span></span><br><span class="line">image=iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAADHklEQVRIDbWWvWsUURTFN35iExXsFGtjoSgY+0WMtWAKsbARJVoJFv4TgmAQLIMI1hZ+FFpHIYIKiqmUpFHBYOn37zc7Z/I2u2a2MAfOzp377r3nvfvezOxYZxBjuLbAH/XQONcp2IUH4D64E4oVuAzfwafwMfwGxVb4E/7xJrB4Ce83wV9wG7wCz0GTX8J5+BZ+gWIPnIDH4RHoJO/CW/A73Ax/wz5R7isoJMUktPgbOAN3wTYYY6w55lpDlHV7Hn6zMh3T8BOchTtgYKIrtd0l9WWimFWOudawlnC86aaGSxcGfIUXvamxnasCbTDG2MAa1oqoGpWoMxST0FlFzMGMYY4MRbNia1nT2qKp5wGx77ZCKDbKqqrg4idCuqrVcLWmtdVocBXLzc6eNTNpItqNbIuR5qeGNa2tRgWfswU407vt24fa1Xopu3GH6At1RhZgbTXU6pyBziBHv0x2vA3lym4S/BEerJPSRmuroVbnNpzTAOUe9Dzr/xqfnOvYHpBDdUomnvE5/Gp1nsHLGiB913bTm6OsYw3Kg3WesRV4oo4p68RWQ63OIuxqgLWz6nlXn9PcK5ZCp7AV8xUorJETmnuvarzXWNuGBDvbswbUiIC3sY9if4bXdALbJ0tkEbZarQHBJDhzX9I3DKqhkA+22A8/wHK8PEDGiAHB9Vp6jATHH8HdMBjHeAXvxcE1hQtXZcZvSxddzRKcqIZWe+8nxbEX0NeS9nN4GIoH0Pak5a7cb98wZIvUWLKQH0+/Z8LvYKCoz5Ev4JPwIbwPX0OLnIZCMb+D/0JqqqFW64OfA2LsJfgEun+iHOt5+n/Tzr4H3/1YgDN1bA5FmZrE0md32pBa1lZDrQq+WNte3gpkP0YRy+p9n/a9vFV0r+bhrDfAwsNWpX/Y0TenhLmZnDWtrUaFzOR/fYCtF7GhH+By1tMEb/hfDJepaPZFUZ8xW2H/A8edve0qqS+5mO1/ogwSJiXR9tp3N9sT5rFugzHGmmOuNURZt+l1b2h1pRv2RzibG0Gv+mxZ3h4+O1OwC/2rvxdmxSvYy3Dkv/p/ATQejPjjKGMzAAAAAElFTkSuQmCC</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$reminder</span> | length=30 bash='<span class="variable">$0</span>' param1='open' terminal=false refresh=true templateImage=<span class="variable">$image</span>"</span></span><br></pre></td></tr></table></figure>
+<p>我将未完成的任务和所有任务做个计数，显示在 menubar，然后点击它就可以打开 Reminder。<br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190517155648.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190517155805.png" alt><br>这样，每天只用维护自己的 Reminder 的任务列表就行了。如果很多天过去，任务总数太多，可以再创建一个 Archive 提醒列表，将过去完成的任务都移动到里面。</p>
+<p>快乐的写 TODO 吧！</p>
+<p><br></p>
+<hr>
+<p id="div-border-left-red"><i>DigitalOcean 优惠码，注册充值 $5 送 $100，<a href="https://m.do.co/c/282d5e1cf06e" target="_blank" rel="noopener">链接一</a> <a href="https://m.do.co/c/5eefb87c26cd" target="_blank" rel="noopener">链接二</a></i><br></p><p id="div-border-left-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/tags/Tool/">#Tool</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        2019 年 05 月 17 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+  console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
+  console.log(
+    "特别鸣谢zchen9同学的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9"
+  );
+</script>
+
+<!-- <script text="module">
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then(function() {
+        // console.log("A new service worker is being installed.");
+      })
+      .catch(function(error) {
+        console.log("Service worker registration failed:", error);
+      });
+  } else {
+    console.log("Service workers are not supported.");
+  }
+</script> -->
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>
