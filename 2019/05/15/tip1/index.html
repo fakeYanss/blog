@@ -47,9 +47,6 @@
 <a class="nav-back" href="/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
-<a class="nav-search" data-toggle="modal" data-target="#searchModalCenter">
-  <i class="fa fa-search"></i>
-</a>
 
 <!-- Page Header -->
 <header class="intro-header">
@@ -72,6 +69,13 @@
             <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <p>201905W20 Tip<br><a id="more"></a></p>
 <hr>
+<h2 id="Hexo-tag-shortcut-in-hollow"><a href="#Hexo-tag-shortcut-in-hollow" class="headerlink" title="Hexo tag shortcut in hollow"></a>Hexo tag shortcut in hollow</h2><p>验证 Hexo 的内置标签在 hollow 中可使用的部分。</p>
+<h3 id="Block-Quote"><a href="#Block-Quote" class="headerlink" title="Block Quote"></a>Block Quote</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% blockquote David Levithan, Wide Awake %&#125;</span><br><span class="line">Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</span><br><span class="line">&#123;% endblockquote %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
+<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
+<h3 id="Code-Block"><a href="#Code-Block" class="headerlink" title="Code Block"></a>Code Block</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% codeblock _.compact http://underscorejs.org/#compact Underscore.js %&#125;</span><br><span class="line">_.compact([0, 1, false, 2, &apos;&apos;, 3]);</span><br><span class="line">=&gt; [1, 2, 3]</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>_.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="noopener">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([0, 1, false, 2, &apos;&apos;, 3]);</span><br><span class="line">=&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
+<h3 id="YouTube"><a href="#YouTube" class="headerlink" title="YouTube"></a>YouTube</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% youtube video_id %&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Mysql-命令"><a href="#Mysql-命令" class="headerlink" title="Mysql 命令"></a>Mysql 命令</h2><p>查询数据库编码方式：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'character%'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>将查询语句结果输出到文件<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h127.0.0.1 -P3306 -uroot -Ddatabases -p -e <span class="string">"select * from table"</span> &gt; file</span><br></pre></td></tr></table></figure></p>
 <h2 id="将-bash-换成-zsh-amp-oh-my-zsh"><a href="#将-bash-换成-zsh-amp-oh-my-zsh" class="headerlink" title="将 bash 换成 zsh &amp; oh my zsh"></a>将 bash 换成 zsh &amp; oh my zsh</h2><p>一旦你使用了 zsh 和 oh my zsh，你就很难换回 bash 了。</p>
@@ -255,129 +259,137 @@
 </article>
 </section>
     <!-- Search -->
-    <div class="modal fade" id="searchModalCenter" tabindex="-1" role="dialog" aria-labelledby="searchModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <input type="text" id="local-search-input" class="form-control" placeholder="Search my blog...">
-      </div>
-      <div class="modal-body">
-        <div id="local-search-result" style="padding-right: 40px"></div>
+    <a class="nav-search" data-toggle="modal" data-target="#searchModalCenter">
+    <i class="fa fa-search"></i>
+  </a>
+  
+  <div class="modal fade" id="searchModalCenter" tabindex="-1" role="dialog" aria-labelledby="searchModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <input type="text" id="local-search-input" class="form-control" placeholder="Search my blog...">
+        </div>
+        <div class="modal-body">
+          <div id="local-search-result" style="padding-right: 40px"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<script type="text/javascript">
-  var searchFunc = function(path, search_id, content_id) {
-    "use strict";
-    $.ajax({
-      url: path,
-      dataType: "xml",
-      success: function(xmlResponse) {
-        // get the contents from search data
-        var datas = $("entry", xmlResponse)
-          .map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content", this).text(),
-              url: $("id", this).text()
-            };
-          })
-          .get();
-        var $input = document.getElementById(search_id);
-        var $resultContent = document.getElementById(content_id);
-        $input.addEventListener("input", function() {
-          var str = '<ul class="search-result-list">';
-          var keywords = this.value
-            .trim()
-            .toLowerCase()
-            .split(/[\s\-]+/);
-          $resultContent.innerHTML = "";
-          if (this.value.trim().length <= 0) {
-            return;
-          }
-          // perform local searching
-          datas.forEach(function(data) {
-            var isMatch = true;
-            var content_index = [];
-            var data_title = data.title.trim().toLowerCase();
-            var data_content = data.content
+  
+  <script type="text/javascript">
+    var searchFunc = function(path, search_id, content_id) {
+      "use strict";
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function(xmlResponse) {
+          // get the contents from search data
+          var datas = $("entry", xmlResponse)
+            .map(function() {
+              return {
+                title: $("title", this).text(),
+                content: $("content", this).text(),
+                url: $("id", this).text()
+              };
+            })
+            .get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener("input", function() {
+            var str = '<ul class="search-result-list">';
+            var keywords = this.value
               .trim()
-              .replace(/<[^>]+>/g, "")
-              .toLowerCase();
-            var data_url = data.url;
-            var index_title = -1;
-            var index_content = -1;
-            var first_occur = -1;
-            // only match artiles with not empty titles and contents
-            if (data_title != "" && data_content != "") {
-              keywords.forEach(function(keyword, i) {
-                index_title = data_title.indexOf(keyword);
-                index_content = data_content.indexOf(keyword);
-                if (index_title < 0 && index_content < 0) {
-                  isMatch = false;
-                } else {
-                  if (index_content < 0) {
-                    index_content = 0;
-                  }
-                  if (i == 0) {
-                    first_occur = index_content;
-                  }
-                }
-              });
+              .toLowerCase()
+              .split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
             }
-            // show search results
-            if (isMatch) {
-              str +=
-                "<li><a href='" +
-                data_url +
-                "' class='search-result-title'>" +
-                data_title +
-                "</a>";
-              var content = data.content.trim().replace(/<[^>]+>/g, "");
-              if (first_occur >= 0) {
-                // cut out 30 characters
-                var start = first_occur - 15;
-                var end = first_occur + 15;
-                if (start < 0) {
-                  start = 0;
-                }
-                if (start == 0) {
-                  end = 30;
-                }
-                if (end > content.length) {
-                  end = content.length;
-                }
-
-                var match_content = content.substr(start, end);
-                // highlight all keywords
-                keywords.forEach(function(keyword) {
-                  var regS = new RegExp(keyword, "gi");
-                  match_content = match_content.replace(
-                    regS,
-                    '<em class="search-keyword">' + keyword + "</em>"
-                  );
+            // perform local searching
+            datas.forEach(function(data) {
+              var isMatch = true;
+              var content_index = [];
+              var data_title = data.title.trim().toLowerCase();
+              var data_content = data.content
+                .trim()
+                .replace(/<[^>]+>/g, "")
+                .toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty titles and contents
+              if (data_title != "" && data_content != "") {
+                keywords.forEach(function(keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                  }
                 });
-
-                str += '<p class="search-result">' + match_content + "...</p>";
               }
-              str += "</li>";
-            }
+              // show search results
+              if (isMatch) {
+                str +=
+                  "<li><a href='" +
+                  data_url +
+                  "' class='search-result-title'>" +
+                  data_title +
+                  "</a>";
+                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                if (first_occur >= 0) {
+                  // cut out 30 characters
+                  var start = first_occur - 15;
+                  var end = first_occur + 15;
+                  if (start < 0) {
+                    start = 0;
+                  }
+                  if (start == 0) {
+                    end = 30;
+                  }
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+  
+                  var match_content = content.substr(start, end);
+                  // highlight all keywords
+                  keywords.forEach(function(keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(
+                      regS,
+                      '<em class="search-keyword">' + keyword + "</em>"
+                    );
+                  });
+  
+                  str += '<p class="search-result">' + match_content + "...</p>";
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            $resultContent.innerHTML = str;
           });
-          str += "</ul>";
-          $resultContent.innerHTML = str;
-        });
-      }
-    });
-  };
-</script>
-
+        }
+      });
+    };
+  </script>
+  
     <!-- Scripts -->
     <!-- jQuery -->
 <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Custom picture view-->
+<link href="/css/viewer.min.css" rel="stylesheet">
+<script src="/js/viewer.min.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
   console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
@@ -388,7 +400,25 @@
   // use atom.xml to search blog
   searchFunc("/atom.xml", "local-search-input", "local-search-result");
   $("#searchModalCenter").on("shown.bs.modal", function(e) {
-    setTimeout(function() { $("#local-search-input").focus(); }, 1);
+    setTimeout(function() {
+      $("#local-search-input").focus();
+    }, 1);
+  });
+
+  // set image viewer
+  Viewer.setDefaults({
+    zoomRatio: [0.5],
+    navbar: false,
+    toolbar: false,
+    title: [2, (image, imageData) => `${image.alt}`],
+    show: function() {
+      this.viewer.zoomTo(0.5);
+    }
+  });
+  var article = document.querySelector(".post-content");
+  var imageList = article.getElementsByTagName("img");
+  Array.prototype.forEach.call(imageList, element => {
+    var viewer = new Viewer(element);
   });
 </script>
 

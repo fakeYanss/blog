@@ -3,6 +3,9 @@
  * @author fakeyanss
  * @homepage https://foreti.me
  */
+.blob-num {
+  border: none !important;
+}
 a.nav-search {
   position: fixed;
   bottom: 15px;
@@ -48,9 +51,6 @@ td {
 }
 .post-preview > a > .post-title {
   font-size: 1.5em;
-}
-.post-preview img {
-  display: block;
 }
 @media (min-width: 1600px) {
   .col-lg-offset-2 {
@@ -98,7 +98,6 @@ article .container .row img {
   position: relative;
   left: 0%;
   margin: 10px auto;
-  max-width: 95% !important;
   height: auto;
   display: block;
 }
