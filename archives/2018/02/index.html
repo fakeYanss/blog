@@ -2,40 +2,46 @@
 <html lang="zh-Hans">
   <!-- Head tag -->
   <head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--Description-->
-    
+  <!--Description-->
+  
 
-    <!--Author-->
-    
-        <meta name="author" content="fakeyanss">
-    
+  <!--Author-->
+  
+  <meta name="author" content="fakeyanss">
+  
 
-    <!-- Title -->
-    
-    <title>Archives: 2018/2 | Yet Another Possibility</title>
+  <!-- Title -->
+  
+  <title>Archives: 2018/2 | Yet Another Possibility</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
 
-    <!-- Custom Fonts -->
-    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+  <!-- Custom Fonts -->
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <!-- jQuery -->
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <![endif]-->
 </head>
+
 
   <body>
     
@@ -110,184 +116,13 @@
     </div>
 </div>
 
-    <!-- Search -->
-    <a class="nav-search" data-toggle="modal" data-target="#searchModalCenter">
-    <i class="fa fa-search"></i>
-  </a>
-  
-  <div class="modal fade" id="searchModalCenter" tabindex="-1" role="dialog" aria-labelledby="searchModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <input type="text" id="local-search-input" class="form-control" placeholder="Search my blog...">
-        </div>
-        <div class="modal-body">
-          <div id="local-search-result" style="padding-right: 40px"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <script type="text/javascript">
-    var searchFunc = function(path, search_id, content_id) {
-      "use strict";
-      $.ajax({
-        url: path,
-        dataType: "xml",
-        success: function(xmlResponse) {
-          // get the contents from search data
-          var datas = $("entry", xmlResponse)
-            .map(function() {
-              return {
-                title: $("title", this).text(),
-                content: $("content", this).text(),
-                url: $("id", this).text()
-              };
-            })
-            .get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener("input", function() {
-            var str = '<ul class="search-result-list">';
-            var keywords = this.value
-              .trim()
-              .toLowerCase()
-              .split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length <= 0) {
-              return;
-            }
-            // perform local searching
-            datas.forEach(function(data) {
-              var isMatch = true;
-              var content_index = [];
-              var data_title = data.title.trim().toLowerCase();
-              var data_content = data.content
-                .trim()
-                .replace(/<[^>]+>/g, "")
-                .toLowerCase();
-              var data_url = data.url;
-              var index_title = -1;
-              var index_content = -1;
-              var first_occur = -1;
-              // only match artiles with not empty titles and contents
-              if (data_title != "" && data_content != "") {
-                keywords.forEach(function(keyword, i) {
-                  index_title = data_title.indexOf(keyword);
-                  index_content = data_content.indexOf(keyword);
-                  if (index_title < 0 && index_content < 0) {
-                    isMatch = false;
-                  } else {
-                    if (index_content < 0) {
-                      index_content = 0;
-                    }
-                    if (i == 0) {
-                      first_occur = index_content;
-                    }
-                  }
-                });
-              }
-              // show search results
-              if (isMatch) {
-                str +=
-                  "<li><a href='" +
-                  data_url +
-                  "' class='search-result-title'>" +
-                  data_title +
-                  "</a>";
-                var content = data.content.trim().replace(/<[^>]+>/g, "");
-                if (first_occur >= 0) {
-                  // cut out 30 characters
-                  var start = first_occur - 15;
-                  var end = first_occur + 15;
-                  if (start < 0) {
-                    start = 0;
-                  }
-                  if (start == 0) {
-                    end = 30;
-                  }
-                  if (end > content.length) {
-                    end = content.length;
-                  }
-  
-                  var match_content = content.substr(start, end);
-                  // highlight all keywords
-                  keywords.forEach(function(keyword) {
-                    var regS = new RegExp(keyword, "gi");
-                    match_content = match_content.replace(
-                      regS,
-                      '<em class="search-keyword">' + keyword + "</em>"
-                    );
-                  });
-  
-                  str += '<p class="search-result">' + match_content + "...</p>";
-                }
-                str += "</li>";
-              }
-            });
-            str += "</ul>";
-            $resultContent.innerHTML = str;
-          });
-        }
-      });
-    };
-  </script>
-  
     <!-- Scripts -->
-    <!-- jQuery -->
-<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-<!-- Custom picture view-->
-<link href="/css/viewer.min.css" rel="stylesheet">
-<script src="/js/viewer.min.js" type="text/javascript" charset="utf-8"></script>
-
-<script type="text/javascript">
+    <script type="text/javascript">
   console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
   console.log(
     "特别鸣谢zchen9同学的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9"
   );
-
-  // use atom.xml to search blog
-  searchFunc("/atom.xml", "local-search-input", "local-search-result");
-  $("#searchModalCenter").on("shown.bs.modal", function(e) {
-    setTimeout(function() {
-      $("#local-search-input").focus();
-    }, 1);
-  });
-
-  // set image viewer
-  Viewer.setDefaults({
-    zoomRatio: [0.5],
-    navbar: false,
-    toolbar: false,
-    title: [2, (image, imageData) => `${image.alt}`],
-    show: function() {
-      this.viewer.zoomTo(0.5);
-    }
-  });
-  var article = document.querySelector(".post-content");
-  var imageList = article.getElementsByTagName("img");
-  Array.prototype.forEach.call(imageList, element => {
-    var viewer = new Viewer(element);
-  });
 </script>
-
-<!-- <script text="module">
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then(function() {
-        // console.log("A new service worker is being installed.");
-      })
-      .catch(function(error) {
-        console.log("Service worker registration failed:", error);
-      });
-  } else {
-    console.log("Service workers are not supported.");
-  }
-</script> -->
 
     <!-- Google Analytics -->
     
@@ -303,6 +138,157 @@
     </script>
 
 
+    <!-- Service Worker -->
+    <!-- if using service worker -->
+
+    <script text="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(function() {
+            // console.log("A new service worker is being installed.");
+          })
+          .catch(function(error) {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
+
     
+    <!-- Search -->
+    
+    <a class="nav-search" data-toggle="modal" data-target="#searchModalCenter">
+      <i class="fa fa-search"></i>
+    </a>
+    
+    <div class="modal fade" id="searchModalCenter" tabindex="-1" role="dialog" aria-labelledby="searchModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <input type="text" id="local-search-input" class="form-control" placeholder="Search my blog...">
+          </div>
+          <div class="modal-body">
+            <div id="local-search-result" style="padding-right: 40px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+      // define the search function
+      var searchFunc = function(path, search_id, content_id) {
+        "use strict";
+        $.ajax({
+          url: path,
+          dataType: "xml",
+          success: function(xmlResponse) {
+            // get the contents from search data
+            var datas = $("entry", xmlResponse)
+              .map(function() {
+                return {
+                  title: $("title", this).text(),
+                  content: $("content", this).text(),
+                  url: $("id", this).text()
+                };
+              })
+              .get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener("input", function() {
+              var str = '<ul class="search-result-list">';
+              var keywords = this.value
+                .trim()
+                .toLowerCase()
+                .split(/[\s\-]+/);
+              $resultContent.innerHTML = "";
+              if (this.value.trim().length <= 0) {
+                return;
+              }
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = true;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content
+                  .trim()
+                  .replace(/<[^>]+>/g, "")
+                  .toLowerCase();
+                var data_url = data.url;
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if (data_title != "" && data_content != "") {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if (index_title < 0 && index_content < 0) {
+                      isMatch = false;
+                    } else {
+                      if (index_content < 0) {
+                        index_content = 0;
+                      }
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  str +=
+                    "<li><a href='" +
+                    data_url +
+                    "' class='search-result-title'>" +
+                    data_title +
+                    "</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g, "");
+                  if (first_occur >= 0) {
+                    // cut out 30 characters
+                    var start = first_occur - 15;
+                    var end = first_occur + 15;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (start == 0) {
+                      end = 30;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+    
+                    var match_content = content.substr(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword) {
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(
+                        regS,
+                        '<em class="search-keyword">' + keyword + "</em>"
+                      );
+                    });
+    
+                    str += '<p class="search-result">' + match_content + "...</p>";
+                  }
+                  str += "</li>";
+                }
+              });
+              str += "</ul>";
+              $resultContent.innerHTML = str;
+            });
+          }
+        });
+      };
+    
+      // use atom.xml to search blog
+      searchFunc("/atom.xml", "local-search-input", "local-search-result");
+      $("#searchModalCenter").on("shown.bs.modal", function(e) {
+        setTimeout(function() {
+          $("#local-search-input").focus();
+        }, 1);
+      });
+    </script>
+
   </body>
 </html>
