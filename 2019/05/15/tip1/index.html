@@ -82,8 +82,10 @@
 <h3 id="Code-Block"><a href="#Code-Block" class="headerlink" title="Code Block"></a>Code Block</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% codeblock _.compact http://underscorejs.org/#compact Underscore.js %&#125;</span><br><span class="line">_.compact([0, 1, false, 2, &apos;&apos;, 3]);</span><br><span class="line">=&gt; [1, 2, 3]</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><figcaption><span>_.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="noopener">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([0, 1, false, 2, &apos;&apos;, 3]);</span><br><span class="line">=&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
 <h3 id="YouTube"><a href="#YouTube" class="headerlink" title="YouTube"></a>YouTube</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% youtube video_id %&#125;</span><br></pre></td></tr></table></figure>
+<hr>
 <h2 id="Mysql-命令"><a href="#Mysql-命令" class="headerlink" title="Mysql 命令"></a>Mysql 命令</h2><p>查询数据库编码方式：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'character%'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>将查询语句结果输出到文件<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h127.0.0.1 -P3306 -uroot -Ddatabases -p -e <span class="string">"select * from table"</span> &gt; file</span><br></pre></td></tr></table></figure></p>
+<hr>
 <h2 id="将-bash-换成-zsh-amp-oh-my-zsh"><a href="#将-bash-换成-zsh-amp-oh-my-zsh" class="headerlink" title="将 bash 换成 zsh &amp; oh my zsh"></a>将 bash 换成 zsh &amp; oh my zsh</h2><p>一旦你使用了 zsh 和 oh my zsh，你就很难换回 bash 了。</p>
 <p>如何在服务器上使用 zsh 和 oh my zsh？</p>
 <p><strong>第一步：</strong></p>
@@ -100,6 +102,7 @@
 <p>这个主题的路径前缀太长，编辑<code>~/.oh-my-zsh/themes/agnoster.zsh-theme</code>，将 <code>build_prompt</code> 下的 <code>prompt_context</code> 注释掉。</p>
 <p>最后<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .zshrc</span><br></pre></td></tr></table></figure></p>
 <p>重连一下服务器，打开新世界。</p>
+<hr>
 <h2 id="印象笔记-Markdown-支持什么快捷键？"><a href="#印象笔记-Markdown-支持什么快捷键？" class="headerlink" title="印象笔记 Markdown 支持什么快捷键？"></a>印象笔记 Markdown 支持什么快捷键？</h2><p><strong>Mac 端</strong></p>
 <table>
 <thead>
