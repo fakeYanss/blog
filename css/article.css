@@ -10,10 +10,10 @@
   -o-background-size: cover;
 }
 .serif {
-  font-family: 'Noto Serif', 'Times New Roman', serif !important;
+  font-family: 'Noto Serif', 'Times New Roman', serif;
 }
 .sans-serif {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .animation,
 .article-container {
@@ -93,16 +93,14 @@
 }
 article .container .row img {
   position: relative;
-  left: 25%;
   margin: 30px auto;
   max-width: 55% !important;
   height: auto;
   display: inline-block;
-  box-shadow: 0 0 0 5px #fff, 0 0 15px 0 #000;
+  box-shadow: 0 0 0 5px #fff, 0 0 15px 0 #4d4d4d;
 }
 @media only screen and (max-width: 768px) {
   article .container .row img {
-    left: 10%;
     max-width: 80% !important;
   }
 }
@@ -124,10 +122,10 @@ article .container .row .video-container embed {
   margin-top: 0;
 }
 article .container .row blockquote {
-  font-family: font-serif;
+  font-family: "Georgia", serif;
   font-size: 1em;
   padding: 3px 30px 15px;
-  color: #808080;
+  color: rgba(115,115,115,0.9);
   text-align: left;
 }
 article .container .row blockquote footer {
@@ -154,9 +152,13 @@ article .container .row .pullquote {
 article .container .row .pullquote.left {
   float: left;
 }
+article .container .row ul {
+  padding-left: 36px;
+  line-height: 1.8;
+}
 figure.highlight {
   background: #eee;
-  border: 1px solid color-border;
+  border: 1px solid #eee;
   margin-top: 15px;
   padding: 7px 15px;
   border-radius: 2px;
@@ -167,8 +169,8 @@ figure.highlight {
   font-size: 0.9em;
 }
 figure.highlight figcaption {
-  color: color-meta;
-  font-family: font-mono;
+  color: #ccc;
+  font-family: Monaco, Menlo, Consolas, Courier New, monospace;
   margin-bottom: 5px;
   text-shadow: 0 0 1px #fff;
 }
@@ -187,9 +189,9 @@ figure.highlight table {
   border-spacing: 0;
 }
 figure.highlight table .gutter {
-  color: color-meta;
+  color: #ccc;
   padding-right: 15px;
-  border-right: 1px solid color-border;
+  border-right: 1px solid #eee;
   text-align: right;
 }
 figure.highlight table .code {

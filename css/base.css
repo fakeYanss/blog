@@ -26,10 +26,10 @@ nav,
 .btn,
 .pagiantion li > a,
 .pagiantion li > span {
-  font-family: 'Noto Serif', 'Times New Roman', serif !important;
+  font-family: 'Noto Serif', 'Times New Roman', serif;
 }
 .sans-serif {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .animation,
 .post-preview {
@@ -111,11 +111,11 @@ body,
 html {
   width: 100%;
   font-size: 18px;
-  color: #404040;
+  color: #4d4d4d;
 }
 p {
   letter-spacing: 0.1px;
-  line-height: 1.5;
+  line-height: 1.8;
   margin: 20px 0;
 }
 p a {
@@ -123,18 +123,22 @@ p a {
 }
 h1,
 h2,
-h3,
+h3 {
+  font-weight: 800;
+  margin: 32px 0 20px;
+}
 h4,
 h5,
 h6 {
-  font-weight: 800;
+  font-weight: 500;
+  margin: 20px 0;
 }
 a {
   color: #ce2323;
 }
 a:hover,
 a:focus {
-  color: #404040;
+  color: #4d4d4d;
 }
 a:visited,
 a:link {
@@ -146,7 +150,7 @@ a img:focus {
 }
 hr.small {
   max-width: 100px;
-  margin: 15px auto;
+  margin: 20px auto;
   border-width: 4px;
   border-color: #fff;
 }
@@ -185,7 +189,7 @@ nav {
 .intro-header .post-heading,
 .intro-header .page-heading {
   padding: 100px 0 20px;
-  color: #404040;
+  color: #4d4d4d;
 }
 .intro-header .site-heading.archives,
 .intro-header .post-heading.archives,
@@ -237,7 +241,7 @@ nav {
 }
 .post-preview {
   position: relative;
-  padding: 30px 0 45px;
+  padding: 25px 0 35px;
   overflow: hidden;
   clear: both;
 }
@@ -245,13 +249,13 @@ nav {
   padding: 12px 0;
 }
 .post-preview p {
-  margin-left: 32%;
+  margin-left: 36%;
   padding-left: 0.6em;
   font-size: 1.1em;
   line-height: 1.5;
 }
 .post-preview blockquote {
-  margin-left: 32%;
+  margin-left: 36%;
   padding: 0.7em;
   margin-top: 10px;
   border: none;
@@ -264,7 +268,7 @@ nav {
 .post-preview > a {
   width: 100%;
   height: 100%;
-  color: #404040;
+  color: #4d4d4d;
 }
 .post-preview > a:hover,
 .post-preview > a:focus {
@@ -276,9 +280,10 @@ nav {
 }
 .post-preview > a > .post-title {
   float: left;
-  width: 30%;
+  width: 32%;
   height: 100%;
   font-size: 2em;
+  margin: 21px 0;
 }
 .post-preview > a > .post-title.archive {
   font-size: 22px;
@@ -348,7 +353,7 @@ footer {
   position: relative;
   margin-bottom: 0;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(235,235,235,0.8);
 }
 .floating-label-form-group input,
 .floating-label-form-group textarea {
@@ -381,17 +386,17 @@ footer {
 }
 .floating-label-form-group::not(:first-child) {
   padding-left: 14px;
-  border-left: 1px solid #eee;
+  border-left: 1px solid rgba(235,235,235,0.8);
 }
 .floating-label-form-group-with-value label {
   top: 0;
   opacity: 1;
 }
 .floating-label-form-group-with-focus label {
-  color: #0085a1;
+  color: rgba(224,71,71,0.9);
 }
 form .row:first-child .floating-label-form-group {
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(235,235,235,0.8);
 }
 .btn {
   text-transform: uppercase;
@@ -407,8 +412,8 @@ form .row:first-child .floating-label-form-group {
 }
 .btn-default:hover,
 .btn-default:focus {
-  background-color: #0085a1;
-  border: 1px solid #0085a1;
+  background-color: rgba(224,71,71,0.9);
+  border: 1px solid rgba(224,71,71,0.9);
   color: #fff;
 }
 .pagiantion {
@@ -442,18 +447,18 @@ form .row:first-child .floating-label-form-group {
 .pagiantion .disabled > a:hover,
 .pagiantion .disabled > a:focus,
 .pagiantion .disabled > span {
-  color: #808080;
+  color: rgba(115,115,115,0.9);
   cursor: not-allowed;
 }
 ::-moz-selection {
   color: #fff;
   text-shadow: none;
-  background: #0085a1;
+  background: rgba(224,71,71,0.9);
 }
 ::selection {
   color: #fff;
   text-shadow: none;
-  background: #0085a1;
+  background: rgba(224,71,71,0.9);
 }
 img::selection {
   color: #fff;
@@ -464,5 +469,5 @@ img::-moz-selection {
   background: transparent;
 }
 body {
-  webkit-tap-highlight-color: #0085a1;
+  webkit-tap-highlight-color: rgba(224,71,71,0.9);
 }

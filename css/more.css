@@ -1,3 +1,6 @@
+/*
+ * @author fakeyanss, zchen9
+ */
 .blob-num {
   border: none !important;
 }
@@ -5,20 +8,63 @@ a.nav-search {
   position: fixed;
   bottom: 15px;
   right: 15px;
-  color: white-faded;
+  color: rgba(0,0,0,0.5);
   z-index: 99;
 }
 a.nav-search:hover,
 a.nav-search:focus {
-  color: #f00;
+  color: #ce2323;
+}
+.modal-dialog {
+  margin: 120px auto;
+}
+@media only screen and (min-width: 1280px) {
+  .modal-dialog {
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  .modal-dialog {
+    width: 75%;
+  }
+}
+.modal-content {
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 2px 2px 22px rgba(115,115,115,0.9);
+}
+.modal-body {
+  padding: 0;
+}
+.form-control {
+  border: none;
+  outline: none;
+  caret-color: #ce2323;
+  box-shadow: none;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+.search-result-title {
+  font-size: 18px;
+}
+.search-result-list {
+  padding: 20px;
+  margin: 0 auto;
+  list-style: none;
+  font-size: 14px;
 }
 .search-keyword {
-  color: #f00;
-  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  color: #ce2323;
 }
 .search-result {
+  margin: 5px 0 20px;
   overflow: hidden;
-  font-size: 12px;
+  line-height: 1.6;
+  color: #4d4d4d;
 }
 th {
   text-align: center;
