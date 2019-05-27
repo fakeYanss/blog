@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="201905W21 Share">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>简单实现依赖 MySQL 的分布式锁 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back Home -->
+<a class="nav-back" href="/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>简单实现依赖 MySQL 的分布式锁</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>201905W21 Share</p>
+<a id="more"></a>
+<hr>
+<p>又遇到一个使用分布式锁的情况， 但是没有用 Redis 或者 Zookeeper， 而是直接依赖 MySQL 给实现了。</p>
+<p>其实用 MySQL 做分布式锁不是很适合， 但是在原理上非常容易理解。</p>
+<p>我们只需要在数据库里创建一张表， 然后对这个表写数据， 多个实例中， 成功写入的那一个， 便拿到了锁， 可以进行下一步逻辑。</p>
+<p>这里我们不考虑任何的可重入性、 超时、 阻塞等， 仅仅区满足分布式锁的互斥性， 其他的特性我们可以在下一次来实现。</p>
+<p>下面开始我们的实现， 使用 SpringBoot 和 MySQL。</p>
+<ol>
+<li>首先， 需要在 maven 引入依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建 Event 的 model 和 dao</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.GeneratedValue;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.GenerationType;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span>(name = <span class="string">"event"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>(strategy = GenerationType.AUTO)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date startTime;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date finishTime;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Event <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Event <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getStartTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> startTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Event <span class="title">setStartTime</span><span class="params">(Date startTime)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.startTime = startTime;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getFinishTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> finishTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Event <span class="title">setFinishTime</span><span class="params">(Date finishTime)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.finishTime = finishTime;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> indi.yanss.dls.model.Event;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.JpaRepository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EventRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Event</span>, <span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Event <span class="title">findByName</span><span class="params">(String name)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建锁的获取和释放方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> indi.yanss.dls.model.Event;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventLock</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EventRepository eventRepository;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Event <span class="title">acquire</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        Event event = eventRepository.findByName(name);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (event == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 没有事件，注册</span></span><br><span class="line">            event = <span class="keyword">new</span> Event().setName(name).setStartTime(<span class="keyword">new</span> Date());</span><br><span class="line">            eventRepository.save(event);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.getFinishTime() == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 事件在运行</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Lock has been acquired."</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.getFinishTime().before(<span class="keyword">new</span> Date())) &#123;</span><br><span class="line">            <span class="comment">// 上一个事件已经完成，开始新事件</span></span><br><span class="line">            <span class="keyword">int</span> id = event.getId();</span><br><span class="line">            event = <span class="keyword">new</span> Event().setId(id).setName(name).setStartTime(<span class="keyword">new</span> Date());</span><br><span class="line">            eventRepository.save(event);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> event;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">(Event event)</span> </span>&#123;</span><br><span class="line">        eventRepository.save(event.setFinishTime(<span class="keyword">new</span> Date()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>创建 Schedule 任务</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> indi.yanss.dls.model.Event;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventLock</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EventRepository eventRepository;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Event <span class="title">acquire</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        Event event = eventRepository.findByName(name);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (event == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 没有事件，注册</span></span><br><span class="line">            event = <span class="keyword">new</span> Event().setName(name).setStartTime(<span class="keyword">new</span> Date());</span><br><span class="line">            eventRepository.save(event);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.getFinishTime() == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 事件在运行</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Lock has been acquired."</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.getFinishTime().before(<span class="keyword">new</span> Date())) &#123;</span><br><span class="line">            <span class="comment">// 上一个事件已经完成，开始新事件</span></span><br><span class="line">            <span class="keyword">int</span> id = event.getId();</span><br><span class="line">            event = <span class="keyword">new</span> Event().setId(id).setName(name).setStartTime(<span class="keyword">new</span> Date());</span><br><span class="line">            eventRepository.save(event);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> event;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">(Event event)</span> </span>&#123;</span><br><span class="line">        eventRepository.save(event.setFinishTime(<span class="keyword">new</span> Date()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>启动 MySQL， 配置连接。 这里不用手动创建表， JPA 会在实例启动时自动帮我们创建和 Event model 对应的表。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 需要启动mysql， 创建数据库demo</span><br><span class="line">spring.datasource.url = jdbc:mysql://localhost:3306/demo</span><br><span class="line">    spring.datasource.username = root</span><br><span class="line">spring.datasource.password = 123456</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>启动多个实例， 用不同端口即可。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/image.4orwrpw8u3o.png" alt="多实例配置"></p>
+<ol start="7">
+<li>Done！ 观察控制台输出吧。</li>
+</ol>
+<p><br></p>
+<hr>
+<p id="div-border-left-red"><i>DigitalOcean 优惠码，注册充值 $5 送 $100，<a href="https://m.do.co/c/282d5e1cf06e" target="_blank" rel="noopener">链接一</a> <a href="https://m.do.co/c/5eefb87c26cd" target="_blank" rel="noopener">链接二</a></i><br></p><p id="div-border-left-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                    </div>
+                    <div class="post-date">
+                        2019 年 05 月 27 日
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+<!-- Image viewer-->
+
+    <!-- Custom picture view-->
+    <link href="/css/viewer.min.css" rel="stylesheet">
+    <script src="/js/viewer.min.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script type="text/javascript">
+      // set image viewer
+      Viewer.setDefaults({
+        zoomRatio: [0.5],
+        navbar: false,
+        toolbar: false,
+        button: false,
+        title: [2, (image, imageData) => `${image.alt}`],
+        show: function() {
+          this.viewer.zoomTo(0.5);
+        }
+      });
+      var imageList = document.getElementsByTagName("img");
+      Array.prototype.forEach.call(imageList, element => {
+        var viewer = new Viewer(element);
+      });
+    </script>
+
+    
+    <!-- Scripts -->
+    <script type="text/javascript">
+    console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
+</script>
+  
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+    <!-- Service Worker -->
+    <!-- if using service worker -->
+
+    <script text="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(function() {
+            console.log("A new service worker is being installed.");
+          })
+          .catch(function(error) {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
+
+    
+    <!-- Search -->
+    
+    <a class="nav-search" data-toggle="modal" data-target="#searchModalCenter">
+      <i class="fa fa-search"></i>
+    </a>
+    
+    <div class="modal fade" id="searchModalCenter" tabindex="-1" role="dialog" aria-labelledby="searchModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <input type="text" id="local-search-input" class="form-control" placeholder="找宝藏吗">
+          </div>
+          <div class="modal-body">
+            <div id="local-search-result"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+      // define the search function
+      var searchFunc = function(path, search_id, content_id) {
+        "use strict";
+        $.ajax({
+          url: path,
+          dataType: "xml",
+          success: function(xmlResponse) {
+            // get the contents from search data
+            var datas = $("entry", xmlResponse)
+              .map(function() {
+                return {
+                  title: $("title", this).text(),
+                  content: $("content", this).text(),
+                  url: $("id", this).text()
+                };
+              })
+              .get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener("input", function() {
+              var str = '<ul class="search-result-list">';
+              var keywords = this.value
+                .trim()
+                .toLowerCase()
+                .split(/[\s\-]+/);
+              $resultContent.innerHTML = "";
+              if (this.value.trim().length <= 0) {
+                return;
+              }
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = true;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content
+                  .trim()
+                  .replace(/<[^>]+>/g, "")
+                  .toLowerCase();
+                var data_url = data.url;
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if (data_title != "" && data_content != "") {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if (index_title < 0 && index_content < 0) {
+                      isMatch = false;
+                    } else {
+                      if (index_content < 0) {
+                        index_content = 0;
+                      }
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  str +=
+                    "<li><a href='" +
+                    data_url +
+                    "' class='search-result-title'>" +
+                    data_title +
+                    "</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g, "");
+                  if (first_occur >= 0) {
+                    // cut out 30 characters
+                    var start = first_occur - 15;
+                    var end = first_occur + 15;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (start == 0) {
+                      end = 30;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+    
+                    var match_content = content.substr(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword) {
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(
+                        regS,
+                        '<em class="search-keyword">' + keyword + "</em>"
+                      );
+                    });
+    
+                    str += '<p class="search-result">' + match_content + "...</p>";
+                  }
+                  str += "</li>";
+                }
+              });
+              str += "</ul>";
+              $resultContent.innerHTML = str;
+            });
+          }
+        });
+      };
+    
+      // use atom.xml to search blog
+      searchFunc("/atom.xml", "local-search-input", "local-search-result");
+      $("#searchModalCenter").on("shown.bs.modal", function(e) {
+        setTimeout(function() {
+          $("#local-search-input").focus();
+        }, 1);
+      });
+    </script>
+
+
+</body>
+
+</html>
