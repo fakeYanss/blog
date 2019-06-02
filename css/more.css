@@ -15,12 +15,6 @@ a.nav-search:hover,
 a.nav-search:focus {
   color: #ce2323;
 }
-@media only screen and (max-width: 1024px) {
-  a.nav-search {
-    display: none;
-    opacity: 0;
-  }
-}
 .modal-dialog {
   margin: 120px auto;
 }
