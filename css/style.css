@@ -843,7 +843,7 @@ a.nav-back {
   position: fixed;
 }
 .post-preview > a > .post-title {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 @media (min-width: 1600px) {
   .col-lg-offset-2 {
