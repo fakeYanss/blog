@@ -122,9 +122,7 @@
 <h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>现在就完成了全部的操作，其实并不复杂，Dockerfile之预编译文件，放在仓库master分支中，每当仓库master分支有新的提交时，DaoCloud会监测到变化，由于触发条件的设置，就开始了构建任务和测试任务，构建任务阶段是编译Dockerfile文件中的脚本，其实大致意思很好懂，就是配置git，node和hexo环境。然后进行测试任务，就是进行刚才编辑的yaml编辑器中的脚本，其中有一段测试任务，逻辑就是安装必要的hexo包，然后复制coding仓库里的ssh密匙，用你配置的账号和邮箱，进行hexo操作，清除缓存，生成文件，部署到coding-pages分支，然后删除ssh密匙（安全性）。</p>
 <p>虽然整个操作过程有暴露私有ssh key的风险，但说实话，git的初衷不就是为了分享代码吗，况且我们写的这些真实价值并没有多少，所以放心的使用吧，coding提供的是私有仓库还是可以放心，github进行进行相同操作就改一下配置也可以最后删掉ssh key。</p>
 <p>coding+DaoCloud持续集成到此结束，有问题可以下方留言评论。</p>
-<p><br></p>
-<hr>
-<p id="div-border-left-red"><i>DigitalOcean 优惠码，注册充值 $5 送 $100，<a href="https://m.do.co/c/282d5e1cf06e" target="_blank" rel="noopener">链接一</a> <a href="https://m.do.co/c/5eefb87c26cd" target="_blank" rel="noopener">链接二</a></i></p><br><p id="div-border-left-red"><i>Lastly, welcome to follow me on <a href="https://github.com/fakeYanss" target="_blank" rel="noopener">github</a></i></p>
+
  
                 <!-- Meta -->
                 <div class="post-meta">
