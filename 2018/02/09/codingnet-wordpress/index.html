@@ -76,8 +76,8 @@
                 <p>什么都别说了，先上图。</p>
 <a id="more"></a>
 <hr>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/coding-pages.png" alt="coding-pages"></p>
-<p>部署好的wordpress效果（我主要是做一个相册集）<br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/wp.yanss.top.png" alt="wp"></p>
+<p><img src="https://foreti.me/imgplace/2019/coding-pages.png" alt="coding-pages"></p>
+<p>部署好的wordpress效果（我主要是做一个相册集）<br><img src="https://foreti.me/imgplace/2019/wp.yanss.top.png" alt="wp"></p>
 <p>总体效果还不错吧，毕竟动态博客还是可操作性强多了。</p>
 <p>好了，进入正题。</p>
 <p>做这个其实就是前几天在coding的pages服务菜单中发现还有静态和动态两个选项卡，当时就懵逼了，pages服务还能动态？</p>
@@ -86,12 +86,12 @@
 <p>动态 Pages 是一个动态网页托管和演示服务，支持使用 PHP 语言和 MySQL 数据库，可用于部署开源博客、CMS 等动态应用。</p>
 </blockquote>
 <p>只能使用php语言，然后数据库其实是coding自己的服务器提供的，然后整个服务器后台也是coding提供，所以自己是不可能做什么修改的。当然做一个wordpress博客还是绰绰有余，下面就是我的wordpress仓库文件。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/coding-pages1.png" alt="coding-pages1"></p>
+<p><img src="https://foreti.me/imgplace/2019/coding-pages1.png" alt="coding-pages1"></p>
 <p>搭建过程也非常简单，就是coding新建一个仓库，然后去<a href="https://cn.wordpress.org/" target="_blank" rel="noopener">wordpress官网</a>上下载最新的wordpress压缩包，解压之后push到coding仓库中。</p>
 <p>然后在Pages服务中开启动态Pages，选择部署来源为master分支，稍等一下就自动部署完成了。</p>
 <p>打开动态pages运行的url，然后就是5分钟流程了。</p>
 <p>所有的连接信息(共5个)都在这里，只有前4个用得上</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/coding-pages2.png" alt="coding-pages2"></p>
+<p><img src="https://foreti.me/imgplace/2019/coding-pages2.png" alt="coding-pages2"></p>
 <p><strong>存在的问题：</strong></p>
 <ul>
 <li>使用过程中在wordpress管理后台中下载好了主题和插件，但是在coding仓库中却没有对应的文件增加。所以在偶尔出现数据库连接错误或其他问题需要重新部署时，原本设置好的插件和主题就没有了</li>

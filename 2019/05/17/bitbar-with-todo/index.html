@@ -80,9 +80,9 @@
 <p>我希望的展现形式是在电脑桌面上时刻可以看到的，这样的话，就不能用各种流行的 GTD 工具。像 OmniFocus、Microsoft To-Do等，都需要先打开再确认的过程。</p>
 <p>像桌面便签也不太好，因为平时是打开了不同的应用铺满了桌面。</p>
 <p>于是想到了菜单栏上可以做点事情。</p>
-<p>找了一圈，Mac平台上的 TODO in menubar 的应用还不少，最合心意的是 <a href="https://www.mactodo.app/?ref=producthunt" target="_blank" rel="noopener">TODO Menubar</a>。<br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190517153927.png" alt="TODO Menubar"><br>但是它收费…</p>
-<p>还有一个<a href="https://itunes.apple.com/us/app/doo-get-things-done/id1066322956?mt=8" target="_blank" rel="noopener">Doo</a>，也收费，而且太花哨了，好看但不直观。<br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190517160402.png" alt></p>
-<p>在 Github 上也搜到了一个<a href="https://github.com/Praseetha-KR/postit-todo" target="_blank" rel="noopener">postit-todo</a>，不错但是用起来太卡，而且关闭后重新打开加载数据很慢。<br><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190517160158.png" alt></p>
+<p>找了一圈，Mac平台上的 TODO in menubar 的应用还不少，最合心意的是 <a href="https://www.mactodo.app/?ref=producthunt" target="_blank" rel="noopener">TODO Menubar</a>。<br><img src="https://foreti.me/imgplace/2019/20190517153927.png" alt="TODO Menubar"><br>但是它收费…</p>
+<p>还有一个<a href="https://itunes.apple.com/us/app/doo-get-things-done/id1066322956?mt=8" target="_blank" rel="noopener">Doo</a>，也收费，而且太花哨了，好看但不直观。<br><img src="https://foreti.me/imgplace/2019/20190517160402.png" alt></p>
+<p>在 Github 上也搜到了一个<a href="https://github.com/Praseetha-KR/postit-todo" target="_blank" rel="noopener">postit-todo</a>，不错但是用起来太卡，而且关闭后重新打开加载数据很慢。<br><img src="https://foreti.me/imgplace/2019/20190517160158.png" alt></p>
 <p>最后，在 AppSo 的一篇推 TODO Menubar 的文章评论里看到了 <a href="https://getbitbar.com/" target="_blank" rel="noopener">BitBar</a>。</p>
 <p>BitBar 是一个可以编写脚本，将你能想到的任何信息，放到 menubar 里显示。</p>
 <p>我下载 BitBar，并且在它的插件市场里找了一个 TODO 的<a href="https://raw.githubusercontent.com/matryer/bitbar-plugins/master/Tools/todolist.2m.sh" target="_blank" rel="noopener">脚本</a>。这个脚本实现的是在 Mac 的原生 Reminder 应用里指定一个提醒列表，将这个列表里的提醒事项放到菜单栏显示，并且只显示第一个，在菜单栏点击这个提醒事项，可以将它在 Reminder 里标记为完成。觉得这个脚本功能有点弱，还差点我要的东西。</p>
@@ -92,7 +92,7 @@
 <p>效果图：</p>
 <p><img src="https://foreti.me/imgplace/2019/20190523204949.png" alt></p>
 <p>对应在 Reminder 中的任务列表</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190523150457.png" alt></p>
+<p><img src="https://foreti.me/imgplace/2019/20190523150457.png" alt></p>
 <p>如果你细心点，可以发现第 3 条 todo，<code>提交 commit</code> 在菜单栏中变成了 <code>提交commit</code>，这是由于 shell 中的数组元素以空格区分，为了避免1 个 todo 显示在两行，我将每个 todo 中的空格都去掉了。</p>
 <p>这样，每天只用维护自己的 Reminder 的任务列表就行了。如果很多天过去，任务总数太多，可以再创建一个 Archive 提醒列表，将过去完成的任务都移动到里面。</p>
 <p>快乐的写 TODO 吧！</p>

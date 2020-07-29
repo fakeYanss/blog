@@ -81,15 +81,15 @@
 <p>于是想到了GitBook。</p>
 <p>首先我在GitBook上创建一本书，书名是<code>Hadoop-The Definitive Guide 4th Edition</code>。</p>
 <p>然后打开就可以直接编辑。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/hadoopbook1.png" alt="hadoopbook1"></p>
+<p><img src="https://foreti.me/imgplace/2019/hadoopbook1.png" alt="hadoopbook1"></p>
 <p>但是gitbook的编辑器很难用啊，好像原来是直接写markdown的，现在改了编辑模式？特别是插入连接的时候，没法像<code>[]()</code>这么方便啊。</p>
 <p>而且重要的是gitbook服务器加载速度不稳定，慢的时候都打不开了，所以想着直接把gitbook的Markdown文件内容编译成静态页面，发布到github仓库中，利用gh-pages直接访问，速度快多了。</p>
 <h1 id="连接github仓库"><a href="#连接github仓库" class="headerlink" title="连接github仓库"></a>连接github仓库</h1><p>现在说说怎么部署到gh-pages。</p>
 <p>首先在github创建一个仓库，<code>Hadoop-The-Definitive-Guide-4th</code>，并初始化。</p>
 <p>然后到gitbook的书籍<code>Hadoop-The Definitive Guide 4th Edition</code>的设置里找到<code>Github</code>，添加对应<code>Hadoop-The-Definitive-Guide-4th</code>仓库并同步内容</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/hadoopbook2.png" alt="hadoopbook2"></p>
+<p><img src="https://foreti.me/imgplace/2019/hadoopbook2.png" alt="hadoopbook2"></p>
 <p>之后可以在github仓库中看到一些文件</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/hadoopbook3.png" alt="hadoopbook3"></p>
+<p><img src="https://foreti.me/imgplace/2019/hadoopbook3.png" alt="hadoopbook3"></p>
 <p>这些都是gitbook书的markdown文件。这一步完成后，就可以在gitbook或github任意一端编译文档，提交后都会在两端生成的相应书籍。这相当于书籍在两端都有备份了。</p>
 <p>如果不用gh-pages生成页面的话，上述的操作就已经够了。</p>
 <h1 id="提交gh-pages分支"><a href="#提交gh-pages分支" class="headerlink" title="提交gh-pages分支"></a>提交gh-pages分支</h1><p>接下来介绍如何提交静态页面到gh-pages。<br><br></p>
@@ -102,13 +102,13 @@
 <p>将<code>_book</code>中的子文件全部移到外层，并删除<code>_book</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv _book/* ./</span><br><span class="line">rm -rf _book</span><br></pre></td></tr></table></figure></p>
 <p>这时候<code>gh-pages</code>分支下就是全部的静态页面文件了，接下来就是提交到远程<code>gh-pages</code>分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &apos;publish gh-pages&apos;</span><br><span class="line">git push origin gh-pages</span><br></pre></td></tr></table></figure></p>
 <p>提交完成后到github仓库的设置中看一下，gh-pages服务是否自动开启，如果没有的话在<code>Source</code>中选择<code>gh-pages branch</code>，保存刷新，等待几分钟就好了。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/hadoopbook5.png" alt="hadoopbook5"></p>
+<p><img src="https://foreti.me/imgplace/2019/hadoopbook5.png" alt="hadoopbook5"></p>
 <p>全部操作已经完成，接下来每次在本地更新书籍内容后，先生成静态页面，然后提交master分支，再提交gh-pages分支就可以了。</p>
 <p>之后每次查看线上gitbook书籍，可以直接输入url <code>https://name.github.io/书籍仓库名</code>查看。</p>
 <hr>
 <p>最后，为了每次的提交操作不用手打一遍，我写了一个bash脚本<a href="https://github.com/fakeYanss/Hadoop-The-Definitive-Guide-4th/blob/master/publish.sh" target="_blank" rel="noopener">publish.sh</a>，<a href="http://pic.yanss.top/publish.sh" target="_blank" rel="noopener">点击下载</a>，自行更改第一行的文件夹地址即可。windows系统安装过git环境的可以直接双击运行，要查看日志的话可以在git bash中输入<code>./publish.sh</code>运行。</p>
 <p><strong>注意：使用时不能将脚本放在仓库里，不然在切换分支时会出错，</strong>最好与仓库文件夹同级。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/hadoopbook4.png" alt="hadoopbook4"></p>
+<p><img src="https://foreti.me/imgplace/2019/hadoopbook4.png" alt="hadoopbook4"></p>
 
  
                 <!-- Meta -->

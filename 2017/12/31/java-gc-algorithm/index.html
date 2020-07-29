@@ -78,7 +78,7 @@
 <hr>
 <h1 id="GC的三种收集方法"><a href="#GC的三种收集方法" class="headerlink" title="GC的三种收集方法"></a>GC的三种收集方法</h1><h2 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h2><p>标记清除算法是最基础的收集算法，其他收集算法都是基于这种思想。</p>
 <p>标记清除算法分为“标记”和“清除”两个阶段：首先标记出需要回收的对象，标记完成之后统一清除对象。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/vern%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.jpg" alt="vern标记清除算法"></p>
+<p><img src="https://foreti.me/imgplace/2019/vern%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.jpg" alt="vern标记清除算法"></p>
 <p>主要缺点：</p>
 <ol>
 <li>效率问题，标记和清除过程效率不高 。</li>
@@ -86,11 +86,11 @@
 </ol>
 <h2 id="标记整理"><a href="#标记整理" class="headerlink" title="标记整理"></a>标记整理</h2><p>标记整理，主要用于回收老年代。</p>
 <p>标记操作和“标记-清除”算法一致，后续操作不只是直接清理对象，而是在清理无用对象完成后让所有存活的对象都向一端移动，并更新引用其对象的指针。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/vern%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.jpg" alt="vern标记整理算法"></p>
+<p><img src="https://foreti.me/imgplace/2019/vern%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.jpg" alt="vern标记整理算法"></p>
 <p>主要缺点：在标记-清除的基础上还需进行对象的移动，成本相对较高，好处则是不会产生内存碎片。</p>
 <h2 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h2><p>复制算法，主要用于回收新生代。</p>
 <p>它将可用内存容量划分为大小相等的两块，每次只使用其中的一块。当这一块用完之后，就将还存活的对象复制到另外一块上面，然后在把已使用过的内存空间一次理掉。这样使得每次都是对其中的一块进行内存回收，不会产生碎片等情况，只要移动堆订的指针，按顺序分配内存即可，实现简单，运行高效。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/vern%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.jpg" alt="vern复制算法"></p>
+<p><img src="https://foreti.me/imgplace/2019/vern%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.jpg" alt="vern复制算法"></p>
 <p>主要缺点：内存缩小为原来的一半。</p>
 <h1 id="分代的垃圾回收策略"><a href="#分代的垃圾回收策略" class="headerlink" title="分代的垃圾回收策略"></a>分代的垃圾回收策略</h1><p>分代的垃圾回收策略是基于这样一个事实：不同的对象的生命周期是不一样的。因此，不同生命周期的对象可以采取不同的回收算法，以便提高回收效率。</p>
 <h2 id="年轻代（Young-Generation）"><a href="#年轻代（Young-Generation）" class="headerlink" title="年轻代（Young Generation）"></a>年轻代（Young Generation）</h2><ul>

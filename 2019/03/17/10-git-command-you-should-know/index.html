@@ -82,7 +82,7 @@
 <p>如果你对基础的 git 命令不熟悉，先读一下我的<a href="https://towardsdatascience.com/learn-enough-git-to-be-useful-281561eef959" target="_blank" rel="noopener">前一篇文章</a>，关于 Git 工作流。</p>
 <p>这里有 10 个要知道的命令和一些公共的标志。每个命令都链接到相关的 Atlassian Bitbucket 指导。</p>
 <h2 id="审查"><a href="#审查" class="headerlink" title="审查"></a>审查</h2><p>让我们先检查变化。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190430170003.png" alt></p>
+<p><img src="https://foreti.me/imgplace/2019/20190430170003.png" alt></p>
 <ul>
 <li><a href="https://www.atlassian.com/git/tutorials/saving-changes/git-diff" target="_blank" rel="noopener">git diff</a> —— 查看本地所有文件的变化。后面加上文件名可以只查看一个文件的变化</li>
 <li><a href="https://www.atlassian.com/git/tutorials/git-log" target="_blank" rel="noopener">git log</a> —— 查看所有的提交历史。也可以用于一个文件，<code>git log -p my_file</code>。输入<code>q</code>退出。</li>
@@ -94,7 +94,7 @@
 <p><code>git reset</code> 和 <code>git checkout</code> 可以被用于提交和单独的文件。<code>git revert</code> 只被用在提交级别。</p>
 <p>如果你正在处理你没有合并到远程多人工作里的本地提交，你可以使用任何这些命令。</p>
 <p>如果你在多人工作里需要消除一个远程分支的提交，<code>git revert</code> 是你的工具。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190501155041.png" alt="undo"></p>
+<p><img src="https://foreti.me/imgplace/2019/20190501155041.png" alt="undo"></p>
 <p>每个这些命令都可以加上不同的参数。这里是通用的用法：</p>
 <ul>
 <li><a href="https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting" target="_blank" rel="noopener"><code>git reset --hard HEAD</code></a> —— 丢弃已暂存和为暂存的改变，恢复到最近的一次提交。</li>
@@ -111,7 +111,7 @@
 <li><a href="https://www.atlassian.com/git/tutorials/undoing-changes/git-revert" target="_blank" rel="noopener"><code>git revert my_commit</code></a> —— 撤销 <em>my_commit</em> 里的改变的影响。<code>revert</code> 撤销改变时，会生成一个新的提交。</li>
 </ul>
 <p><code>revert</code> 对多人合作项目是安全的，因为它不会重写其他用户的分支可能依赖的提交历史。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190501161219.png" alt></p>
+<p><img src="https://foreti.me/imgplace/2019/20190501161219.png" alt></p>
 <div style="text-align: center;">revert is safe</div>
 
 <p>有时你只想删除你本地目录未被追踪的文件。比如，可能你运行了一些代码去创建大量不同类型的文件，这些文件你并不想加到你的仓库。Oops. 😏 你可以快速地清除它们。</p>
@@ -122,7 +122,7 @@
 <p>使用 <code>-f</code> 标志去强制移除文件。</p>
 <p>使用 <code>-d</code> 标志去移除未追踪的目录。</p>
 <p>默认的 <em>.gitignore</em> 指定的未追踪文件不会被删除，但是这个行为可以被更改。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190501162527.png" alt></p>
+<p><img src="https://foreti.me/imgplace/2019/20190501162527.png" alt></p>
 <p>现在你了解了 Git 里的撤销事情的工具，让我们看下保持事情有序的两个命令。</p>
 <h2 id="整理"><a href="#整理" class="headerlink" title="整理"></a>整理</h2><ul>
 <li><a href="https://www.atlassian.com/git/tutorials/rewriting-history#git-commit--amend" target="_blank" rel="noopener"><code>git commit --amend</code></a> —— 添加暂存的改变到最近的一条提交里。</li>
@@ -133,7 +133,7 @@
 </ul>
 <p>如果你在使用 Python 并在你创建的包里生成改变，<a href="https://pypi.org/project/bump2version/" target="_blank" rel="noopener">bump2version</a> 会自动地为你创建标签。一旦你推送了你的标签，你就可以在发布中使用它们。<a href="https://towardsdatascience.com/build-your-first-open-source-python-project-53471c9942a7?source=friends_link&amp;sk=576540dbd90cf2ee72a3a0e0bfa72ffb" target="_blank" rel="noopener">这是我的指导</a> ，帮你生成你的第一个 OSS Python 包。关注 <a href="https://medium.com/@jeffhale" target="_blank" rel="noopener">我</a> 来确认你没有遗失发版部分！</p>
 <h2 id="求助，我陷在-Vim-里出不来了！"><a href="#求助，我陷在-Vim-里出不来了！" class="headerlink" title="求助，我陷在 Vim 里出不来了！"></a>求助，我陷在 Vim 里出不来了！</h2><p>使用 Git，你可能偶尔发现自己被丢进了一个 Vim 编辑器里。比如，你试图提交，但没写提交消息 —— Vim 将会自动打开。如果你不知道 Vim，一种糟糕的东西（大误） —— 看看 <a href="https://stackoverflow.com/a/11828573/4590385" target="_blank" rel="noopener">这个 4000+ 赞同的 Stack Overflow 回答</a>，了解怎样退出它。</p>
-<p><img src="https://raw.githubusercontent.com/fakeYanss/imgplace/master/2019/20190501164225.png" alt></p>
+<p><img src="https://foreti.me/imgplace/2019/20190501164225.png" alt></p>
 <div style="text-align: center;">Freedom!</div>
 
 <p>这里是保存文件退出 Vim 的 4 步计划：</p>
