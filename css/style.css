@@ -843,43 +843,45 @@ a.nav-back {
   position: fixed;
 }
 .post-preview > a > .post-title {
-  font-size: 2em;
+  font-size: 1.6em;
 }
 @media (min-width: 1600px) {
   .col-lg-offset-2 {
-    margin-left: 10%;
+    margin-left: 0%;
   }
   .col-lg-8 {
-    width: 80%;
+    width: 100%;
   }
 }
-@media only screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .intro-header .post-heading h1 {
     text-align: center;
   }
 }
-.post-title {
-  display: block !important;
-  width: 100% !important;
-}
-.post-preview p {
-  display: block !important;
-  padding-top: 80px;
-  margin-left: 0px !important;
-  padding-left: 0px !important;
-  width: 100% !important;
-}
-.post-preview a p {
-  display: block !important;
-  margin-left: 0px !important;
-  padding-left: 0px !important;
-  width: 100% !important;
-}
-.post-preview a p a {
-  display: block !important;
-  margin-left: 0px !important;
-  padding-left: 0px !important;
-  width: 100% !important;
+@media screen and (max-width: 767px) {
+  .post-title {
+    display: block !important;
+    width: 100% !important;
+  }
+  .post-preview p {
+    display: block !important;
+    padding-top: 80px;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    width: 100% !important;
+  }
+  .post-preview a p {
+    display: block !important;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    width: 100% !important;
+  }
+  .post-preview a p a {
+    display: block !important;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    width: 100% !important;
+  }
 }
 article .container .row img {
   border-radius: 0.3125em;
