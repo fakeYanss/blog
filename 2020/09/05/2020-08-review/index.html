@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="8月开始，生活似乎好转了。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>2020-08-review | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back Home -->
+<a class="nav-back" href="/blog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>2020-08-review</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>8月开始，生活似乎好转了。</p>
+<a id="more"></a>
+<hr>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28381564&auto=0&height=66"></iframe>
+
+<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>工作上的项目进度缓了下来，我花了几天时间，去了解和实践了filebeat做日志采集组件的特性，一步一步搭建了EFK日志采集平台，用于收集线上两个小型业务的服务请求日志。filebeat结合elastic search ingest peline真的非常方便，个人认为是轻量化日志收集的不二之选。</p>
+<p>另外一个值得说道的事情，是仿照线上现有的一套基于kafka的支持优先级的任务调度系统，基于redis重写了一套，这套系统的特点是支持多优先级、基于滑动时间窗口实现消费速度自适应调整。redis相比kafka的优点是几乎可以创建无限多的队列，而kafka的建议topic数是有限的。</p>
+<p>另外而做了一些小的系统优化，比如项目的redis分布式锁重写，此前的实现在某些情况下是有bug的，这次利用lua脚本实现原子性。这里个人还是建议直接用redisson的RLock，如无必要不需自己再造轮子，且自己的实现大概率没有redisson考虑完善。下次有空可以出一个自实现和redisson RLock的分析对比。</p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>8月看了很多动漫。感谢B站，陪我度过一个人的孤独时间。 </p>
+<p>感觉今年7月的新番有点遍地开花的感觉。<br>这其中有国漫，<br>未来末日背景的《灵笼》，人类最后的浮空堡垒，人物模型太精致了；<br>小说改编的《元龙》，特种兵穿越异世界，类龙傲天属性，稍微好点，智斗成分居多。  </p>
+<p>也有日漫，<br>继续在追的《刀剑》，虽然评分创新低，但是这么多季都看了，也不能漏掉这次的最终章。一句话，奇怪的后宫增加了；<br>动漫西部世界的《DECA-DENCE》，反派的口头禅：去除人类世界的BUG；<br>轻松的大学生活（误）《宇崎学妹想要玩》；<br>切磋茶艺的《出租女友》；<br>最后，应该是今年最喜欢的《高校之神》，拳拳到肉的打击感，上一个这么爽的是《异兽魔都》。</p>
+<p>另外，重新看了《爱在黎明破晓前》，继而看了后两部《爱在日落黄昏时》、《爱在午夜降临前》。整体来说，就是看两个话痨连续18年（现实也是）的对话，对话内容没有边界，从文学到音乐，从政治到时事，从公益环保到感情生活，即使是成为老夫老妻后的嘴边开车，也显得那么有趣。非常新奇的一种电影剧情展开方式，在二三部里经常出现的长镜头，就像是综艺访谈一样，摄像头就正对两个主角的脸。另外两人的对话长度可能超过绝大多数的剧本对话时长，我猜测对话应该是两人的随性发挥，这种长达十多分钟的一镜到底里，两人对话不停，真不可能背下来这么长的台词。</p>
+<p>在读《禅与摩托车维修艺术》，目前来看是一本挺有意思的书，你不仅可以学禅，还可以学摩托车维修\doge。</p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>爱我的妻子，感谢她陪我度过了这个七夕。</p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>期望9月要做的事：习惯养成。</p>
+<ul>
+<li>[ ] 锻炼：跑步/波比跳/深蹲</li>
+<li>[ ] 阅读：文学、社会学、金融书籍</li>
+<li>[ ] 专业：leetcode刷题、java基础找回、docker实践</li>
+</ul>
+<hr>
+<p>很幸运毕业后不用遭受社会的毒打，也感激百度和百度人带给我的成长，希望百度好好走下去，越走越好，越走越高。</p>
+
+ 
+                <!-- Meta -->
+                <div class="post-meta">
+                    <hr>
+                    <br>
+                    <div class="post-tags">
+                        
+                            
+
+<a href="/blog/tags/总结/">#总结</a>
+
+
+                        
+                    </div>
+                    <div class="post-date">
+                        
+                            2020 年 09 月 05 日
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+<!-- Image viewer-->
+
+    <!-- Custom picture view-->
+    <link href="/blog/css/viewer.min.css" rel="stylesheet" />
+    <script
+      src="/blog/js/viewer.min.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    
+    <script type="text/javascript">
+      // set image viewer
+      Viewer.setDefaults({
+        zoomRatio: [0.5],
+        navbar: false,
+        toolbar: false,
+        button: false,
+        title: [2, (image, imageData) => `${image.alt}`],
+        show: function() {
+          this.viewer.zoomTo(0.5);
+        }
+      });
+      var imageList = document.getElementsByTagName("img");
+      Array.prototype.forEach.call(imageList, element => {
+        var viewer = new Viewer(element);
+      });
+    </script>
+
+    
+    <!-- Scripts -->
+    <script type="text/javascript">
+    console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
+    console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
+</script>
+  
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+    <!-- Service Worker -->
+    <!-- if using service worker -->
+
+    
+</body>
+
+</html>
