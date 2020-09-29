@@ -78,7 +78,7 @@
 <hr>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28381564&auto=0&height=66"></iframe>
 
-<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>工作上的项目进度缓了下来，我花了几天时间，去了解和实践了filebeat做日志采集组件的特性，一步一步搭建了EFK日志采集平台，用于收集线上两个小型业务的服务请求日志。filebeat结合elastic search ingest peline真的非常方便，个人认为是轻量化日志收集的不二之选。</p>
+<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>工作上的项目进度缓了下来，我花了几天时间，去了解和实践了filebeat做日志采集组件的特性，一步一步搭建了EFK日志采集平台，用于收集线上两个小型业务的服务请求日志。filebeat结合elastic search ingest pipeline真的非常方便，个人认为是轻量化日志收集的不二之选。</p>
 <p>另外一个值得说道的事情，是仿照线上现有的一套基于kafka的支持优先级的任务调度系统，基于redis重写了一套，这套系统的特点是支持多优先级、基于滑动时间窗口实现消费速度自适应调整。redis相比kafka的优点是几乎可以创建无限多的队列，而kafka的建议topic数是有限的。</p>
 <p>另外而做了一些小的系统优化，比如项目的redis分布式锁重写，此前的实现在某些情况下是有bug的，这次利用lua脚本实现原子性。这里个人还是建议直接用redisson的RLock，如无必要不需自己再造轮子，且自己的实现大概率没有redisson考虑完善。下次有空可以出一个自实现和redisson RLock的分析对比。</p>
 <h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>8月看了很多动漫。感谢B站，陪我度过一个人的孤独时间。 </p>
