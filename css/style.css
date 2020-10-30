@@ -763,8 +763,7 @@ a.nav-search:focus {
 }
 @media only screen and (max-width: 1024px) {
   a.nav-search {
-    display: none;
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 .modal-dialog {
