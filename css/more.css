@@ -6,7 +6,7 @@
 }
 a.nav-search {
   position: fixed;
-  bottom: 305px;
+  bottom: 30px;
   right: 30px;
   color: rgba(0,0,0,0.5);
   z-index: 99;
