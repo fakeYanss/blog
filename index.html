@@ -592,7 +592,7 @@
                             success: function(data) {
                                 var answer = document.createElement('li');
                                 answer.innerHTML = "<a class='search-result-title'>" +
-                                    "iRobot: " + data.data.info.text +
+                                    data.data.info.text +
                                     "</a><p class='search-result'></p>";
                                 $resultContent.getElementsByClassName("search-result-list")[0].prepend(answer)
                             },
