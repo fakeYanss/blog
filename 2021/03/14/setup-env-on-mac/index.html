@@ -106,6 +106,8 @@
 <p>Symlink <code>spaceship.zsh-theme</code> to your oh-my-zsh custom themes directory:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s &quot;$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme&quot; &quot;$ZSH_CUSTOM/themes/spaceship.zsh-theme&quot;</span><br></pre></td></tr></table></figure>
 <p>Set <code>ZSH_THEME=&quot;spaceship&quot;</code> in your <code>.zshrc</code>.</p>
+<p>最终样式：</p>
+<p><img src="https://foreti.me/imgplace/2021/2021-03-17_image-20210317234829665-06705d.png" alt="image-20210317234829665"></p>
 <h2 id="安装tmux"><a href="#安装tmux" class="headerlink" title="安装tmux"></a>安装tmux</h2><p>安装tmux：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
 <h3 id="oh-my-tmux"><a href="#oh-my-tmux" class="headerlink" title="oh-my-tmux"></a>oh-my-tmux</h3><p>选择用oh-my-tmux一键配置：</p>
@@ -114,6 +116,8 @@
 <h3 id="主题nord-tmux"><a href="#主题nord-tmux" class="headerlink" title="主题nord-tmux"></a>主题nord-tmux</h3><p>nord是一个干净的、冷色调的配色主题，提供了一组主题插件集合，包含诸如 jetbrains、vscode、vim、tmux 的主题插件，这里有全部的<a href="https://github.com/arcticicestudio?tab=repositories&amp;q=nord-&amp;type=&amp;language=" target="_blank" rel="noopener">插件仓库</a>。</p>
 <p>在 <code>.tmux.conf.local</code> 中搜索plugin位置，在下面增加一行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -g @plugin <span class="string">"arcticicestudio/nord-tmux"</span></span><br></pre></td></tr></table></figure>
+<p>最终效果：</p>
+<p><img src="https://foreti.me/imgplace/2021/2021-03-17_image-20210317235420004-e88c55.png" alt="image-20210317235420004"></p>
 <h2 id="安装多版本jdk"><a href="#安装多版本jdk" class="headerlink" title="安装多版本jdk"></a>安装多版本jdk</h2><p>activate the AdoptOpenJDK：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew tap AdoptOpenJDK/openjdk</span><br></pre></td></tr></table></figure>
 <p>使用国内镜像安装jdk8，编辑rb文件，替换下载的url：</p>
