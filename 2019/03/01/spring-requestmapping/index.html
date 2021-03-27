@@ -49,31 +49,33 @@
 
     <!-- Content -->
     <section class="article-container">
-<!-- Back Home -->
-<a class="nav-back" href="/blog/">
+    <!-- Back Home -->
+    <a class="nav-back" href="/blog/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
-<!-- Page Header -->
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>Spring @RequestMapping详解</h1>
+        <!-- Page Header -->
+        <header class="intro-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            <h1>
+                                Spring @RequestMapping详解
+                            </h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
+        </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Main Content -->
-            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>201902W9 Review, 一篇关于Spring RequestMapping的译文。</p>
+        <!-- Post Content -->
+        <article>
+            <div class="container">
+                <div class="row">
+                    <!-- Post Main Content -->
+                    <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <p>201902W9 Review, 一篇关于Spring RequestMapping的译文。</p>
 <a id="more"></a>
 <hr>
 <h1 id="Spring-RequestMapping"><a href="#Spring-RequestMapping" class="headerlink" title="Spring RequestMapping"></a>Spring RequestMapping</h1><p><a href="https://www.baeldung.com/spring-requestmapping" target="_blank" rel="noopener">原文</a><br>by <a href="https://www.baeldung.com/author/eugen/" target="_blank" rel="noopener">Eugen Paraschiv</a></p>
@@ -149,58 +151,51 @@
 <p>如果你想学习如何使用另一个Spring MVC的核心注解, 你可以<a href="https://www.baeldung.com/spring-mvc-and-the-modelattribute-annotation" target="_blank" rel="noopener">在这浏览 <em>@ModelAttribu</em> 注解</a>.</p>
 <p>这篇文章的全部代码在<a href="https://github.com/eugenp/tutorials/tree/master/spring-rest-simple" target="_blank" rel="noopener">Github</a>可见. 这是一个Maven项目, 所以它可以很容易被导入和运行.</p>
 
- 
-                <!-- Meta -->
-                <div class="post-meta">
-                    <hr>
-                    <br>
-                    <div class="post-tags">
-                        
-                            
+
+                            <!-- Meta -->
+                            <div class="post-meta">
+                                <hr>
+                                <br>
+                                <div class="post-tags">
+                                    
+                                        
 
 <a href="/blog/tags/Review/">#Review</a> <a href="/blog/tags/Spring/">#Spring</a> <a href="/blog/tags/RequestMapping/">#RequestMapping</a>
 
 
-                        
+                                            
+                                </div>
+                                <div class="post-date">
+                                    
+                                        2019 年 03 月 01 日
+                                    
+                                </div>
+                            </div>
                     </div>
-                    <div class="post-date">
-                        
-                            2019 年 03 月 01 日
-                        
+
+                    <!-- Comments -->
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
                     </div>
                 </div>
             </div>
-
-            <!-- Comments -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <!-- Disqus Comments -->
-
-    <div id="disqus_thread" class="comment"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'you-yue-ru-tie';
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    
-            </div>
-        </div>
-    </div>
-</article>
+        </article>
 </section>
-
-<aside id="article-toc" role="navigation" class="fixed">
-    <div id="article-toc-inner">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-RequestMapping"><span class="toc-number">1.</span> <span class="toc-text">Spring RequestMapping</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概述"><span class="toc-number">1.1.</span> <span class="toc-text">1. 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-RequestMapping基础"><span class="toc-number">1.2.</span> <span class="toc-text">2. @RequestMapping基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-RequestMapping-按路径"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1. @RequestMapping - 按路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-RequestMapping-HTTP方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2. @RequestMapping - HTTP方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-RequestMapping-和-HTTP-Headers"><span class="toc-number">1.3.</span> <span class="toc-text">3. RequestMapping 和 HTTP Headers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-带有headers-Attribute的-RequestMapping"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1. 带有headers Attribute的@RequestMapping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-RequestMapping-消费和生产"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2. @RequestMapping 消费和生产</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-RequestMapping使用路径变量"><span class="toc-number">1.4.</span> <span class="toc-text">4. RequestMapping使用路径变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-单个-PathVariable"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 单个 @PathVariable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-多个-PathVariable"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 多个 @PathVariable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-带正则表达式的-PathVariable"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 带正则表达式的 @PathVariable</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-RequestMapping使用Request-Parameters"><span class="toc-number">1.5.</span> <span class="toc-text">5. RequestMapping使用Request Parameters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-RequestMapping-Corner-Cases"><span class="toc-number">1.6.</span> <span class="toc-text">6. RequestMapping Corner Cases</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-RequestMapping-–-多个路径映射到同一Controller方法"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1. @RequestMapping – 多个路径映射到同一Controller方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-RequestMapping-–-多个HTTP请求方法到同一个controller方法"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2. @RequestMapping – 多个HTTP请求方法到同一个controller方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-RequestMapping-对所有请求的返回"><span class="toc-number">1.6.3.</span> <span class="toc-text">6.3. @RequestMapping - 对所有请求的返回</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-模糊映射错误"><span class="toc-number">1.6.4.</span> <span class="toc-text">6.4 模糊映射错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-新的请求映射捷径"><span class="toc-number">1.7.</span> <span class="toc-text">7. 新的请求映射捷径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Spring配置"><span class="toc-number">1.8.</span> <span class="toc-text">8. Spring配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-结论"><span class="toc-number">1.9.</span> <span class="toc-text">9. 结论</span></a></li></ol></li></ol>
-    </div>
-</aside>
 
 <!-- Image viewer-->
 
@@ -231,9 +226,17 @@
     </script>
 
     
+
+<!-- TOC -->
+
+    <aside id="article-toc" role="navigation" class="fixed">
+        <div id="article-toc-inner">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-RequestMapping"><span class="toc-number">1.</span> <span class="toc-text">Spring RequestMapping</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概述"><span class="toc-number">1.1.</span> <span class="toc-text">1. 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-RequestMapping基础"><span class="toc-number">1.2.</span> <span class="toc-text">2. @RequestMapping基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-RequestMapping-按路径"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1. @RequestMapping - 按路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-RequestMapping-HTTP方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2. @RequestMapping - HTTP方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-RequestMapping-和-HTTP-Headers"><span class="toc-number">1.3.</span> <span class="toc-text">3. RequestMapping 和 HTTP Headers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-带有headers-Attribute的-RequestMapping"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1. 带有headers Attribute的@RequestMapping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-RequestMapping-消费和生产"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2. @RequestMapping 消费和生产</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-RequestMapping使用路径变量"><span class="toc-number">1.4.</span> <span class="toc-text">4. RequestMapping使用路径变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-单个-PathVariable"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 单个 @PathVariable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-多个-PathVariable"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 多个 @PathVariable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-带正则表达式的-PathVariable"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 带正则表达式的 @PathVariable</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-RequestMapping使用Request-Parameters"><span class="toc-number">1.5.</span> <span class="toc-text">5. RequestMapping使用Request Parameters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-RequestMapping-Corner-Cases"><span class="toc-number">1.6.</span> <span class="toc-text">6. RequestMapping Corner Cases</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-RequestMapping-–-多个路径映射到同一Controller方法"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1. @RequestMapping – 多个路径映射到同一Controller方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-RequestMapping-–-多个HTTP请求方法到同一个controller方法"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2. @RequestMapping – 多个HTTP请求方法到同一个controller方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-RequestMapping-对所有请求的返回"><span class="toc-number">1.6.3.</span> <span class="toc-text">6.3. @RequestMapping - 对所有请求的返回</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-模糊映射错误"><span class="toc-number">1.6.4.</span> <span class="toc-text">6.4 模糊映射错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-新的请求映射捷径"><span class="toc-number">1.7.</span> <span class="toc-text">7. 新的请求映射捷径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Spring配置"><span class="toc-number">1.8.</span> <span class="toc-text">8. Spring配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-结论"><span class="toc-number">1.9.</span> <span class="toc-text">9. 结论</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+
     <!-- Scripts -->
     <script type="text/javascript">
-    console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
     console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
 </script>
   
@@ -253,6 +256,21 @@
 
     <!-- Service Worker -->
     <!-- if using service worker -->
+
+    <script text="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(function() {
+            console.log("A new service worker is being installed.");
+          })
+          .catch(function(error) {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
 
     
 </body>

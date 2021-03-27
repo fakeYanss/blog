@@ -49,31 +49,33 @@
 
     <!-- Content -->
     <section class="article-container">
-<!-- Back Home -->
-<a class="nav-back" href="/blog/">
+    <!-- Back Home -->
+    <a class="nav-back" href="/blog/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
-<!-- Page Header -->
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>Thymeleaf的简单使用</h1>
+        <!-- Page Header -->
+        <header class="intro-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            <h1>
+                                Thymeleaf的简单使用
+                            </h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
+        </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Main Content -->
-            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>Thymeleaf是一款用于渲染XML/XHTML/HTML5内容的Java模板引擎库，可以通过HTML的标签属性渲染标签内容。</p>
+        <!-- Post Content -->
+        <article>
+            <div class="container">
+                <div class="row">
+                    <!-- Post Main Content -->
+                    <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <p>Thymeleaf是一款用于渲染XML/XHTML/HTML5内容的Java模板引擎库，可以通过HTML的标签属性渲染标签内容。</p>
 <a id="more"></a>
 <hr>
 <p>举个例子，<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;home.welcome&#125;"</span>&gt;</span>Welcome to our grocery store!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -112,58 +114,51 @@
 <p>这种写法等同于<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;Hello.world&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>因为外层的th:text会将内层的覆盖掉, 如果要同时渲染, 可以使用inline属性, 也可以将内外层隔离开.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:inline</span>=<span class="string">"text"</span>&gt;</span>[[$&#123;Hello.world&#125;]]<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:if</span>=<span class="string">"$&#123;user == 'yanss'&#125;"</span>&gt;</span>yanss<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- or --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;Hello.world&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:if</span>=<span class="string">"$&#123;user == 'yanss'&#125;"</span>&gt;</span>yanss<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 
- 
-                <!-- Meta -->
-                <div class="post-meta">
-                    <hr>
-                    <br>
-                    <div class="post-tags">
-                        
-                            
+
+                            <!-- Meta -->
+                            <div class="post-meta">
+                                <hr>
+                                <br>
+                                <div class="post-tags">
+                                    
+                                        
 
 <a href="/blog/tags/thymeleaf/">#thymeleaf</a>
 
 
-                        
+                                            
+                                </div>
+                                <div class="post-date">
+                                    
+                                        2018 年 03 月 12 日
+                                    
+                                </div>
+                            </div>
                     </div>
-                    <div class="post-date">
-                        
-                            2018 年 03 月 12 日
-                        
+
+                    <!-- Comments -->
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
                     </div>
                 </div>
             </div>
-
-            <!-- Comments -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <!-- Disqus Comments -->
-
-    <div id="disqus_thread" class="comment"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'you-yue-ru-tie';
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    
-            </div>
-        </div>
-    </div>
-</article>
+        </article>
 </section>
-
-<aside id="article-toc" role="navigation" class="fixed">
-    <div id="article-toc-inner">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#URL"><span class="toc-number">1.</span> <span class="toc-text">URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串替换"><span class="toc-number">2.</span> <span class="toc-text">字符串替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件选择式"><span class="toc-number">3.</span> <span class="toc-text">条件选择式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环loop"><span class="toc-number">4.</span> <span class="toc-text">循环loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if-unless-switch-case"><span class="toc-number">5.</span> <span class="toc-text">if/unless, switch/case</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#inline"><span class="toc-number">6.</span> <span class="toc-text">inline</span></a></li></ol>
-    </div>
-</aside>
 
 <!-- Image viewer-->
 
@@ -194,9 +189,17 @@
     </script>
 
     
+
+<!-- TOC -->
+
+    <aside id="article-toc" role="navigation" class="fixed">
+        <div id="article-toc-inner">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#URL"><span class="toc-number">1.</span> <span class="toc-text">URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串替换"><span class="toc-number">2.</span> <span class="toc-text">字符串替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件选择式"><span class="toc-number">3.</span> <span class="toc-text">条件选择式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环loop"><span class="toc-number">4.</span> <span class="toc-text">循环loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if-unless-switch-case"><span class="toc-number">5.</span> <span class="toc-text">if/unless, switch/case</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#inline"><span class="toc-number">6.</span> <span class="toc-text">inline</span></a></li></ol>
+        </div>
+    </aside>
+
     <!-- Scripts -->
     <script type="text/javascript">
-    console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
     console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
 </script>
   
@@ -216,6 +219,21 @@
 
     <!-- Service Worker -->
     <!-- if using service worker -->
+
+    <script text="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(function() {
+            console.log("A new service worker is being installed.");
+          })
+          .catch(function(error) {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
 
     
 </body>

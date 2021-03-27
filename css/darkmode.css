@@ -1,0 +1,40 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1b1c1c;
+    --font-color: #c9c0b0;
+    --line-color: #3b3e3d;
+  }
+  .fa-camera-retro,
+  .fa-search,
+  .fa-puzzle-piece {
+    color: var(--font-color);
+  }
+  body,
+  .intro,
+  .post-title,
+  .post-preview a p,
+  .post-heading h1 {
+    background: var(--bg-color);
+    color: var(--font-color);
+  }
+  figure.highlight {
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    border-color: var(--line-color);
+    text-shadow: var(--bg-color) 0px 0px 1px;
+  }
+  figure.highlight table .line {
+    color: var(--font-color);
+  }
+  code {
+    color: #df5874;
+    background-color: #2c171b;
+  }
+  article .container .row img {
+    opacity: 0.7;
+    transition: opacity 0.5s ease-in-out;
+  }
+  article .container .row img:hover {
+    opacity: 1;
+  }
+}

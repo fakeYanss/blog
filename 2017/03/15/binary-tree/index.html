@@ -49,31 +49,33 @@
 
     <!-- Content -->
     <section class="article-container">
-<!-- Back Home -->
-<a class="nav-back" href="/blog/">
+    <!-- Back Home -->
+    <a class="nav-back" href="/blog/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
-<!-- Page Header -->
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>树和二叉树</h1>
+        <!-- Page Header -->
+        <header class="intro-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            <h1>
+                                树和二叉树
+                            </h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
+        </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Main Content -->
-            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>这里理一下数据结构中树和二叉树的知识。</p>
+        <!-- Post Content -->
+        <article>
+            <div class="container">
+                <div class="row">
+                    <!-- Post Main Content -->
+                    <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <p>这里理一下数据结构中树和二叉树的知识。</p>
 <a id="more"></a>
 <hr>
 <h2 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><blockquote>
@@ -153,58 +155,51 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">private AvlNode&lt;AnyType&gt; remove(AnyType x, AvlNode&lt;AnyType&gt; t)</span><br><span class="line">&#123;</span><br><span class="line">	if(t == null)</span><br><span class="line">		return t;//Item not found; do nothing</span><br><span class="line"></span><br><span class="line">	int compareResult = x.compareTo(t.element);</span><br><span class="line"></span><br><span class="line">	if(compareResult &lt; 0)</span><br><span class="line">		t.left = remove(x, t.left);</span><br><span class="line">	else if(compareResult &gt; 0)</span><br><span class="line">		t.right = remove(x, t.right);</span><br><span class="line">	else if(t.left != null &amp;&amp; t.right != null)//Node that has two children</span><br><span class="line">	&#123;</span><br><span class="line">		t.element = findMin(t.right).element;//Find the minimum item of right subtree</span><br><span class="line">		t.right = remove(t.element, t.right);//Remove the node of minimum item recursively			</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">		t = (t.left != null) ? t.left : t.right;//Node that has one children; parent of the node roots subtree of the node</span><br><span class="line">	return balance(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
- 
-                <!-- Meta -->
-                <div class="post-meta">
-                    <hr>
-                    <br>
-                    <div class="post-tags">
-                        
-                            
+
+                            <!-- Meta -->
+                            <div class="post-meta">
+                                <hr>
+                                <br>
+                                <div class="post-tags">
+                                    
+                                        
 
 <a href="/blog/tags/binary-tree/">#binary tree</a>
 
 
-                        
+                                            
+                                </div>
+                                <div class="post-date">
+                                    
+                                        2017 年 03 月 15 日
+                                    
+                                </div>
+                            </div>
                     </div>
-                    <div class="post-date">
-                        
-                            2017 年 03 月 15 日
-                        
+
+                    <!-- Comments -->
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
                     </div>
                 </div>
             </div>
-
-            <!-- Comments -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <!-- Disqus Comments -->
-
-    <div id="disqus_thread" class="comment"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'you-yue-ru-tie';
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    
-            </div>
-        </div>
-    </div>
-</article>
+        </article>
 </section>
-
-<aside id="article-toc" role="navigation" class="fixed">
-    <div id="article-toc-inner">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#树的定义"><span class="toc-number">1.</span> <span class="toc-text">树的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#树的实现"><span class="toc-number">2.</span> <span class="toc-text">树的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#树的遍历"><span class="toc-number">3.</span> <span class="toc-text">树的遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树"><span class="toc-number">4.</span> <span class="toc-text">二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找树ADT——二叉查找树"><span class="toc-number">5.</span> <span class="toc-text">查找树ADT——二叉查找树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二叉查找树架构"><span class="toc-number">5.1.</span> <span class="toc-text">二叉查找树架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#contains方法"><span class="toc-number">5.2.</span> <span class="toc-text">contains方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findMin方法和findMax方法"><span class="toc-number">5.3.</span> <span class="toc-text">findMin方法和findMax方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#insert方法"><span class="toc-number">5.4.</span> <span class="toc-text">insert方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#remove方法"><span class="toc-number">5.5.</span> <span class="toc-text">remove方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AVL树"><span class="toc-number">6.</span> <span class="toc-text">AVL树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单旋转"><span class="toc-number">6.1.</span> <span class="toc-text">单旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#双旋转"><span class="toc-number">6.2.</span> <span class="toc-text">双旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AVL树的插入方法"><span class="toc-number">6.3.</span> <span class="toc-text">AVL树的插入方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AVL树的删除方法"><span class="toc-number">6.4.</span> <span class="toc-text">AVL树的删除方法</span></a></li></ol></li></ol>
-    </div>
-</aside>
 
 <!-- Image viewer-->
 
@@ -235,9 +230,17 @@
     </script>
 
     
+
+<!-- TOC -->
+
+    <aside id="article-toc" role="navigation" class="fixed">
+        <div id="article-toc-inner">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#树的定义"><span class="toc-number">1.</span> <span class="toc-text">树的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#树的实现"><span class="toc-number">2.</span> <span class="toc-text">树的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#树的遍历"><span class="toc-number">3.</span> <span class="toc-text">树的遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树"><span class="toc-number">4.</span> <span class="toc-text">二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找树ADT——二叉查找树"><span class="toc-number">5.</span> <span class="toc-text">查找树ADT——二叉查找树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二叉查找树架构"><span class="toc-number">5.1.</span> <span class="toc-text">二叉查找树架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#contains方法"><span class="toc-number">5.2.</span> <span class="toc-text">contains方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findMin方法和findMax方法"><span class="toc-number">5.3.</span> <span class="toc-text">findMin方法和findMax方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#insert方法"><span class="toc-number">5.4.</span> <span class="toc-text">insert方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#remove方法"><span class="toc-number">5.5.</span> <span class="toc-text">remove方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AVL树"><span class="toc-number">6.</span> <span class="toc-text">AVL树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单旋转"><span class="toc-number">6.1.</span> <span class="toc-text">单旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#双旋转"><span class="toc-number">6.2.</span> <span class="toc-text">双旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AVL树的插入方法"><span class="toc-number">6.3.</span> <span class="toc-text">AVL树的插入方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AVL树的删除方法"><span class="toc-number">6.4.</span> <span class="toc-text">AVL树的删除方法</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+
     <!-- Scripts -->
     <script type="text/javascript">
-    console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
     console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
 </script>
   
@@ -257,6 +260,21 @@
 
     <!-- Service Worker -->
     <!-- if using service worker -->
+
+    <script text="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(function() {
+            console.log("A new service worker is being installed.");
+          })
+          .catch(function(error) {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
 
     
 </body>

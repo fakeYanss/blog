@@ -6,8 +6,8 @@
 }
 a.nav-search {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 15px;
+  right: 15px;
   color: rgba(0,0,0,0.5);
   z-index: 99;
 }
@@ -17,7 +17,8 @@ a.nav-search:focus {
 }
 @media only screen and (max-width: 1024px) {
   a.nav-search {
-    opacity: 0.2;
+    display: none;
+    opacity: 0;
   }
 }
 .modal-dialog {

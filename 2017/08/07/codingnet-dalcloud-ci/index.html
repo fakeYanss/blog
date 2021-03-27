@@ -49,31 +49,33 @@
 
     <!-- Content -->
     <section class="article-container">
-<!-- Back Home -->
-<a class="nav-back" href="/blog/">
+    <!-- Back Home -->
+    <a class="nav-back" href="/blog/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
-<!-- Page Header -->
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>Coding DaoCloud持续集成</h1>
+        <!-- Page Header -->
+        <header class="intro-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            <h1>
+                                Coding DaoCloud持续集成
+                            </h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
+        </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Main Content -->
-            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>如何在多终端发布coding博客，比如部署好的hexo+coding博客，我换了电脑，有方便的方法可以继续发博客吗？答案是有。</p>
+        <!-- Post Content -->
+        <article>
+            <div class="container">
+                <div class="row">
+                    <!-- Post Main Content -->
+                    <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <p>如何在多终端发布coding博客，比如部署好的hexo+coding博客，我换了电脑，有方便的方法可以继续发博客吗？答案是有。</p>
 <a id="more"></a>
 <hr>
 <p>在上一篇博客中，按照步骤做完，就可以在本机发布博客到coding了，但这样我们只能用这一台电脑发博客，并且最大的问题是备份问题，如果这台电脑挂了，或者是误删文件，就很可能丢失了blog源文件。如果没有备份，就要gg了。</p>
@@ -123,58 +125,51 @@
 <p>虽然整个操作过程有暴露私有ssh key的风险，但说实话，git的初衷不就是为了分享代码吗，况且我们写的这些真实价值并没有多少，所以放心的使用吧，coding提供的是私有仓库还是可以放心，github进行进行相同操作就改一下配置也可以最后删掉ssh key。</p>
 <p>coding+DaoCloud持续集成到此结束，有问题可以下方留言评论。</p>
 
- 
-                <!-- Meta -->
-                <div class="post-meta">
-                    <hr>
-                    <br>
-                    <div class="post-tags">
-                        
-                            
+
+                            <!-- Meta -->
+                            <div class="post-meta">
+                                <hr>
+                                <br>
+                                <div class="post-tags">
+                                    
+                                        
 
 <a href="/blog/tags/CI/">#CI</a>
 
 
-                        
+                                            
+                                </div>
+                                <div class="post-date">
+                                    
+                                        2017 年 08 月 07 日
+                                    
+                                </div>
+                            </div>
                     </div>
-                    <div class="post-date">
-                        
-                            2017 年 08 月 07 日
-                        
+
+                    <!-- Comments -->
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
                     </div>
                 </div>
             </div>
-
-            <!-- Comments -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <!-- Disqus Comments -->
-
-    <div id="disqus_thread" class="comment"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'you-yue-ru-tie';
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    
-            </div>
-        </div>
-    </div>
-</article>
+        </article>
 </section>
-
-<aside id="article-toc" role="navigation" class="fixed">
-    <div id="article-toc-inner">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建新分支"><span class="toc-number">1.</span> <span class="toc-text">创建新分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建SSH-Key文件夹"><span class="toc-number">2.</span> <span class="toc-text">创建SSH Key文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编辑Dockerfile"><span class="toc-number">3.</span> <span class="toc-text">编辑Dockerfile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改本地-config-yml配置"><span class="toc-number">4.</span> <span class="toc-text">修改本地_config.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DaoCloud创建项目和配置"><span class="toc-number">5.</span> <span class="toc-text">DaoCloud创建项目和配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git关联远程库和提交代码"><span class="toc-number">6.</span> <span class="toc-text">git关联远程库和提交代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">7.</span> <span class="toc-text">结束</span></a></li></ol>
-    </div>
-</aside>
 
 <!-- Image viewer-->
 
@@ -205,9 +200,17 @@
     </script>
 
     
+
+<!-- TOC -->
+
+    <aside id="article-toc" role="navigation" class="fixed">
+        <div id="article-toc-inner">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建新分支"><span class="toc-number">1.</span> <span class="toc-text">创建新分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建SSH-Key文件夹"><span class="toc-number">2.</span> <span class="toc-text">创建SSH Key文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编辑Dockerfile"><span class="toc-number">3.</span> <span class="toc-text">编辑Dockerfile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改本地-config-yml配置"><span class="toc-number">4.</span> <span class="toc-text">修改本地_config.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DaoCloud创建项目和配置"><span class="toc-number">5.</span> <span class="toc-text">DaoCloud创建项目和配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git关联远程库和提交代码"><span class="toc-number">6.</span> <span class="toc-text">git关联远程库和提交代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">7.</span> <span class="toc-text">结束</span></a></li></ol>
+        </div>
+    </aside>
+
     <!-- Scripts -->
     <script type="text/javascript">
-    console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
     console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
 </script>
   
@@ -227,6 +230,21 @@
 
     <!-- Service Worker -->
     <!-- if using service worker -->
+
+    <script text="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(function() {
+            console.log("A new service worker is being installed.");
+          })
+          .catch(function(error) {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
 
     
 </body>

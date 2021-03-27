@@ -17,7 +17,7 @@
 
     <!-- Title -->
     
-    <title>Steam | Yet Another Possibility</title>
+    <title>steam | Yet Another Possibility</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>#Steam</h1>
+                    <h1>#steam</h1>
                 </div>
             </div>
         </div>
@@ -72,9 +72,9 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             
                 <div class="post-preview archive">
-    <a href="/blog/2019/02/28/steam-account-stolen/">
+    <a href="/blog/2020/07/15/steam-load-error-fix/">
         <h1 class="post-title archive">
-            我的steam账号被盗经历
+            steam客户端页面循环加载失败修复方法
         </h1>
     </a>
 </div>
@@ -91,7 +91,6 @@
 
     <!-- Scripts -->
     <script type="text/javascript">
-    console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
     console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
 </script>
   
@@ -112,10 +111,22 @@
     <!-- Service Worker -->
     <!-- if using service worker -->
 
-    
-</body>
+    <script text="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(function() {
+            console.log("A new service worker is being installed.");
+          })
+          .catch(function(error) {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
 
-</html>    
+    
 </body>
 
 </html>

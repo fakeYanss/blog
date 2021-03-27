@@ -49,31 +49,33 @@
 
     <!-- Content -->
     <section class="article-container">
-<!-- Back Home -->
-<a class="nav-back" href="/blog/">
+    <!-- Back Home -->
+    <a class="nav-back" href="/blog/">
     <i class="fa fa-puzzle-piece"></i>
 </a>
 
-<!-- Page Header -->
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>css轮播图</h1>
+        <!-- Page Header -->
+        <header class="intro-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            <h1>
+                                css轮播图
+                            </h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
+        </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Main Content -->
-            <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>本文介绍一种css实现首页轮播图效果的方法，主要用css3的animation属性。</p>
+        <!-- Post Content -->
+        <article>
+            <div class="container">
+                <div class="row">
+                    <!-- Post Main Content -->
+                    <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <p>本文介绍一种css实现首页轮播图效果的方法，主要用css3的animation属性。</p>
 <a id="more"></a>
 <hr>
 <p><strong> 本文转自<a href="https://zhuanlan.zhihu.com/p/25033131" target="_blank" rel="noopener">知乎</a></strong></p>
@@ -101,58 +103,51 @@
 <p>以下是所有代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.loop-wrap</span> &#123;</span></span><br><span class="line">    position: relative;</span><br><span class="line">    width: 500px;</span><br><span class="line">    height: 300px;</span><br><span class="line">    margin: 100px auto;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.loop-images-container</span>&#123;</span></span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 0; top: 0;</span><br><span class="line"><span class="css">    <span class="selector-tag">width</span>: 500%; <span class="comment">/* 横向排列 5张图片 宽度应为主容器5倍 */</span></span></span><br><span class="line">    height: 100%;</span><br><span class="line">    font-size: 0;</span><br><span class="line"><span class="css">    <span class="selector-tag">transform</span>: <span class="selector-tag">translate</span>(0,0); <span class="comment">/* 初始位置位移 */</span></span></span><br><span class="line">    animation: loop 10s linear infinite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.loop-image</span>&#123;</span></span><br><span class="line">    width: 500px;</span><br><span class="line">    height: 300px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="keyword">@keyframes</span> loop &#123;</span></span><br><span class="line"><span class="css">    0% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0</span>,<span class="number">0</span>);&#125;</span></span><br><span class="line"><span class="css">    15% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0</span>,<span class="number">0</span>);&#125; <span class="comment">/* 停留1500ms */</span></span></span><br><span class="line"></span><br><span class="line"><span class="css">    20% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">20%</span>,<span class="number">0</span>);&#125; <span class="comment">/* 切换500ms 位移-20% */</span></span></span><br><span class="line"><span class="css">    35% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">20%</span>,<span class="number">0</span>);&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    40% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">40%</span>,<span class="number">0</span>);&#125;</span></span><br><span class="line"><span class="css">    55% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">40%</span>,<span class="number">0</span>);&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    60% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">60%</span>,<span class="number">0</span>);&#125;</span></span><br><span class="line"><span class="css">    75% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">60%</span>,<span class="number">0</span>);&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    80% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">80%</span>,<span class="number">0</span>);&#125;</span></span><br><span class="line"><span class="css">    95% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">80%</span>,<span class="number">0</span>);&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    100% &#123;<span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0</span>,<span class="number">0</span>);&#125; <span class="comment">/* 复位到第一张图片 */</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"loop-wrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"loop-images-container"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"1.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"loop-image"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"2.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"loop-image"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"3.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"loop-image"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"4.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"loop-image"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"5.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"loop-image"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虽然css也能实现轮播效果，但是相对于js实现来说，功能性就弱了很多，无法控制暂停与播放，无法与用户产生交互，无法监听到状态的而变化等等，但是好处也很明显嘛！那就是简单。</p>
 
- 
-                <!-- Meta -->
-                <div class="post-meta">
-                    <hr>
-                    <br>
-                    <div class="post-tags">
-                        
-                            
+
+                            <!-- Meta -->
+                            <div class="post-meta">
+                                <hr>
+                                <br>
+                                <div class="post-tags">
+                                    
+                                        
 
 <a href="/blog/tags/css3/">#css3</a> <a href="/blog/tags/animation/">#animation</a>
 
 
-                        
+                                            
+                                </div>
+                                <div class="post-date">
+                                    
+                                        2017 年 09 月 13 日
+                                    
+                                </div>
+                            </div>
                     </div>
-                    <div class="post-date">
-                        
-                            2017 年 09 月 13 日
-                        
+
+                    <!-- Comments -->
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
                     </div>
                 </div>
             </div>
-
-            <!-- Comments -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <!-- Disqus Comments -->
-
-    <div id="disqus_thread" class="comment"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'you-yue-ru-tie';
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    
-            </div>
-        </div>
-    </div>
-</article>
+        </article>
 </section>
-
-<aside id="article-toc" role="navigation" class="fixed">
-    <div id="article-toc-inner">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#dom结构搭建"><span class="toc-number">1.</span> <span class="toc-text">dom结构搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css实现静态效果"><span class="toc-number">2.</span> <span class="toc-text">css实现静态效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css实现轮播效果"><span class="toc-number">3.</span> <span class="toc-text">css实现轮播效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析动画"><span class="toc-number">4.</span> <span class="toc-text">分析动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
-    </div>
-</aside>
 
 <!-- Image viewer-->
 
@@ -183,9 +178,17 @@
     </script>
 
     
+
+<!-- TOC -->
+
+    <aside id="article-toc" role="navigation" class="fixed">
+        <div id="article-toc-inner">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#dom结构搭建"><span class="toc-number">1.</span> <span class="toc-text">dom结构搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css实现静态效果"><span class="toc-number">2.</span> <span class="toc-text">css实现静态效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css实现轮播效果"><span class="toc-number">3.</span> <span class="toc-text">css实现轮播效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析动画"><span class="toc-number">4.</span> <span class="toc-text">分析动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+        </div>
+    </aside>
+
     <!-- Scripts -->
     <script type="text/javascript">
-    console.log('特别鸣谢zchen9小仙女的精彩主题，希望大家去逛逛她的github：https://github.com/zchen9');
     console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
 </script>
   
@@ -205,6 +208,21 @@
 
     <!-- Service Worker -->
     <!-- if using service worker -->
+
+    <script text="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(function() {
+            console.log("A new service worker is being installed.");
+          })
+          .catch(function(error) {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
 
     
 </body>
