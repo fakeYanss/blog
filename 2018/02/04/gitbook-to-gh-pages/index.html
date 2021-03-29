@@ -221,7 +221,7 @@
     <script text="module">
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
-          .register("/sw.js")
+          .register(theme.service_worker.enable + "sw.js")
           .then(function() {
             console.log("A new service worker is being installed.");
           })
