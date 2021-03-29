@@ -2044,7 +2044,7 @@ for (var i = 0; i < firstpages.length; i++) {
     <script text="module">
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
-          .register(theme.service_worker.enable + "sw.js")
+          .register("/blog/js/sw.js")
           .then(function() {
             console.log("A new service worker is being installed.");
           })
