@@ -13,6 +13,7 @@
   .intro,
   .post-title,
   .post-preview a p,
+  .post-preview p a,
   .post-heading h1 {
     background: var(--bg-color);
     color: var(--font-color);

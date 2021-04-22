@@ -851,6 +851,10 @@ a.nav-back {
 .post-preview > a > .post-title {
   font-size: 1.6em;
 }
+.post-preview > p > a {
+  text-decoration: none;
+  color: #4d4d4d;
+}
 @media (min-width: 1600px) {
   .col-lg-offset-2 {
     margin-left: 0%;
@@ -1190,6 +1194,7 @@ p#div-border-top-purple {
   .intro,
   .post-title,
   .post-preview a p,
+  .post-preview p a,
   .post-heading h1 {
     background: var(--bg-color);
     color: var(--font-color);
