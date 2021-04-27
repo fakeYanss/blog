@@ -9,6 +9,7 @@ a.nav-search {
   bottom: 15px;
   right: 15px;
   color: rgba(0,0,0,0.5);
+  cursor: pointer;
   z-index: 99;
 }
 a.nav-search:hover,
@@ -53,6 +54,7 @@ a.nav-search:focus {
   box-shadow: none;
 }
 .search-result-title {
+  display: block;
   font-size: 18px;
 }
 .search-result-list {
@@ -69,8 +71,10 @@ a.nav-search:focus {
 .search-result {
   margin: 5px 0 20px;
   overflow: hidden;
-  line-height: 1.6;
+  line-height: 1.8;
   color: #4d4d4d;
+  max-height: 7.2em;
+  font-size: 16px;
 }
 th {
   text-align: center;

@@ -139,6 +139,7 @@ a {
 a:hover,
 a:focus {
   color: #4d4d4d;
+  text-decoration: none;
 }
 a:visited,
 a:link {
@@ -242,6 +243,7 @@ nav {
 .post-preview {
   position: relative;
   padding: 25px 0 35px;
+  min-height: 14em;
   overflow: hidden;
   clear: both;
 }
@@ -338,9 +340,9 @@ nav {
 .post-tags a:visited,
 .post-categories a:visited,
 .post-date a:visited,
-.post-tags a:active,
-.post-categories a:active,
-.post-date a:active {
+.post-tags a:focus,
+.post-categories a:focus,
+.post-date a:focus {
   text-decoration: none;
 }
 .archive-before-pagination {

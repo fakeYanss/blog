@@ -9,10 +9,6 @@ a.nav-back {
 .post-preview > a > .post-title {
   font-size: 1.6em;
 }
-.post-preview > p > a {
-  text-decoration: none;
-  color: gray-dark;
-}
 @media (min-width: 1600px) {
   .col-lg-offset-2 {
     margin-left: 0%;

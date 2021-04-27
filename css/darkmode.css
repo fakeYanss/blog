@@ -1,22 +1,93 @@
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-color: #1b1c1c;
-    --font-color: #c9c0b0;
-    --line-color: #3b3e3d;
+    --bg-color: #222831;
+    --font-color: #94a1b4;
+    --link-color: #a7dfe4;
+    --line-color: #161d27;
   }
-  .fa-camera-retro,
-  .fa-search,
-  .fa-puzzle-piece {
+  a .fa-camera-retro,
+  a .fa-search,
+  a .fa-puzzle-piece {
     color: var(--font-color);
   }
-  body,
-  .intro,
-  .post-title,
-  .post-preview a p,
-  .post-preview p a,
-  .post-heading h1 {
+  a:focus .fa-camera-retro,
+  a:hover .fa-camera-retro,
+  a:focus .fa-search,
+  a:hover .fa-search,
+  a:focus .fa-puzzle-piece,
+  a:hover .fa-puzzle-piece {
+    color: var(--link-color);
+  }
+  body {
+    color: var(--font-color);
     background: var(--bg-color);
+  }
+  .modal-content {
     color: var(--font-color);
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--font-color);
+    box-shadow: none;
+  }
+  .modal-content .form-control {
+    color: var(--font-color);
+    background: var(--bg-color);
+    caret-color: var(--link-color);
+  }
+  .modal-content .search-result-list .search-result-title {
+    color: var(--link-color);
+  }
+  .modal-content .search-result-list .search-result-title:focus,
+  .modal-content .search-result-list .search-result-title:hover {
+    color: var(--link-color);
+  }
+  .modal-content .search-result-list .search-result {
+    color: var(--font-color);
+  }
+  .modal-content .search-result-list .search-result .search-keyword {
+    color: var(--link-color);
+  }
+  .post-heading h1,
+  .intro-header .site-heading h1 {
+    color: var(--font-color);
+  }
+  a,
+  p a,
+  .pagiantion li > a,
+  #article-toc-inner .toc-link {
+    color: var(--font-color);
+    text-decoration: none;
+  }
+  a:focus,
+  p a:focus,
+  .pagiantion li > a:focus,
+  #article-toc-inner .toc-link:focus,
+  a:hover,
+  p a:hover,
+  .pagiantion li > a:hover,
+  #article-toc-inner .toc-link:hover,
+  a:visited,
+  p a:visited,
+  .pagiantion li > a:visited,
+  #article-toc-inner .toc-link:visited,
+  a:link,
+  p a:link,
+  .pagiantion li > a:link,
+  #article-toc-inner .toc-link:link {
+    color: var(--link-color);
+  }
+  .post-tags a {
+    color: var(--link-color);
+  }
+  .post-tags a:focus,
+  .post-tags a:hover {
+    color: var(--link-color);
+  }
+  .post-preview a {
+    color: var(--font-color) !important;
+  }
+  .post-preview a:focus .post-title,
+  .post-preview a:hover .post-title {
+    color: var(--link-color);
   }
   figure.highlight {
     background-color: var(--bg-color);
@@ -28,8 +99,12 @@
     color: var(--font-color);
   }
   code {
-    color: #df5874;
-    background-color: #2c171b;
+    color: var(--font-color);
+    background-color: #273435;
+  }
+  article .container .row blockquote {
+    color: var(--font-color);
+    background: var(--line-color);
   }
   article .container .row img {
     opacity: 0.7;
