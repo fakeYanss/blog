@@ -854,6 +854,13 @@ td {
 a.nav-back {
   position: fixed;
 }
+.post-preview a {
+  color: #4d4d4d !important;
+}
+.post-preview a:focus .post-title,
+.post-preview a:hover .post-title {
+  color: #ce2323;
+}
 .post-preview > a > .post-title {
   font-size: 1.6em;
 }
