@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="docsify，专为喜欢折腾的你。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="fakeyanss">
+    
+
+    <!-- Title -->
+    
+    <title>docsify 折腾 | Yet Another Possibility</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+    <!-- Back Home -->
+    <a class="nav-back" href="/blog/">
+    <i class="fa fa-puzzle-piece"></i>
+</a>
+
+        <!-- Page Header -->
+        <header class="intro-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            <h1>
+                                docsify 折腾
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <article>
+            <div class="container">
+                <div class="row">
+                    <!-- Post Main Content -->
+                    <div class="post-content col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <p>docsify，专为喜欢折腾的你。</p>
+<a id="more"></a>
+<h2 id="使用体验"><a href="#使用体验" class="headerlink" title="使用体验"></a>使用体验</h2><p>五一回家只带了公司笔记本，没什么娱乐软件，所以闲时刷了下 Github，发现一个 <a href="https://github.com/Bhupesh-V/til" target="_blank" rel="noopener">TIL(things I learn)</a> 项目挺好的，于是 clone 下来做了一个自己的项目，这是<a href="https://foreti.me/til/#/">我的 TIL</a> 记录。</p>
+<p>TIL 本意是记录自己学到的知识点。实际工作中会经常遇到问题并解决问题，长期以来并没有刻意记录，有些问题单凭记忆会在一段时间后忘记。</p>
+<p>原项目中是依赖 Gitbook 做的文本渲染，按照我几年前的使用经历来看，Gitbook不算好用，并且在国内访问速度堪忧，所以我在这里选择了 <a href="https://docsify.js.org/#/" target="_blank" rel="noopener">docsify</a>。</p>
+<p>docsify 是一个类似 Gitbook 将 Markdown 文件选染成 HTML 页面的工具。当然也有一定差别，Gitbook 是提前编译成 HTML 静态页面，而 docsify 是请求时渲染。在使用上来看，docsify 的速度更快，也更简单一些，可自定义的配置非常多，适用于喜欢自己动手的开发者。<br>docsify 功能非常丰富，不过基本界面样式比较简单。</p>
+<p>值得吐槽的是右上角repo角标太大了，和navbar菜单并在一起太丑陋了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/fakeyanss/imgplace@master/2021/2021-05-09_image-20210509161029217-05ff56.png" alt="image-20210509161029217"></p>
+<p>其他的一些插件，比如 「edit on github」 与 「字数插件」 会将正文内容往下挤，也很别扭。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/fakeyanss/imgplace@master/2021/2021-05-09_image-20210509161238605-8f3c7c.png" alt="image-20210509161238605"></p>
+<p>官方文档里没有浅色模式与深色模式的灵活适配，只单一支持了浅色或深色主题，也就是说只能选择一种。</p>
+<p>如果想同时支持浅色和深色，目前有两个方法：</p>
+<ol>
+<li>有一个第三方主题插件，<a href="https://docsify-darklight-theme.boopathikumar.me/#/" target="_blank" rel="noopener">docsify darklight theme</a>，安装即用，提供一个按钮手动切换，不过问题是仍然是按钮将正文内容往下挤压。我添加了一段JS方法，强制将按钮移到左侧sidebar。</li>
+<li>自定义css，支持跟随系统深色模式，自动切换。实现方式类似我的blog，目前还没有时间开发。</li>
+</ol>
+<h2 id="开始构建"><a href="#开始构建" class="headerlink" title="开始构建"></a>开始构建</h2><p>首先需要本地具备 node 和 npm 环境，选择最新的稳定版本即可。</p>
+<p>安装 docsify-cli：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g docsify-cli</span><br></pre></td></tr></table></figure>
+<p>创建 Git 仓库，并且初始化 docsify：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir docsify-demo &amp;&amp; <span class="built_in">cd</span> docsify-demo</span><br><span class="line">docsify init docs</span><br></pre></td></tr></table></figure>
+<p>这之后会自动创建出 docs 目录，其中会有一个 <code>index.html</code> 文件。</p>
+<p>可以本地预览了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docsify serve docs</span><br></pre></td></tr></table></figure>
+<p>然后，可以编辑 <code>index.html</code>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window.$docsify = &#123;</span><br><span class="line">	name: 'Things I Learn',</span><br><span class="line">	loadSidebar: true,</span><br><span class="line">	loadNavbar: true,</span><br><span class="line">	search: 'auto',</span><br><span class="line">	// 下面按照文档添加各种插件即可</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以在 docs 目录下创建这些文件：</p>
+<ul>
+<li>一个空的 <code>.nojekyll</code> 文件，用于阻止 Github Page 忽略下划线开头的文件；</li>
+<li><code>_sidebar.md</code> 文件，自定义左侧边栏目录；</li>
+<li><code>_navbar.md</code> 文件，自定义右上角菜单栏。</li>
+</ul>
+<p>可以安装 <a href="https://www.npmjs.com/package/docsify-tools" target="_blank" rel="noopener">docsify-tool</a> 依赖，我只用它来自动生成 <code>_sidebar.md</code> 内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i -g docsify-tools</span><br><span class="line">docsify-auto-sidebar -d docs</span><br></pre></td></tr></table></figure>
+<p><code>docsify-auto-sidebar</code> 会将指定 docs 目录下所有 Markdown 文件识别为目录内容，所以会将 <code>_navbar.md</code> 也将到目录里，我写了一个 Git pre-commit hook 来阻止这个动作。</p>
+<p>在项目根目录，<code>vim .git/hooks/pre-commit</code>，填入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docsify-auto-sidebar -d docs</span><br><span class="line"><span class="comment"># 替换，二选一</span></span><br><span class="line">sed -i <span class="string">""</span> <span class="string">"/_navbar/d"</span> docs/_sidebar.md <span class="comment"># mac</span></span><br><span class="line">sed -i <span class="string">"/_navbar/d"</span> docs/_sidebar.md <span class="comment"># linux</span></span><br><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<h2 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h2><p>docsify 支持 Disqus 和 <a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener">Gitalk</a> 两种评论系统。Disqus 在国内不太好用，所以我选择试试 Gitalk。</p>
+<p>按照 docsify 的文档，很简单的使用上了 Gitalk 评论，但是在使用中发现满满的都是坑。</p>
+<p>我这里主要问题是某些文章加载评论时报错 <code>Error: Validation Failed</code>。</p>
+<p>Gitalk 依托于 Github issue 存在，并且使用 issue label 和文章一一关联，issue label 有个限制是字符串长度需不超过 50。</p>
+<p>然而 docsify 默认和 Gitalk 的集成，创建 issue 时使用的 label 是当前页面的 <code>location.href</code>，也即是 URL 全文，这也太容易超过 50 了吧🥲。</p>
+<p>在 Gitalk 文档中，也有说明 id 属性，默认使用 <code>location.href</code>：</p>
+<blockquote>
+<p><strong>id</strong> <code>String</code></p>
+<p>Default: <code>location.href</code>.</p>
+<p>页面的唯一标识。长度必须小于50。</p>
+</blockquote>
+<p>在网上找到的解决方案，是手动设置 id 属性，对 href 做一次 md5，固定到 32 位。看起来很不错，引用了一个 md5 库之后，很简单搞定了。然而实际应用发现 docsify 切换页面时，路由经常没有自动刷新，导致各种奇奇怪怪的gitalk初始化问题，然后创建出的 issue 烂七八糟，而且经常在 A 页面写的评论在 B 页面可以加载出来。我猜测还是路由回调的问题，但我看不懂源码，没法解决。</p>
+<p>然后在 Github 找了一些使用 docsify 写的项目文档，发现一个 <a href="https://github.com/l-hammer/You-need-to-know-css" target="_blank" rel="noopener">l-hammer/You-need-to-know-css</a>，效果很好并且评论没有问题。</p>
+<p>读了这个项目的实现，发现没有依赖 docsify 对 Gitalk 的集成，直接引入的 Gitalk 依赖，并且在路由回调中初始化 gitalk 实例。</p>
+<p>大概实现如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">gitalkConfig = &#123;</span><br><span class="line">    clientID: <span class="string">"xxx"</span>, <span class="comment">// your github oauth app client id</span></span><br><span class="line">    clientSecret: <span class="string">"xxx"</span>, <span class="comment">//your github oauth app client screct key</span></span><br><span class="line">    repo: <span class="string">"til"</span>, <span class="comment">//your github repo name</span></span><br><span class="line">    owner: <span class="string">"fakeYanss"</span>, <span class="comment">//your github user name</span></span><br><span class="line">    admin: [<span class="string">"fakeYanss"</span>], <span class="comment">//your gitalk administrators</span></span><br><span class="line">    perPage: <span class="number">20</span>,</span><br><span class="line">    language: <span class="string">"en"</span>,</span><br><span class="line">    labels: [<span class="string">"Gitalk"</span>],</span><br><span class="line">    distractionFreeMode: <span class="literal">false</span></span><br><span class="line">&#125;;</span><br><span class="line">plugins: [</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">hook, vm</span>) </span>&#123;</span><br><span class="line">        hook.doneEach(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> label, domObj, main, divEle, gitalk;</span><br><span class="line">            label = vm.route.path.split(<span class="string">"/"</span>).pop();</span><br><span class="line">            domObj = Docsify.dom;</span><br><span class="line">            main = domObj.getNode(<span class="string">"#main"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * render gittalk</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">if</span> (vm.route.path.includes(<span class="string">"zh-cn"</span>)) &#123;</span><br><span class="line">                gitalkConfig.language = <span class="string">"zh-CN"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">Array</span>.apply(</span><br><span class="line">                <span class="literal">null</span>,</span><br><span class="line">                <span class="built_in">document</span>.querySelectorAll(<span class="string">"div.gitalk-container"</span>)</span><br><span class="line">            ).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">ele</span>) </span>&#123;</span><br><span class="line">                ele.remove();</span><br><span class="line">            &#125;);</span><br><span class="line">            divEle = domObj.create(<span class="string">"div"</span>);</span><br><span class="line">            divEle.id = <span class="string">"gitalk-container-"</span> + label;</span><br><span class="line">            divEle.className = <span class="string">"gitalk-container"</span>;</span><br><span class="line">            divEle.style = <span class="string">"width: "</span> + main.clientWidth + <span class="string">"px; margin: 0 auto 20px;"</span>;</span><br><span class="line">            domObj.appendTo(domObj.find(<span class="string">".content"</span>), divEle);</span><br><span class="line">            gitalk = <span class="keyword">new</span> Gitalk(</span><br><span class="line">                <span class="built_in">Object</span>.assign(gitalkConfig, &#123;</span><br><span class="line">                    id: !label ? <span class="string">"home"</span> : label</span><br><span class="line">                &#125;)</span><br><span class="line">            );</span><br><span class="line">            gitalk.render(<span class="string">"gitalk-container-"</span> + label);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>最后效果是这样，label 使用的是 location.hash 的尾部按 <code>/</code> 分割后的最后一段内容，其实就是每个 Markdown 文件名，到这一步已经很容易控制不超过 50 位长度了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/fakeyanss/imgplace@master/2021/2021-05-09_image-20210509172714680-b9cba4.png" alt="image-20210509172714680"></p>
+<h2 id="主题定制"><a href="#主题定制" class="headerlink" title="主题定制"></a>主题定制</h2><h3 id="darklight"><a href="#darklight" class="headerlink" title="darklight"></a>darklight</h3><p>使用docsify darklight theme，按照文档说明，非常简单。</p>
+<p>在 <code>index.html</code> 头部添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">rel</span>=<span class="string">"stylesheet"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">href</span>=<span class="string">"//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">title</span>=<span class="string">"docsify-darklight-theme"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">"text/css"</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在底部添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">src</span>=<span class="string">"//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果对默认的按钮展示位置满意，那可以到此结束了，下面是我的改动，将按钮移动到左侧边栏：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/fakeyanss/imgplace@master/2021/2021-05-09_image-20210509163856711-ff5c45.png" alt="image-20210509163856711"></p>
+<p>下载 <a href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js" target="_blank" rel="noopener">darklight 的 Javascript 源码</a>，放到项目里，可以命名为 <code>theme.js</code>，移除远程引用，添加本地引用：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"theme.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后修改 <code>theme.js</code> 的一处方法，这里的 <code>afterEach</code> 是 docsify 路由变化完成后的回调函数，主题原生的写法就是在 <code>e</code> 前面简单添加一个 div 块，这也是按钮将正文内容向下挤压的原因。添加 else 分支是因为这块代码在每次路由变化后都会执行，我们需要让它只在第一次加载页面时创建按钮 div。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">e.afterEach((<span class="function"><span class="keyword">function</span> (<span class="params">e, o</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.getElementById(<span class="string">'docsify-darklight-theme'</span>) == <span class="literal">null</span>) &#123;</span><br><span class="line">        o(e = <span class="string">'&lt;div id="docsify-darklight-theme"&gt;&lt;p&gt;.&lt;/p&gt;&lt;/div&gt;'</span> + e)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        o(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+<p>源码是编译过的，为了避免找不到在哪，这里是我改过的 <a href="https://raw.githubusercontent.com/fakeYanss/til/master/docs/dist/theme.js" target="_blank" rel="noopener">theme.js</a> 下载地址。</p>
+<p>由于没有深入阅读 docsify 的主要源码，不确定这处方法怎么直接改动，所以在外面另外写了一处脚本作为后置处理，将按钮 append 到侧边栏的 DOM 下。在 <code>index.html</code> 中，添加一段 script：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.getElementsByClassName(<span class="string">'sidebar'</span>)[<span class="number">0</span>].setAttribute(<span class="string">'id'</span>, <span class="string">'sidebar-full'</span>)</span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.getElementById(<span class="string">'sidebar-full'</span>).appendChild(<span class="built_in">document</span>.getElementById(<span class="string">'docsify-darklight-theme'</span>))</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> button = <span class="built_in">document</span>.getElementById(<span class="string">'docsify-darklight-theme'</span>)</span></span><br><span class="line"><span class="javascript">      button.style.position = <span class="string">'fixed'</span></span></span><br><span class="line"><span class="javascript">      button.style.left = <span class="string">'10px'</span></span></span><br><span class="line"><span class="javascript">      button.style.bottom = <span class="string">'58px'</span></span></span><br><span class="line"><span class="javascript">      button.style.top = <span class="string">'auto'</span></span></span><br><span class="line"><span class="javascript">      button.style.width = <span class="string">'18px'</span></span></span><br><span class="line"><span class="javascript">      button.style.height = <span class="string">'18px'</span></span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> refreshId = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span> (<span class="literal">null</span> != <span class="built_in">document</span>.getElementById(<span class="string">'docsify-darklight-theme'</span>)) &#123;</span></span><br><span class="line">        move();</span><br><span class="line">        clearInterval(refreshId);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 100);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果觉得侧边栏问题太挤，可以再调整下样式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="selector-class">.sidebar-nav</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">25px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sidebar-nav</span> &#123;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.5em</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">76px</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="prefers-color-scheme"><a href="#prefers-color-scheme" class="headerlink" title="prefers-color-scheme"></a>prefers-color-scheme</h3><p><code>prefers-color-scheme</code> 是 CSS media feature 对黑暗模式的支持，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" target="_blank" rel="noopener">详细文档在此</a>。</p>
+<p>按照<a href="https://foreti.me/blog/">我的博客</a>的做法，只需设计下黑暗模式的背景颜色、字体颜色、代码块颜色、超链接颜色，基本效果就有了。</p>
+<p>细节待开发…</p>
+<hr>
+
+
+                            <!-- Meta -->
+                            <div class="post-meta">
+                                <hr>
+                                <br>
+                                <div class="post-tags">
+                                    
+                                        
+
+<a href="/blog/tags/docsify/">#docsify</a>
+
+
+                                            
+                                </div>
+                                <div class="post-date">
+                                    
+                                        2021 年 05 月 09 日
+                                    
+                                </div>
+                            </div>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <!-- Disqus Comments -->
+
+<div id="disqus_thread" class="comment"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = 'you-yue-ru-tie';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+                    </div>
+                </div>
+            </div>
+        </article>
+</section>
+
+<!-- Image viewer-->
+
+    <!-- Custom picture view-->
+    <link href="/blog/css/viewer.min.css" rel="stylesheet" />
+    <script
+      src="/blog/js/viewer.min.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    
+    <script type="text/javascript">
+      // set image viewer
+      Viewer.setDefaults({
+        zoomRatio: [0.5],
+        navbar: false,
+        toolbar: false,
+        button: false,
+        title: [2, (image, imageData) => `${image.alt}`],
+        show: function() {
+          this.viewer.zoomTo(0.5);
+        }
+      });
+      var imageList = document.getElementsByTagName("img");
+      Array.prototype.forEach.call(imageList, element => {
+        var viewer = new Viewer(element);
+      });
+    </script>
+
+    
+
+<!-- TOC -->
+
+    <aside id="article-toc" role="navigation" class="fixed">
+        <div id="article-toc-inner">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用体验"><span class="toc-text">使用体验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始构建"><span class="toc-text">开始构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#评论系统"><span class="toc-text">评论系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题定制"><span class="toc-text">主题定制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#darklight"><span class="toc-text">darklight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prefers-color-scheme"><span class="toc-text">prefers-color-scheme</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+
+    <!-- Scripts -->
+    <script type="text/javascript">
+    console.log("© zchen9 🙋 2015-" + new Date().getFullYear());
+</script>
+  
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112380656-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+    <!-- Service Worker -->
+    <!-- if using service worker -->
+
+    <script text="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/blog/js/sw.js")
+          .then(function() {
+            console.log("A new service worker is being installed.");
+          })
+          .catch(function(error) {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
+
+    
+</body>
+
+</html>
